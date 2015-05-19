@@ -21,5 +21,12 @@ public class Doolhof {
         spel.createLevel();
         spel.centreWindow(spel);
         
+        spel.requestFocus();
+        EventListener e = new EventListener();
+        spel.addKeyListener(e);
+        
+        
+        
+        
     }
 }
