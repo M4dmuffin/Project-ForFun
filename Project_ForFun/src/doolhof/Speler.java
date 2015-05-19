@@ -18,10 +18,9 @@ public class Speler extends JComponent
     @Override
     public void paintComponent(Graphics g)
     {
-        
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 50, 50);
+        g.fillRect(0, 0, 40, 40);
     }
 }
     

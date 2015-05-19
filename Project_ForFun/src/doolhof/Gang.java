@@ -19,6 +19,6 @@ public class Gang extends JComponent
     {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
-        g.fillRect(0, 0, 50, 50);
+        g.fillRect(0, 0, 40, 40);
     }
 }

@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 public class Spel extends JFrame
 {
     private JPanel spelPanel;
-    private static final int FRAME_WIDTH = 1050;
-    private static final int FRAME_HEIGHT = 1050;
+    private static final int FRAME_WIDTH = 840;
+    private static final int FRAME_HEIGHT = 840;
     
     public Spel()
     {
