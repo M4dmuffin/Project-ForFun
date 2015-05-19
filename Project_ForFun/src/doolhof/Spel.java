@@ -4,10 +4,8 @@
  */
 package doolhof;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.Window;
+import java.awt.*;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,23 +15,42 @@ import javax.swing.JPanel;
  */
 public class Spel extends JFrame
 {
+
     private JPanel spelPanel;
+    private JPanel menuPanel;
     private static final int FRAME_WIDTH = 840;
     private static final int FRAME_HEIGHT = 840;
+    private static final int SPELPANEL_WIDTH = 740;
+    private static final int SPELPANEL_HEIGHT = 740;
+    private static final int MENUPANEL_WIDTH = 100;
+    private static final int MENUPANEL_HEIGHT = 100;
     
     public Spel()
     {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("A frame with two components");
+        setTitle("A-Maze-ing Game");
         setVisible(true);
+        
     }
     
     public void createFrame()
     {
         spelPanel = new JPanel();
+        spelPanel.setBackground(Color.yellow);
+        spelPanel.setPreferredSize(new Dimension (SPELPANEL_WIDTH,SPELPANEL_HEIGHT));
         spelPanel.setLayout(new GridLayout(21, 21));
-        add(spelPanel);
+        
+        menuPanel = new JPanel();
+        menuPanel.setBackground(Color.blue);
+        JButton resetButton = new JButton("Reset Level");
+        resetButton.addMouseListener(new ClickListener());
+        menuPanel.add(resetButton);
+        menuPanel.setPreferredSize(new Dimension (MENUPANEL_WIDTH,MENUPANEL_HEIGHT));
+        
+        add(menuPanel, BorderLayout.NORTH);
+        add(spelPanel, BorderLayout.CENTER);
+    
     }
     
     public static void centreWindow(Window frame) 
