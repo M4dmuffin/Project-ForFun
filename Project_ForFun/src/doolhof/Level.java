@@ -14,7 +14,7 @@ public class Level
     private Gang g;
     private Speler s;
     
-    private Object[][] level1;
+    public Object[][] level1;
 
     public Object[][] getLevel1() 
     {
@@ -51,5 +51,19 @@ public class Level
   { m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,g,m },
 };
     }
+    
+//    public Veld[][] fillGrid()
+//    {
+//        Grid gridVeld = new Grid();
+//        Veld[][] grid = gridVeld.bouwGrid();
+//        
+//        for (int i = 0; i < level1[1].length; i++) 
+//        {
+//            for (int j = 0; j < level1[0].length; j++) 
+//            {
+//                
+//            }
+//        }
+//    }
     
 }

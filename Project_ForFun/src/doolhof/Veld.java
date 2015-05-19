@@ -12,7 +12,6 @@ public class Veld
 {
     public int x;
     public int y;
-    public Muur muur;
-    public Speler speler;
-    public Gang gang;
+    public Object object;
+    public Object[] buren;
 }

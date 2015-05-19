@@ -14,6 +14,13 @@ import javax.swing.JComponent;
  */
 public class Speler extends JComponent
 {
+    public Veld[][] grid;
+    
+    public Speler()
+    {
+        grid = new Veld[21][21];
+        
+    }
     
     @Override
     public void paintComponent(Graphics g)
