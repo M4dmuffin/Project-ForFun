@@ -14,11 +14,16 @@ import javax.swing.JComponent;
  */
 public class Speler extends JComponent
 {
-    public Veld[][] grid;
+    public Veld[][] velden;
+    private Grid grid;
+    public int x;
+    public int y;
+    
     
     public Speler()
     {
-        grid = new Veld[21][21];
+        velden = new Veld[21][21];
+        velden = grid.bouwGrid();
         
     }
     
@@ -28,6 +33,11 @@ public class Speler extends JComponent
         super.paintComponent(g);
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, 40, 40);
+    }
+    
+    public void move(int direction)
+    {
+        
     }
 }
     
