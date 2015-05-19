@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
  *
  * @author HP Pavillion
  */
-public class EventListener implements KeyListener
+public class KeyboardListener implements KeyListener
 {
     
     
