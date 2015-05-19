@@ -19,9 +19,9 @@ public class Doolhof {
         Spel spel = new Spel();
         spel.createFrame();
         spel.createLevel();
-        spel.centreWindow(spel);
+        Spel.centreWindow(spel);
         spel.requestFocus();
-        
+        spel.setVisible(true);
         
         
         

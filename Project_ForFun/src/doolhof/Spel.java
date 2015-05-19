@@ -30,7 +30,7 @@ public class Spel extends JFrame
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("A-Maze-ing Game");
-        setVisible(true);
+        
         
     }
     
