@@ -6,12 +6,39 @@ package doolhof;
 
 /**
  *
- * @author Lars
+ * @author HP Pavillion
  */
-public class Veld
-{
-    public int x;
-    public int y;
-    public Object object;
-    public Object[] buren;
+public class Veld {
+    
+    private int locX, locY;
+    private Object object;
+
+    public int getLocX() 
+    {
+        return locX;
+    }
+
+    public Object getObject() 
+    {
+        return object;
+    }
+
+    public int getLocY() 
+    {
+        return locY;
+    }
+
+    public void setObject(Object object) 
+    {
+        this.object = object;
+    }
+
+    public void setLocX(int locX) {
+        this.locX = locX;
+    }
+
+    public void setLocY(int locY) {
+        this.locY = locY;
+    }
+    
 }

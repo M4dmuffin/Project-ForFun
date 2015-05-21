@@ -4,41 +4,51 @@
  */
 package doolhof;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JComponent;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
- * @author Lars
+ * @author HP Pavillion
  */
-public class Speler extends JComponent
+public class Speler 
 {
-    public Veld[][] velden;
-    private Grid grid;
-    public int x;
-    public int y;
-    
-    
-    public Speler()
-    {
-        velden = new Veld[21][21];
-        velden = grid.bouwGrid();
-        
-    }
-    
-    @Override
-    public void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 40, 40);
-    }
-    
-    public void move(int direction)
-    {
-        
-    }
-}
-    
+    private int veldX, veldY;
+    private Image spelerImage;
+    private Bord bord;
 
+    
+    public Speler() 
+    {
+        ImageIcon img = new ImageIcon("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Pics\\player.png");
+        spelerImage = img.getImage();
+        
+        
+        veldX = 0; //start x positie speler 
+        veldY = 1; //start y positie speler 
+    }
+    
+    public void move(int locX, int locY)
+    {
+        veldX += locX;
+        veldY += locY;
+    }
+    
+    public Image getSpelerImage() 
+    {
+        return spelerImage;
+    }
+    
+    public int getVeldX() 
+    {
+        return veldX;
+    }
+
+    public int getVeldY() 
+    {
+        return veldY;
+    }
+    
+    
+    
+}

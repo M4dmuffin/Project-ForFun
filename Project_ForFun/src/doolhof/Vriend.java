@@ -13,25 +13,24 @@ import javax.swing.JComponent;
  *
  * @author HP Pavillion
  */
-public class Muur extends JComponent {
-    
-    private int veldX, veldY;
-    private Image muur;
+public class Vriend extends JComponent {
 
-    public Muur() 
+    private int veldX, veldY;
+    private Image vriend;
+
+    public Vriend() 
     {
       veldX = 40;
       veldY = 40;
-      ImageIcon img = new ImageIcon("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Pics\\wall.png");
-      muur = img.getImage();
+      ImageIcon img = new ImageIcon("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Pics\\vriend.png");
+      vriend = img.getImage();    
     }
     
     public void paint(Graphics g) {
-        g.drawImage(muur, veldX, veldY, null);
+        g.drawImage(vriend, veldX, veldY, null);
     }
     
-   public Image getMuur() {
-        return muur;
+   public Image getVriend() {
+        return vriend;
     }
-
 }

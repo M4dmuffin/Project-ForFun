@@ -4,11 +4,17 @@
  */
 package doolhof;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Lars
+ * @author HP Pavillion
  */
 public class Doolhof {
 
@@ -16,14 +22,30 @@ public class Doolhof {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Spel spel = new Spel();
-        spel.createFrame();
-        spel.createLevel();
-        Spel.centreWindow(spel);
-        spel.requestFocus();
-        spel.setVisible(true);
+        
+        new Doolhof();
+    }
+    
+    public Doolhof()
+    {
+        JFrame f = new JFrame();
+        f.setTitle("Doolhof Game");
         
         
+//        JPanel hoofdmenu = new JPanel();
+//        hoofdmenu.setPreferredSize(new Dimension (100,100));
+//        
+//        hoofdmenu.setBackground(Color.red);
+//        f.add(hoofdmenu, BorderLayout.WEST);
+//        JButton reset = new JButton("Reset");
+//        hoofdmenu.add(reset);
         
+        f.add(new Bord(), BorderLayout.CENTER);
+        
+  
+        f.setSize(950,880);
+        f.setLocationRelativeTo(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }

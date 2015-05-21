@@ -11,37 +11,53 @@ import java.awt.event.KeyListener;
  *
  * @author HP Pavillion
  */
-public class KeyboardListener implements KeyListener
-{
+public class KeyboardListener implements KeyListener {
     
-    
-    @Override
-    public void keyPressed(KeyEvent e) {
-    int keyCode = e.getKeyCode();
-    switch( keyCode ) { 
-        case KeyEvent.VK_UP:
-            System.out.println("up");
-            break;
-        case KeyEvent.VK_DOWN:
-            System.out.println("down");
-            break;
-        case KeyEvent.VK_LEFT:
-            System.out.println("left");
-            break;
-        case KeyEvent.VK_RIGHT :
-            System.out.println("right");
-            break;
-     }
-}
+        public Level level;
+        public Speler piraat;
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+        @Override
+        public void keyTyped(KeyEvent e) 
+        {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) 
+        {
+            int keycode = e.getKeyCode();
+
+            if (keycode == KeyEvent.VK_UP) {
+                if (!level.getLevel_1(piraat.getVeldX(), piraat.getVeldY() - 1).equals("m")) {
+                    piraat.move(0, -1);
+                }
+
+            }
+            if (keycode == KeyEvent.VK_DOWN) {
+                if (!level.getLevel_1(piraat.getVeldX(), piraat.getVeldY() + 1).equals("m")) {
+                    piraat.move(0, 1);
+                }
+            }
+            if (keycode == KeyEvent.VK_LEFT) {
+                if (!level.getLevel_1(piraat.getVeldX() - 1, piraat.getVeldY()).equals("m")) {
+                    piraat.move(-1, 0);
+                }
+            }
+            if (keycode == KeyEvent.VK_RIGHT) {
+                if (!level.getLevel_1(piraat.getVeldX() + 1, piraat.getVeldY()).equals("m")) {
+                    piraat.move(1, 0);
+                }
+            }
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) 
+        {
+            
+        }
         
-    }
+        
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-       
-    }
     
 }

@@ -4,21 +4,39 @@
  */
 package doolhof;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 /**
  *
- * @author Lars
+ * @author HP Pavillion
  */
-public class Gang extends JComponent
-{
-    @Override
-    public void paintComponent(Graphics g)
+public class Gang extends JComponent {
+
+    private int veldX, veldY;
+    private Image gang;
+
+ 
+    
+    public Gang()
     {
-        super.paintComponent(g);
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, 40, 40);
+      veldX = 40;
+      veldY = 40;
+      ImageIcon img = new ImageIcon("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Pics\\street.png");
+      gang = img.getImage();
+             
     }
+    
+    public void paint(Graphics g) {
+        g.drawImage(gang, veldX, veldY, null);
+    }
+    
+   public Image getGang() {
+        return gang;
+    }
+    
+    
+    
 }
