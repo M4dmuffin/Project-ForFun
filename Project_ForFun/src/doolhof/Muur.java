@@ -22,7 +22,7 @@ public class Muur extends JComponent {
     {
       veldX = 40;
       veldY = 40;
-      ImageIcon img = new ImageIcon("C:/School/Blok D/Project/Doolhof/src/Pics/wall.png");
+      ImageIcon img = new ImageIcon("src/Pics/wall.png");
       muur = img.getImage();
     }
     

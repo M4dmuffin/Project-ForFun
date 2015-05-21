@@ -20,7 +20,7 @@ public class Speler
     
     public Speler() 
     {
-        ImageIcon img = new ImageIcon("C:/School/Blok D/Project/Doolhof/src/Pics/player.png");
+        ImageIcon img = new ImageIcon("src/Pics/player.png");
         spelerImage = img.getImage();
         
         

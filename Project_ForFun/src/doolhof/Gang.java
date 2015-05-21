@@ -24,7 +24,7 @@ public class Gang extends JComponent {
     {
       veldX = 40;
       veldY = 40;
-      ImageIcon img = new ImageIcon("C:/School/Blok D/Project/Doolhof/src/Pics/street.png");
+      ImageIcon img = new ImageIcon("src/Pics/street.png");
       gang = img.getImage();
              
     }

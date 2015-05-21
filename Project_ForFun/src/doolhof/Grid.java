@@ -49,7 +49,7 @@ public class Grid
     {
         try
         {
-            levelOpbouw = new Scanner(new File("C:/School/Blok D/Project/Doolhof/src/Levels/Level1.txt"));
+            levelOpbouw = new Scanner(new File("src/Levels/Level1.txt"));
         } catch (FileNotFoundException ex)
         {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
