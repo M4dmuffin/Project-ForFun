@@ -20,11 +20,11 @@ public class Speler
     
     public Speler() 
     {
-        ImageIcon img = new ImageIcon("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Pics\\player.png");
+        ImageIcon img = new ImageIcon("C:/School/Blok D/Project/Doolhof/src/Pics/player.png");
         spelerImage = img.getImage();
         
         
-        veldX = 0; //start x positie speler 
+        veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
     }
     

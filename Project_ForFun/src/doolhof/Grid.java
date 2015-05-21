@@ -13,97 +13,115 @@ import java.util.logging.Logger;
  *
  * @author HP Pavillion
  */
-public class Grid 
+public class Grid
 {
-    public Veld[][] veldlijst;
+
+    public Veld[][] veldLijst;
     private Scanner levelOpbouw;
     private final int AANTAL_KOLOMMEN_LEVEL;
     private String[] level_1;
     private String[][] level_1_2D;
-    public Grid() 
+
+    public int getAANTAL_KOLOMMEN_LEVEL()
     {
-        AANTAL_KOLOMMEN_LEVEL = 21;  
+        return AANTAL_KOLOMMEN_LEVEL;
+    }
+
+    public Grid()
+    {
+        AANTAL_KOLOMMEN_LEVEL = 21;
         level_1 = new String[AANTAL_KOLOMMEN_LEVEL];
+        level_1_2D = new String[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
+        veldLijst = new Veld[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
         openFile();
         readFile();
         closeFile();
         bouwGrid();
     }
     
-    private void openFile() {
-        try {
-            levelOpbouw = new Scanner(new File("C:\\Users\\HP Pavillion\\Desktop\\Kevin\\School\\Netbeans\\Doolhof\\Levels\\Level1.txt"));
-        } catch (FileNotFoundException ex) {
+    public Object getObject(int x, int y)
+    {
+        Object index = veldLijst[y][x].getObject();
+        return index;
+    }
+
+    private void openFile()
+    {
+        try
+        {
+            levelOpbouw = new Scanner(new File("C:/School/Blok D/Project/Doolhof/src/Levels/Level1.txt"));
+        } catch (FileNotFoundException ex)
+        {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             System.out.println("Error: Map niet gevonden");
         }
     }
 
-    private void readFile() {
-        while (levelOpbouw.hasNext()) 
+    private void readFile()
+    {
+        while (levelOpbouw.hasNext())
         {
-            for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++) 
+            for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
             {
-                 level_1[i] = levelOpbouw.next();
+                level_1[i] = levelOpbouw.next();
             }
         }
-        
-        try 
+
+        try
         {
-            for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++) {
-                for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++) {
-                    level_1_2D[i][j] = level_1[i].substring(i, i + 1);
+            for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
+            {
+                for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
+                {
+                    level_1_2D[i][j] = level_1[i].substring(j, j + 1);
                 }
             }
-        }
-        catch (NullPointerException n)
+        } catch (NullPointerException n)
         {
             System.out.println("jaja het is zo!");
-        }
-        catch (Exception e) 
+        } catch (Exception e)
         {
             System.out.println("nee er is iets anders!");
         }
     }
 
-    private void closeFile() {
+    private void closeFile()
+    {
         levelOpbouw.close();
     }
-    
+
     private void bouwGrid()
     {
-        for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++) 
+        for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
         {
-            for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++) 
+            for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
             {
-                 String huidig = level_1_2D[i][j];
-                 if(huidig.equals("m"))
-                 {
-                     Muur muur = new Muur();
-                     Veld veld = new Veld();
-                     veld.setObject(muur);
-                     veld.setLocX(i);
-                     veld.setLocY(j);
-                     veldlijst[i][j] = veld;
-                 }
-                 else if(huidig.equals("g"))
-                 {
-                     Gang gang = new Gang();
-                     Veld veld = new Veld();
-                     veld.setObject(gang);
-                     veld.setLocX(i);
-                     veld.setLocY(j);
-                     veldlijst[i][j] = veld;
-                 }
-                 else if (huidig.equals("v"))
-                 {
-                     Vriend vriend = new Vriend();
-                     Veld veld = new Veld();
-                     veld.setObject(vriend);
-                     veld.setLocX(i);
-                     veld.setLocY(j);
-                     veldlijst[i][j] = veld;
-                 }
+                String huidig = level_1_2D[i][j];
+                if (huidig.equals("m"))
+                {
+                    Muur muur = new Muur();
+                    Veld veld = new Veld();
+                    veld.setObject(muur);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } else if (huidig.equals("g"))
+                {
+                    Gang gang = new Gang();
+                    Veld veld = new Veld();
+                    veld.setObject(gang);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } else if (huidig.equals("v"))
+                {
+                    Vriend vriend = new Vriend();
+                    Veld veld = new Veld();
+                    veld.setObject(vriend);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                }
             }
         }
     }

@@ -8,8 +8,8 @@ package doolhof;
  *
  * @author HP Pavillion
  */
-public class Veld {
-    
+public class Veld 
+{
     private int locX, locY;
     private Object object;
 
@@ -33,11 +33,13 @@ public class Veld {
         this.object = object;
     }
 
-    public void setLocX(int locX) {
+    public void setLocX(int locX) 
+    {
         this.locX = locX;
     }
 
-    public void setLocY(int locY) {
+    public void setLocY(int locY) 
+    {
         this.locY = locY;
     }
     

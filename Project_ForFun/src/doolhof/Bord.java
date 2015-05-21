@@ -18,11 +18,11 @@ import javax.swing.Timer;
  *
  * @author HP Pavillion
  */
-public class Bord extends JPanel implements ActionListener {
+public class Bord extends JPanel implements ActionListener
+{
 
     private Timer timer;
     private int veldX, veldY;
-    private Level level;
     private Grid grid;
     private Speler piraat;
     private String winTekst = "";
@@ -30,16 +30,16 @@ public class Bord extends JPanel implements ActionListener {
     private Font font = new Font("Serif", Font.BOLD, 60);
     private KeyboardListener key;
 
-    public Bord() {
+    public Bord()
+    {
         grid = new Grid();
         key = new KeyboardListener();
         veldX = 40;
         veldY = 40;
-        level = new Level();
         piraat = new Speler();
         addKeyListener(key);
         setFocusable(true);
-        key.level = level;
+        key.grid = grid;
         key.piraat = piraat;
 
         timer = new Timer(25, this);
@@ -47,8 +47,10 @@ public class Bord extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (level.getLevel_1(piraat.getVeldX(), piraat.getVeldY()).equals("v")) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (grid.getObject(piraat.getVeldX(), piraat.getVeldY()) instanceof Vriend)
+        {
             winTekst = "Winner!";
             win = true;
         }
@@ -56,23 +58,30 @@ public class Bord extends JPanel implements ActionListener {
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g)
+    {
 
         super.paint(g);
-        if (!win) {
-            for (int y = 0; y < level.getHOOGTE_LEVEL(); y++) {
-                for (int x = 0; x < level.getHOOGTE_LEVEL(); x++) {
-                    if (grid.veldlijst[x][y].getObject() instanceof Vriend) {
+        if (!win)
+        {
+            for (int y = 0; y < grid.getAANTAL_KOLOMMEN_LEVEL(); y++)
+            {
+                for (int x = 0; x < grid.getAANTAL_KOLOMMEN_LEVEL(); x++)
+                {
+                    if (grid.veldLijst[y][x].getObject() instanceof Vriend)
+                    {
 //                      g.drawImage(level.getVriend(), x * veldX, y * veldY, null);
                         Vriend vriend = new Vriend();
                         g.drawImage(vriend.getVriend(), x * veldX, y * veldY, null);
                     }
-                    if (grid.veldlijst[x][y].getObject() instanceof Gang) {
+                    if (grid.veldLijst[y][x].getObject() instanceof Gang)
+                    {
 //                      g.drawImage(level.getGang(), x * veldX, y * veldY, null);
                         Gang gang = new Gang();
                         g.drawImage(gang.getGang(), x * veldX, y * veldY, null);
                     }
-                    if (grid.veldlijst[x][y].getObject() instanceof Muur) {
+                    if (grid.veldLijst[y][x].getObject() instanceof Muur)
+                    {
 //                      g.drawImage(level.getMuur(), x * veldX, y * veldY, null);
                         Muur muur = new Muur();
                         g.drawImage(muur.getMuur(), x * veldX, y * veldY, null);
@@ -81,7 +90,8 @@ public class Bord extends JPanel implements ActionListener {
             }
             g.drawImage(piraat.getSpelerImage(), piraat.getVeldX() * 40, piraat.getVeldY() * 40, null);
         }
-        if (win) {
+        if (win)
+        {
             g.setColor(Color.YELLOW);
             g.setFont(font);
             g.drawString(winTekst, 250, 300);
@@ -90,11 +100,13 @@ public class Bord extends JPanel implements ActionListener {
 
     }
 
-    public int getVeldX() {
+    public int getVeldX()
+    {
         return veldX;
     }
 
-    public int getVeldY() {
+    public int getVeldY()
+    {
         return veldY;
     }
 }
