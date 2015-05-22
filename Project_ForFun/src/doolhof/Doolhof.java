@@ -31,21 +31,27 @@ public class Doolhof {
         JFrame f = new JFrame();
         f.setTitle("Doolhof Game");
         
+        JPanel hoofdmenu = new JPanel();
+        hoofdmenu.setPreferredSize(new Dimension (100,100));
         
-//        JPanel hoofdmenu = new JPanel();
-//        hoofdmenu.setPreferredSize(new Dimension (100,100));
-//        
-//        hoofdmenu.setBackground(Color.red);
-//        f.add(hoofdmenu, BorderLayout.WEST);
-//        JButton reset = new JButton("Reset");
-//        hoofdmenu.add(reset);
+        hoofdmenu.setBackground(Color.red);
+        f.add(hoofdmenu, BorderLayout.WEST);
+        JButton reset = new JButton("Reset");
+        JButton start = new JButton("Start");
+        hoofdmenu.add(start);
+        hoofdmenu.add(reset);
+        MuisListener muis = new MuisListener();
+        Bord b = new Bord();
         
-        f.add(new Bord(), BorderLayout.CENTER);
+        reset.addMouseListener(muis);
+        start.addMouseListener(muis);
         
-  
+        f.add(b, BorderLayout.CENTER);
+
         f.setSize(950,880);
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
+        b.requestFocus();
     }
 }

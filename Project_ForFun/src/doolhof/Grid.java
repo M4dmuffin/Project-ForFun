@@ -16,11 +16,12 @@ import java.util.logging.Logger;
 public class Grid
 {
 
-    public Veld[][] veldLijst;
+    private Veld[][] veldLijst;
     private Scanner levelOpbouw;
     private final int AANTAL_KOLOMMEN_LEVEL;
     private String[] level_1;
     private String[][] level_1_2D;
+
 
     public int getAANTAL_KOLOMMEN_LEVEL()
     {
@@ -124,5 +125,16 @@ public class Grid
                 }
             }
         }
+    }
+    
+    public void resetGrid()
+    {
+        bouwGrid();
+        
+    }
+    
+    
+    public Veld[][] getVeldLijst() {
+        return veldLijst;
     }
 }

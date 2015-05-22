@@ -14,34 +14,34 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+
 /**
  *
  * @author HP Pavillion
  */
 public class Bord extends JPanel implements ActionListener
 {
-
-    private Timer timer;
-    private int veldX, veldY;
+    private int veldBreedte, veldHoogte;
     private Grid grid;
     private Speler piraat;
     private String winTekst = "";
     private boolean win = false;
     private Font font = new Font("Serif", Font.BOLD, 60);
     private KeyboardListener key;
+    private Timer timer;
+
 
     public Bord()
     {
         grid = new Grid();
         key = new KeyboardListener();
-        veldX = 40;
-        veldY = 40;
+        veldBreedte = 40;
+        veldHoogte = 40;
         piraat = new Speler();
         addKeyListener(key);
         setFocusable(true);
-        key.grid = grid;
-        key.piraat = piraat;
-
+        key.setGrid(grid);
+        key.setPiraat(piraat);
         timer = new Timer(25, this);
         timer.start();
     }
@@ -68,23 +68,23 @@ public class Bord extends JPanel implements ActionListener
             {
                 for (int x = 0; x < grid.getAANTAL_KOLOMMEN_LEVEL(); x++)
                 {
-                    if (grid.veldLijst[y][x].getObject() instanceof Vriend)
+                    if (grid.getVeldLijst()[y][x].getObject() instanceof Vriend)
                     {
 //                      g.drawImage(level.getVriend(), x * veldX, y * veldY, null);
                         Vriend vriend = new Vriend();
-                        g.drawImage(vriend.getVriend(), x * veldX, y * veldY, null);
+                        g.drawImage(vriend.getVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (grid.veldLijst[y][x].getObject() instanceof Gang)
+                    if (grid.getVeldLijst()[y][x].getObject() instanceof Gang)
                     {
 //                      g.drawImage(level.getGang(), x * veldX, y * veldY, null);
                         Gang gang = new Gang();
-                        g.drawImage(gang.getGang(), x * veldX, y * veldY, null);
+                        g.drawImage(gang.getGang(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (grid.veldLijst[y][x].getObject() instanceof Muur)
+                    if (grid.getVeldLijst()[y][x].getObject() instanceof Muur)
                     {
 //                      g.drawImage(level.getMuur(), x * veldX, y * veldY, null);
                         Muur muur = new Muur();
-                        g.drawImage(muur.getMuur(), x * veldX, y * veldY, null);
+                        g.drawImage(muur.getMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
                 }
             }
@@ -100,13 +100,21 @@ public class Bord extends JPanel implements ActionListener
 
     }
 
-    public int getVeldX()
+    public int getVeldBreedte()
     {
-        return veldX;
+        return veldBreedte;
     }
 
-    public int getVeldY()
+    public int getVeldHoogte()
     {
-        return veldY;
+        return veldHoogte;
+    }
+    
+    public Grid getGrid() {
+        return grid;
+    }
+    
+    public Timer getTimer() {
+        return timer;
     }
 }

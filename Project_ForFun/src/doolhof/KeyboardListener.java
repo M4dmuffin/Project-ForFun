@@ -14,8 +14,8 @@ import java.awt.event.KeyListener;
 public class KeyboardListener implements KeyListener
 {
 
-    public Grid grid;
-    public Speler piraat;
+    private Grid grid;
+    private Speler piraat;
 
     @Override
     public void keyTyped(KeyEvent e)
@@ -26,7 +26,6 @@ public class KeyboardListener implements KeyListener
     public void keyPressed(KeyEvent e)
     {
         int keycode = e.getKeyCode();
-        Object buur = grid.getObject(piraat.getVeldX(), piraat.getVeldY());
 
         if (keycode == KeyEvent.VK_UP)
         {
@@ -64,4 +63,23 @@ public class KeyboardListener implements KeyListener
     public void keyReleased(KeyEvent e)
     {
     }
+    
+    
+    public Grid getGrid() {
+        return grid;
+    }
+
+    public Speler getPiraat() {
+        return piraat;
+    }
+
+    public void setGrid(Grid grid) {
+        this.grid = grid;
+    }
+
+    public void setPiraat(Speler piraat) {
+        this.piraat = piraat;
+    }
+    
+    
 }
