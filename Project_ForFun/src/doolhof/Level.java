@@ -40,9 +40,21 @@ public class Level
         bouwGrid();
     }
     
-    public Object getObject(int x, int y)
+    public Vriend getVriend(int x, int y)
     {
-        Object index = veldLijst[y][x].getObject();
+        Vriend index = veldLijst[y][x].getVriend();
+        return index;
+    }
+    
+    public Muur getMuur(int x, int y)
+    {
+        Muur index = veldLijst[y][x].getMuur();
+        return index;
+    }
+    
+    public Gang getGang(int x, int y)
+    {
+        Gang index = veldLijst[y][x].getGang();
         return index;
     }
 
@@ -102,7 +114,7 @@ public class Level
                 {
                     Muur muur = new Muur();
                     Veld veld = new Veld();
-                    veld.setObject(muur);
+                    veld.setMuur(muur);
                     veld.setLocX(i);
                     veld.setLocY(j);
                     veldLijst[i][j] = veld;
@@ -110,7 +122,7 @@ public class Level
                 {
                     Gang gang = new Gang();
                     Veld veld = new Veld();
-                    veld.setObject(gang);
+                    veld.setGang(gang);
                     veld.setLocX(i);
                     veld.setLocY(j);
                     veldLijst[i][j] = veld;
@@ -118,7 +130,7 @@ public class Level
                 {
                     Vriend vriend = new Vriend();
                     Veld veld = new Veld();
-                    veld.setObject(vriend);
+                    veld.setVriend(vriend);
                     veld.setLocX(i);
                     veld.setLocY(j);
                     veldLijst[i][j] = veld;
@@ -128,7 +140,8 @@ public class Level
     }
     
     
-    public Veld[][] getVeldLijst() {
+    public Veld[][] getVeldLijst() 
+    {
         return veldLijst;
     }
 }

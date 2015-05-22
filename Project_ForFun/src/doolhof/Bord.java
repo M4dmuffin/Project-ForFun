@@ -51,7 +51,7 @@ public class Bord extends JPanel implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (level1.getObject(piraat.getVeldX(), piraat.getVeldY()) instanceof Vriend)
+        if (level1.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
         {
             winTekst = "Winner!";
             win = true;
@@ -70,17 +70,17 @@ public class Bord extends JPanel implements ActionListener
             {
                 for (int x = 0; x < level1.getAANTAL_KOLOMMEN_LEVEL(); x++)
                 {
-                    if (level1.getVeldLijst()[y][x].getObject() instanceof Vriend)
+                    if (level1.getVeldLijst()[y][x].getVriend() != null)
                     {
                         Vriend vriend = new Vriend();
                         g.drawImage(vriend.getVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (level1.getVeldLijst()[y][x].getObject() instanceof Gang)
+                    if (level1.getVeldLijst()[y][x].getGang() != null)
                     {
                         Gang gang = new Gang();
                         g.drawImage(gang.getGang(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (level1.getVeldLijst()[y][x].getObject() instanceof Muur)
+                    if (level1.getVeldLijst()[y][x].getMuur() != null)
                     {
                         Muur muur = new Muur();
                         g.drawImage(muur.getMuur(), x * veldBreedte, y * veldHoogte, null);

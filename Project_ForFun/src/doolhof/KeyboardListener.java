@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 public class KeyboardListener implements KeyListener
 {
 
-    private Level grid;
+    private Level level;
     private Speler piraat;
 
     @Override
@@ -29,7 +29,7 @@ public class KeyboardListener implements KeyListener
 
         if (keycode == KeyEvent.VK_UP)
         {
-            if (!(grid.getObject(piraat.getVeldX(), piraat.getVeldY() - 1) instanceof Muur))
+            if (!(level.getMuur(piraat.getVeldX(), piraat.getVeldY() - 1) != null))
             {
                 piraat.move(0, -1);
             }
@@ -37,21 +37,21 @@ public class KeyboardListener implements KeyListener
         }
         if (keycode == KeyEvent.VK_DOWN)
         {
-            if (!(grid.getObject(piraat.getVeldX(), piraat.getVeldY() + 1) instanceof Muur))
+            if (!(level.getMuur(piraat.getVeldX(), piraat.getVeldY() + 1) != null))
             {
                 piraat.move(0, 1);
             }
         }
         if (keycode == KeyEvent.VK_LEFT)
         {
-            if (!(grid.getObject(piraat.getVeldX() - 1, piraat.getVeldY()) instanceof Muur))
+            if (!(level.getMuur(piraat.getVeldX() - 1, piraat.getVeldY()) != null))
             {
                 piraat.move(-1, 0);
             }
         }
         if (keycode == KeyEvent.VK_RIGHT)
         {
-            if (!(grid.getObject(piraat.getVeldX() + 1, piraat.getVeldY()) instanceof Muur))
+            if (!(level.getMuur(piraat.getVeldX() + 1, piraat.getVeldY()) != null))
             {
                 piraat.move(1, 0);
             }
@@ -66,7 +66,7 @@ public class KeyboardListener implements KeyListener
     
     
     public Level getGrid() {
-        return grid;
+        return level;
     }
 
     public Speler getPiraat() {
@@ -74,7 +74,7 @@ public class KeyboardListener implements KeyListener
     }
 
     public void setGrid(Level grid) {
-        this.grid = grid;
+        this.level = grid;
     }
 
     public void setPiraat(Speler piraat) {
