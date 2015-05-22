@@ -22,7 +22,7 @@ import javax.swing.Timer;
 public class Bord extends JPanel implements ActionListener
 {
     private int veldBreedte, veldHoogte;
-    private Grid grid;
+    private Level grid;
     private Speler piraat;
     private String winTekst = "";
     private boolean win = false;
@@ -33,13 +33,12 @@ public class Bord extends JPanel implements ActionListener
 
     public Bord()
     {
-        grid = new Grid();
+        grid = new Level();
         key = new KeyboardListener();
         veldBreedte = 40;
         veldHoogte = 40;
         piraat = new Speler();
         addKeyListener(key);
-        setFocusable(true);
         key.setGrid(grid);
         key.setPiraat(piraat);
         timer = new Timer(25, this);
@@ -70,19 +69,16 @@ public class Bord extends JPanel implements ActionListener
                 {
                     if (grid.getVeldLijst()[y][x].getObject() instanceof Vriend)
                     {
-//                      g.drawImage(level.getVriend(), x * veldX, y * veldY, null);
                         Vriend vriend = new Vriend();
                         g.drawImage(vriend.getVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
                     if (grid.getVeldLijst()[y][x].getObject() instanceof Gang)
                     {
-//                      g.drawImage(level.getGang(), x * veldX, y * veldY, null);
                         Gang gang = new Gang();
                         g.drawImage(gang.getGang(), x * veldBreedte, y * veldHoogte, null);
                     }
                     if (grid.getVeldLijst()[y][x].getObject() instanceof Muur)
                     {
-//                      g.drawImage(level.getMuur(), x * veldX, y * veldY, null);
                         Muur muur = new Muur();
                         g.drawImage(muur.getMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
@@ -110,11 +106,17 @@ public class Bord extends JPanel implements ActionListener
         return veldHoogte;
     }
     
-    public Grid getGrid() {
+    public Level getGrid() {
         return grid;
     }
     
     public Timer getTimer() {
         return timer;
     }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+    
+    
 }

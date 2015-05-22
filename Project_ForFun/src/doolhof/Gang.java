@@ -29,6 +29,7 @@ public class Gang extends JComponent {
              
     }
     
+    @Override
     public void paint(Graphics g) {
         g.drawImage(gang, veldX, veldY, null);
     }

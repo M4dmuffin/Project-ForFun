@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 public class KeyboardListener implements KeyListener
 {
 
-    private Grid grid;
+    private Level grid;
     private Speler piraat;
 
     @Override
@@ -65,7 +65,7 @@ public class KeyboardListener implements KeyListener
     }
     
     
-    public Grid getGrid() {
+    public Level getGrid() {
         return grid;
     }
 
@@ -73,7 +73,7 @@ public class KeyboardListener implements KeyListener
         return piraat;
     }
 
-    public void setGrid(Grid grid) {
+    public void setGrid(Level grid) {
         this.grid = grid;
     }
 

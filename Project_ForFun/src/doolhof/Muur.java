@@ -26,6 +26,7 @@ public class Muur extends JComponent {
       muur = img.getImage();
     }
     
+    @Override
     public void paint(Graphics g) {
         g.drawImage(muur, veldX, veldY, null);
     }

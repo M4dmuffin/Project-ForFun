@@ -23,35 +23,13 @@ public class Doolhof {
      */
     public static void main(String[] args) {
         
-        new Doolhof();
+        Game game = new Game();
+        game.startGame();
     }
-    
-    public Doolhof()
-    {
-        JFrame f = new JFrame();
-        f.setTitle("Doolhof Game");
-        
-        JPanel hoofdmenu = new JPanel();
-        hoofdmenu.setPreferredSize(new Dimension (100,100));
-        
-        hoofdmenu.setBackground(Color.red);
-        f.add(hoofdmenu, BorderLayout.WEST);
-        JButton reset = new JButton("Reset");
-        JButton start = new JButton("Start");
-        hoofdmenu.add(start);
-        hoofdmenu.add(reset);
-        MuisListener muis = new MuisListener();
-        Bord b = new Bord();
-        
-        reset.addMouseListener(muis);
-        start.addMouseListener(muis);
-        
-        f.add(b, BorderLayout.CENTER);
 
-        f.setSize(950,880);
-        f.setLocationRelativeTo(null);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
-        b.requestFocus();
-    }
+ 
+    
+    
+    
+    
 }
