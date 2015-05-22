@@ -15,9 +15,7 @@ public class Speler
 {
     private int veldX, veldY;
     private Image spelerImage;
-    private Bord bord;
 
-    
     public Speler() 
     {
         ImageIcon img = new ImageIcon("src/Pics/player.png");

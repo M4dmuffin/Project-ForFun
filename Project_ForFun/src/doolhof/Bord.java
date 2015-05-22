@@ -22,7 +22,7 @@ import javax.swing.Timer;
 public class Bord extends JPanel implements ActionListener
 {
     private int veldBreedte, veldHoogte;
-    private Level grid;
+    private Level level1;
     private Speler piraat;
     private String winTekst = "";
     private boolean win = false;
@@ -30,25 +30,28 @@ public class Bord extends JPanel implements ActionListener
     private KeyboardListener key;
     private Timer timer;
 
-
     public Bord()
     {
-        grid = new Level();
-        key = new KeyboardListener();
+        initBord();
         veldBreedte = 40;
         veldHoogte = 40;
+        timer = new Timer(25, this);   
+    }
+    
+    public void initBord()
+    {
+        level1 = new Level();
         piraat = new Speler();
+        key = new KeyboardListener();
         addKeyListener(key);
-        key.setGrid(grid);
+        key.setGrid(level1);
         key.setPiraat(piraat);
-        timer = new Timer(25, this);
-        timer.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (grid.getObject(piraat.getVeldX(), piraat.getVeldY()) instanceof Vriend)
+        if (level1.getObject(piraat.getVeldX(), piraat.getVeldY()) instanceof Vriend)
         {
             winTekst = "Winner!";
             win = true;
@@ -63,21 +66,21 @@ public class Bord extends JPanel implements ActionListener
         super.paint(g);
         if (!win)
         {
-            for (int y = 0; y < grid.getAANTAL_KOLOMMEN_LEVEL(); y++)
+            for (int y = 0; y < level1.getAANTAL_KOLOMMEN_LEVEL(); y++)
             {
-                for (int x = 0; x < grid.getAANTAL_KOLOMMEN_LEVEL(); x++)
+                for (int x = 0; x < level1.getAANTAL_KOLOMMEN_LEVEL(); x++)
                 {
-                    if (grid.getVeldLijst()[y][x].getObject() instanceof Vriend)
+                    if (level1.getVeldLijst()[y][x].getObject() instanceof Vriend)
                     {
                         Vriend vriend = new Vriend();
                         g.drawImage(vriend.getVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (grid.getVeldLijst()[y][x].getObject() instanceof Gang)
+                    if (level1.getVeldLijst()[y][x].getObject() instanceof Gang)
                     {
                         Gang gang = new Gang();
                         g.drawImage(gang.getGang(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (grid.getVeldLijst()[y][x].getObject() instanceof Muur)
+                    if (level1.getVeldLijst()[y][x].getObject() instanceof Muur)
                     {
                         Muur muur = new Muur();
                         g.drawImage(muur.getMuur(), x * veldBreedte, y * veldHoogte, null);
@@ -107,7 +110,7 @@ public class Bord extends JPanel implements ActionListener
     }
     
     public Level getGrid() {
-        return grid;
+        return level1;
     }
     
     public Timer getTimer() {

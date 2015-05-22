@@ -127,12 +127,6 @@ public class Level
         }
     }
     
-    public void resetGrid()
-    {
-        bouwGrid();
-        
-    }
-    
     
     public Veld[][] getVeldLijst() {
         return veldLijst;

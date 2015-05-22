@@ -7,23 +7,25 @@ package doolhof;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 
 /**
  *
  * @author HP Pavillion
  */
-public class Game {
+public class Game{
     
     private JPanel hoofdmenu;
     private JButton reset;
     private JButton start;
-    private JFrame f;
-    private Bord b;
+    private JFrame frame;
+    private Bord speelBord;
 
     public void startGame()
     {
@@ -31,24 +33,44 @@ public class Game {
         createPanels();
         createButtons();
         AddPanelsToFrame();
-        f.setVisible(true);
-        b.requestFocus();
+        frame.setVisible(true);
+        speelBord.requestFocus();
     }
     
     public void createFrame()
     {
-        f = new JFrame();
-        f.setTitle("Doolhof Game");
-        f.setFocusable(true);
-        f.setSize(950,880);
-        f.setLocationRelativeTo(null);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame();
+        frame.setTitle("Doolhof Game");
+        frame.setFocusable(true);
+        frame.setSize(950,880);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void createButtons()
     {
+        hoofdmenu.requestFocus();
+        ActionListener startAction = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                speelBord.getTimer().start();
+                speelBord.requestFocus();
+            }
+        };
+        
+        ActionListener resetAction = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                speelBord.initBord();
+                speelBord.requestFocus();
+            }
+        };
         reset = new JButton("Reset");
         start = new JButton("Start");
+        start.addActionListener(startAction);
+        reset.addActionListener(resetAction);
         hoofdmenu.add(start);
         hoofdmenu.add(reset);
     }
@@ -58,16 +80,19 @@ public class Game {
         hoofdmenu = new JPanel();
         hoofdmenu.setPreferredSize(new Dimension (100,100));
         hoofdmenu.setBackground(Color.red);
-        b = new Bord();
+        speelBord = new Bord();
+        
     }
     
     public void AddPanelsToFrame()
     {
-        f.add(hoofdmenu, BorderLayout.WEST);
-        f.add(b, BorderLayout.CENTER);
+        frame.add(hoofdmenu, BorderLayout.WEST);
+        frame.add(speelBord, BorderLayout.CENTER);
     }
+
+
     
- 
+    
 
 
     
