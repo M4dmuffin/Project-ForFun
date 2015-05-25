@@ -69,6 +69,8 @@ public class Game{
         };
         reset = new JButton("Reset");
         start = new JButton("Start");
+        reset.setPreferredSize(new Dimension(75,25));
+        start.setPreferredSize(new Dimension(75,25));
         start.addActionListener(startAction);
         reset.addActionListener(resetAction);
         hoofdmenu.add(start);
