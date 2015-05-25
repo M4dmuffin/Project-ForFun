@@ -37,7 +37,7 @@ public class Game{
         speelBord.requestFocus();
     }
     
-    public void createFrame()
+    private void createFrame()
     {
         frame = new JFrame();
         frame.setTitle("Doolhof Game");
@@ -47,7 +47,7 @@ public class Game{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void createButtons()
+    private void createButtons()
     {
         hoofdmenu.requestFocus();
         ActionListener startAction = new ActionListener() {
@@ -75,7 +75,7 @@ public class Game{
         hoofdmenu.add(reset);
     }
     
-    public void createPanels()
+    private void createPanels()
     {
         hoofdmenu = new JPanel();
         hoofdmenu.setPreferredSize(new Dimension (100,100));
@@ -84,7 +84,7 @@ public class Game{
         
     }
     
-    public void AddPanelsToFrame()
+    private void AddPanelsToFrame()
     {
         frame.add(hoofdmenu, BorderLayout.WEST);
         frame.add(speelBord, BorderLayout.CENTER);

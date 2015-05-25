@@ -19,20 +19,15 @@ public class Level
     private Veld[][] veldLijst;
     private Scanner levelOpbouw;
     private final int AANTAL_KOLOMMEN_LEVEL;
-    private String[] level_1;
-    private String[][] level_1_2D;
+    private String[] level;
+    private String[][] level_2D;
 
-
-    public int getAANTAL_KOLOMMEN_LEVEL()
-    {
-        return AANTAL_KOLOMMEN_LEVEL;
-    }
 
     public Level()
     {
         AANTAL_KOLOMMEN_LEVEL = 21;
-        level_1 = new String[AANTAL_KOLOMMEN_LEVEL];
-        level_1_2D = new String[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
+        level = new String[AANTAL_KOLOMMEN_LEVEL];
+        level_2D = new String[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
         veldLijst = new Veld[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
         openFile();
         readFile();
@@ -40,24 +35,6 @@ public class Level
         bouwGrid();
     }
     
-    public Vriend getVriend(int x, int y)
-    {
-        Vriend index = veldLijst[y][x].getVriend();
-        return index;
-    }
-    
-    public Muur getMuur(int x, int y)
-    {
-        Muur index = veldLijst[y][x].getMuur();
-        return index;
-    }
-    
-    public Gang getGang(int x, int y)
-    {
-        Gang index = veldLijst[y][x].getGang();
-        return index;
-    }
-
     private void openFile()
     {
         try
@@ -76,7 +53,7 @@ public class Level
         {
             for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
             {
-                level_1[i] = levelOpbouw.next();
+                level[i] = levelOpbouw.next();
             }
         }
 
@@ -86,7 +63,7 @@ public class Level
             {
                 for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
                 {
-                    level_1_2D[i][j] = level_1[i].substring(j, j + 1);
+                    level_2D[i][j] = level[i].substring(j, j + 1);
                 }
             }
         } catch (NullPointerException n)
@@ -109,7 +86,7 @@ public class Level
         {
             for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
             {
-                String huidig = level_1_2D[i][j];
+                String huidig = level_2D[i][j];
                 if (huidig.equals("m"))
                 {
                     Muur muur = new Muur();
@@ -139,6 +116,28 @@ public class Level
         }
     }
     
+    public int getAANTAL_KOLOMMEN_LEVEL()
+    {
+        return AANTAL_KOLOMMEN_LEVEL;
+    }
+    
+    public Vriend getVriend(int x, int y)
+    {
+        Vriend index = veldLijst[y][x].getVriend();
+        return index;
+    }
+    
+    public Muur getMuur(int x, int y)
+    {
+        Muur index = veldLijst[y][x].getMuur();
+        return index;
+    }
+    
+    public Gang getGang(int x, int y)
+    {
+        Gang index = veldLijst[y][x].getGang();
+        return index;
+    }
     
     public Veld[][] getVeldLijst() 
     {

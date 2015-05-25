@@ -44,8 +44,8 @@ public class Bord extends JPanel implements ActionListener
         piraat = new Speler();
         key = new KeyboardListener();
         addKeyListener(key);
-        key.setGrid(level1);
-        key.setPiraat(piraat);
+        key.setLevel(level1);
+        key.setSpeler(piraat);
     }
 
     @Override
@@ -99,27 +99,11 @@ public class Bord extends JPanel implements ActionListener
 
     }
 
-    public int getVeldBreedte()
-    {
-        return veldBreedte;
-    }
-
-    public int getVeldHoogte()
-    {
-        return veldHoogte;
-    }
-    
-    public Level getGrid() {
-        return level1;
-    }
-    
     public Timer getTimer() {
         return timer;
     }
 
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
+    
     
     
 }
