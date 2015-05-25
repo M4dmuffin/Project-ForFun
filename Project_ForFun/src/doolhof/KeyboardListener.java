@@ -65,8 +65,8 @@ public class KeyboardListener implements KeyListener
     }
     
     
-    public void setLevel(Level level) {
-        this.level = level;
+    public void setLevel(Level grid) {
+        this.level = grid;
     }
 
     public void setSpeler(Speler piraat) {

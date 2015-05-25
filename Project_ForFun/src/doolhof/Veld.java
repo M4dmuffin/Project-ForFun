@@ -15,16 +15,6 @@ public class Veld
     private Gang gang;
     private Vriend vriend;
 
-    public int getLocX() 
-    {
-        return locX;
-    }
-
-    public int getLocY() 
-    {
-        return locY;
-    }
-
     public void setLocX(int locX) 
     {
         this.locX = locX;

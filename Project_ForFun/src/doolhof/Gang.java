@@ -15,15 +15,15 @@ import javax.swing.JComponent;
  */
 public class Gang extends JComponent {
 
-    private int veldX, veldY;
+    private int veldBreedte, veldHoogte;
     private Image gang;
 
  
     
     public Gang()
     {
-      veldX = 40;
-      veldY = 40;
+      veldBreedte = 40;
+      veldHoogte = 40;
       ImageIcon img = new ImageIcon("src/Pics/street.png");
       gang = img.getImage();
              
@@ -31,7 +31,7 @@ public class Gang extends JComponent {
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(gang, veldX, veldY, null);
+        g.drawImage(gang, veldBreedte, veldHoogte, null);
     }
     
    public Image getGang() {

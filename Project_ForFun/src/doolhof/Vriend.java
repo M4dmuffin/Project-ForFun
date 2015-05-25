@@ -15,19 +15,19 @@ import javax.swing.JComponent;
  */
 public class Vriend extends JComponent {
 
-    private int veldX, veldY;
+    private int veldBreedte, veldHoogte;
     private Image vriend;
 
     public Vriend() 
     {
-      veldX = 40;
-      veldY = 40;
+      veldBreedte = 40;
+      veldHoogte = 40;
       ImageIcon img = new ImageIcon("src/Pics/vriend.png");
       vriend = img.getImage();    
     }
     
     public void paint(Graphics g) {
-        g.drawImage(vriend, veldX, veldY, null);
+        g.drawImage(vriend, veldBreedte, veldHoogte, null);
     }
     
    public Image getVriend() {

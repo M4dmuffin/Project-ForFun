@@ -15,20 +15,20 @@ import javax.swing.JComponent;
  */
 public class Muur extends JComponent {
     
-    private int veldX, veldY;
+    private int veldBreedte, veldHoogte;
     private Image muur;
 
     public Muur() 
     {
-      veldX = 40;
-      veldY = 40;
+      veldBreedte = 40;
+      veldHoogte = 40;
       ImageIcon img = new ImageIcon("src/Pics/wall.png");
       muur = img.getImage();
     }
     
     @Override
     public void paint(Graphics g) {
-        g.drawImage(muur, veldX, veldY, null);
+        g.drawImage(muur, veldBreedte, veldHoogte, null);
     }
     
    public Image getMuur() {
