@@ -31,7 +31,7 @@ public class Muur extends JComponent {
         g.drawImage(muur, veldBreedte, veldHoogte, null);
     }
     
-   public Image getMuur() {
+   public Image getImageMuur() {
         return muur;
     }
 

@@ -27,6 +27,9 @@ public class Bord extends JPanel implements ActionListener
     private Font font = new Font("Serif", Font.BOLD, 60);
     private KeyboardListener key;
     private Timer timer;
+    private Bazooka bazooka;
+    private Helper helper;
+    private ValsSpeler valsSpeler;
 
     public Bord()
     {
@@ -44,6 +47,9 @@ public class Bord extends JPanel implements ActionListener
         addKeyListener(key);
         piraat.setLevel(level);
         key.setSpeler(piraat);
+        bazooka = new Bazooka();
+        helper = new Helper();
+        valsSpeler = new ValsSpeler();
     }
 
     @Override
@@ -60,7 +66,6 @@ public class Bord extends JPanel implements ActionListener
     @Override
     public void paint(Graphics g)
     {
-
         super.paint(g);
         if (!win)
         {
@@ -80,8 +85,14 @@ public class Bord extends JPanel implements ActionListener
                     {
                         g.drawImage(level.getVeldLijst()[y][x].getMuur().getImageMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
+                    
+                    
                 }
             }
+            
+            g.drawImage(bazooka.getBazookaImage(), bazooka.getVeldX() * 40, bazooka.getVeldY() * 40, null);
+            g.drawImage(helper.getHelperImage(), helper.getVeldX() * 40, helper.getVeldY() * 40, null);
+            g.drawImage(valsSpeler.getValsspelerImage(), valsSpeler.getVeldX() * 40, valsSpeler.getVeldY() * 40, null);
             g.drawImage(piraat.getSpelerImage(), piraat.getVeldX() * 40, piraat.getVeldY() * 40, null);
         }
         if (win)
@@ -90,11 +101,10 @@ public class Bord extends JPanel implements ActionListener
             g.setFont(font);
             g.drawString(winTekst, 250, 300);
         }
-
-
     }
-
-    public Timer getTimer() {
+    
+    public Timer getTimer() 
+    {
         return timer;
     }
 
