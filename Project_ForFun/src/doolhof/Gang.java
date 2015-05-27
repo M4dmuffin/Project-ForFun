@@ -34,7 +34,7 @@ public class Gang extends JComponent {
         g.drawImage(gang, veldBreedte, veldHoogte, null);
     }
     
-   public Image getGang() {
+   public Image getImageGang() {
         return gang;
     }
     

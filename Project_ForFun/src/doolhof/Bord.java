@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class Bord extends JPanel implements ActionListener
 {
     private int veldBreedte, veldHoogte;
-    private Level level1;
+    private Level level;
     private Speler piraat;
     private String winTekst = "";
     private boolean win = false;
@@ -38,18 +38,18 @@ public class Bord extends JPanel implements ActionListener
     
     public void initBord()
     {
-        level1 = new Level();
+        level = new Level();
         piraat = new Speler();
         key = new KeyboardListener();
         addKeyListener(key);
-        key.setLevel(level1);
+        piraat.setLevel(level);
         key.setSpeler(piraat);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (level1.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
+        if (level.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
         {
             winTekst = "Winner!";
             win = true;
@@ -64,24 +64,21 @@ public class Bord extends JPanel implements ActionListener
         super.paint(g);
         if (!win)
         {
-            for (int y = 0; y < level1.getAANTAL_KOLOMMEN_LEVEL(); y++)
+            for (int y = 0; y < level.getAANTAL_KOLOMMEN_LEVEL(); y++)
             {
-                for (int x = 0; x < level1.getAANTAL_KOLOMMEN_LEVEL(); x++)
+                for (int x = 0; x < level.getAANTAL_KOLOMMEN_LEVEL(); x++)
                 {
-                    if (level1.getVeldLijst()[y][x].getVriend() != null)
+                    if (level.getVeldLijst()[y][x].getVriend() != null)
                     {
-                        Vriend vriend = new Vriend();
-                        g.drawImage(vriend.getVriend(), x * veldBreedte, y * veldHoogte, null);
+                        g.drawImage(level.getVeldLijst()[y][x].getVriend().getImageVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (level1.getVeldLijst()[y][x].getGang() != null)
+                    if (level.getVeldLijst()[y][x].getGang() != null)
                     {
-                        Gang gang = new Gang();
-                        g.drawImage(gang.getGang(), x * veldBreedte, y * veldHoogte, null);
+                        g.drawImage(level.getVeldLijst()[y][x].getGang().getImageGang(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    if (level1.getVeldLijst()[y][x].getMuur() != null)
+                    if (level.getVeldLijst()[y][x].getMuur() != null)
                     {
-                        Muur muur = new Muur();
-                        g.drawImage(muur.getMuur(), x * veldBreedte, y * veldHoogte, null);
+                        g.drawImage(level.getVeldLijst()[y][x].getMuur().getImageMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
                 }
             }

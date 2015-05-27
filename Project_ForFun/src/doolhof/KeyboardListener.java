@@ -13,8 +13,6 @@ import java.awt.event.KeyListener;
  */
 public class KeyboardListener implements KeyListener
 {
-
-    private Level level;
     private Speler piraat;
 
     @Override
@@ -29,32 +27,22 @@ public class KeyboardListener implements KeyListener
 
         if (keycode == KeyEvent.VK_UP)
         {
-            if (!(level.getMuur(piraat.getVeldX(), piraat.getVeldY() - 1) != null))
-            {
-                piraat.move(0, -1);
-            }
-
+            piraat.move("omhoog");
         }
         if (keycode == KeyEvent.VK_DOWN)
         {
-            if (!(level.getMuur(piraat.getVeldX(), piraat.getVeldY() + 1) != null))
-            {
-                piraat.move(0, 1);
-            }
+            piraat.move("omlaag");
+            
         }
         if (keycode == KeyEvent.VK_LEFT)
         {
-            if (!(level.getMuur(piraat.getVeldX() - 1, piraat.getVeldY()) != null))
-            {
-                piraat.move(-1, 0);
-            }
+            piraat.move("links");
+            
         }
         if (keycode == KeyEvent.VK_RIGHT)
         {
-            if (!(level.getMuur(piraat.getVeldX() + 1, piraat.getVeldY()) != null))
-            {
-                piraat.move(1, 0);
-            }
+            piraat.move("rechts");
+        
         }
 
     }

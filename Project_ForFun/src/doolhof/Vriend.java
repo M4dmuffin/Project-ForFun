@@ -30,7 +30,7 @@ public class Vriend extends JComponent {
         g.drawImage(vriend, veldBreedte, veldHoogte, null);
     }
     
-   public Image getVriend() {
+   public Image getImageVriend() {
         return vriend;
     }
 }
