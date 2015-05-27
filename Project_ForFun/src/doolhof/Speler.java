@@ -23,6 +23,11 @@ public class Speler
         spelerImage = img.getImage();
         
         
+        resetVeld();
+    }
+
+    private void resetVeld()
+    {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
     }
@@ -84,5 +89,6 @@ public class Speler
     {
         this.level = level;
     }
+    
     
 }

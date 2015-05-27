@@ -30,35 +30,37 @@ public class Bord extends JPanel implements ActionListener
     private Bazooka bazooka;
     private Helper helper;
     private ValsSpeler valsSpeler;
+    private int levelCount;
 
     public Bord()
     {
+        levelCount = 1;
         initBord();
         veldBreedte = 40;
         veldHoogte = 40;
         timer = new Timer(25, this);   
     }
     
-    public void initBord()
+    public final void initBord()
     {
-        level = new Level();
-        piraat = new Speler();
-        key = new KeyboardListener();
-        addKeyListener(key);
-        piraat.setLevel(level);
-        key.setSpeler(piraat);
-        bazooka = new Bazooka();
-        helper = new Helper();
-        valsSpeler = new ValsSpeler();
+        this.level = new Level(levelCount);
+        this.piraat = new Speler();
+        this.key = new KeyboardListener();
+        this.addKeyListener(key);
+        this.piraat.setLevel(level);
+        this.key.setSpeler(piraat);
+        this.bazooka = new Bazooka();
+        this.helper = new Helper();
+        this.valsSpeler = new ValsSpeler();
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e)
     {
         if (level.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
         {
-            winTekst = "Winner!";
-            win = true;
+            levelCount++;
+            initBord();
         }
         repaint();
     }

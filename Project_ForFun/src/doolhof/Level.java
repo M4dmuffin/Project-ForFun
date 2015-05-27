@@ -23,23 +23,36 @@ public class Level
     private String[][] level_2D;
 
 
-    public Level()
+    public Level(int levelCount)
     {
         AANTAL_KOLOMMEN_LEVEL = 21;
         level = new String[AANTAL_KOLOMMEN_LEVEL];
         level_2D = new String[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
         veldLijst = new Veld[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
-        openFile();
+        openFile(levelCount);
         readFile();
         closeFile();
         bouwGrid();
     }
     
-    private void openFile()
+    private void openFile(int level)
     {
+        String levelText = "";
+        if(level == 1)
+        {
+            levelText = "src/Levels/Level1.txt";
+        }
+        if(level == 2)
+        {
+            levelText = "src/Levels/Level2.txt";
+        }
+        if(level == 3)
+        {
+            levelText = "src/Levels/Level3.txt";
+        }
         try
         {
-            levelOpbouw = new Scanner(new File("src/Levels/Level1.txt"));
+            levelOpbouw = new Scanner(new File(levelText));
         } catch (FileNotFoundException ex)
         {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
