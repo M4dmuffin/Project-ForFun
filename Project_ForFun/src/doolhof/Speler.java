@@ -16,6 +16,7 @@ public class Speler
     private int veldX, veldY;
     private Image spelerImage;
     private Level level;
+    private int richting;
 
     public Speler() 
     {
@@ -23,16 +24,9 @@ public class Speler
         veldY = 1; //start y positie speler 
         ImageIcon img = new ImageIcon("src/Pics/player.png");
         spelerImage = img.getImage();
+        richting = 2;
     }
-    
-    public Speler(int x, int y) 
-    {
-        veldX = x; //start x positie speler 
-        veldY = y; //start y positie speler 
-        ImageIcon img = new ImageIcon("src/Pics/player.png");
-        spelerImage = img.getImage();
-    }
-    
+       
     public void reset()
     {
         veldX = 1; 
@@ -44,6 +38,7 @@ public class Speler
         if(richting.equals(BeweegRichting.omhoog))
         {
             int omhoog = veldY - 1;
+            this.richting = 0;
             if(level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
@@ -52,6 +47,7 @@ public class Speler
         if(richting.equals(BeweegRichting.omlaag))
         {
             int omlaag = veldY + 1;
+            this.richting = 2;
             if(level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
@@ -60,6 +56,7 @@ public class Speler
         if(richting.equals(BeweegRichting.links))
         {
             int links = veldX - 1;
+            this.richting = 3;
             if(level.getMuur(links, veldY) == null)
             {
                 veldX = links;
@@ -68,13 +65,12 @@ public class Speler
         if(richting.equals(BeweegRichting.rechts))
         {
             int rechts = veldX + 1;
+            this.richting = 1;
             if(level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
             }
         }
-        
-        
     }
     
     public Image getSpelerImage() 
@@ -96,6 +92,4 @@ public class Speler
     {
         this.level = level;
     }
-    
-    
 }

@@ -61,7 +61,15 @@ public class Bord extends JPanel implements ActionListener
         if (level.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
         {
             levelCount++;
-            initBord();
+            if (levelCount > 3)
+            {
+                win = true;
+                winTekst = "Winnaar";
+            }
+            else
+            {
+                initBord();
+            }
         }
         repaint();
     }
