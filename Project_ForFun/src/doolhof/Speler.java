@@ -22,9 +22,8 @@ public class Speler
     {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
-        ImageIcon img = new ImageIcon("src/Pics/player.png");
-        spelerImage = img.getImage();
         richting = 2;
+        setImage();
     }
        
     public void reset()
@@ -39,6 +38,7 @@ public class Speler
         {
             int omhoog = veldY - 1;
             this.richting = 0;
+            setImage();
             if(level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
@@ -48,6 +48,7 @@ public class Speler
         {
             int omlaag = veldY + 1;
             this.richting = 2;
+            setImage();
             if(level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
@@ -57,6 +58,7 @@ public class Speler
         {
             int links = veldX - 1;
             this.richting = 3;
+            setImage();
             if(level.getMuur(links, veldY) == null)
             {
                 veldX = links;
@@ -66,6 +68,7 @@ public class Speler
         {
             int rechts = veldX + 1;
             this.richting = 1;
+            setImage();
             if(level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
@@ -91,5 +94,29 @@ public class Speler
     public void setLevel(Level level)
     {
         this.level = level;
+    }
+    
+    public void setImage()
+    {
+        if(richting == 0)
+        {
+            ImageIcon img = new ImageIcon("src/Pics/playerHoog.png");
+            spelerImage = img.getImage();
+        }
+        if(richting == 1)
+        {
+            ImageIcon img = new ImageIcon("src/Pics/playerRechts.png");
+            spelerImage = img.getImage();
+        }
+        if(richting == 2)
+        {
+            ImageIcon img = new ImageIcon("src/Pics/player.png");
+            spelerImage = img.getImage();
+        }
+        if(richting == 3)
+        {
+            ImageIcon img = new ImageIcon("src/Pics/playerLinks.png");
+            spelerImage = img.getImage();
+        }
     }
 }
