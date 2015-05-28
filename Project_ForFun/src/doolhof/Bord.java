@@ -28,7 +28,7 @@ public class Bord extends JPanel implements ActionListener
     private KeyboardListener key;
     private Timer timer;
     private Bazooka bazooka;
-    private Helper helper;
+    //private Helper helper;
     private ValsSpeler valsSpeler;
     private int levelCount;
 
@@ -51,7 +51,6 @@ public class Bord extends JPanel implements ActionListener
         key.setSpeler(piraat);
         piraat.setLevel(level);
         bazooka = new Bazooka();
-        helper = new Helper();
         valsSpeler = new ValsSpeler();
     }
     
@@ -86,11 +85,25 @@ public class Bord extends JPanel implements ActionListener
                 {
                     if (level.getVeldLijst()[y][x].getVriend() != null)
                     {
+                        int i = 0;
                         g.drawImage(level.getVeldLijst()[y][x].getVriend().getImageVriend(), x * veldBreedte, y * veldHoogte, null);
                     }
                     if (level.getVeldLijst()[y][x].getGang() != null)
                     {
+                        Item item = level.getVeldLijst()[y][x].getGang().getItem();
                         g.drawImage(level.getVeldLijst()[y][x].getGang().getImageGang(), x * veldBreedte, y * veldHoogte, null);
+                        if(item instanceof Helper)
+                        {
+                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        }
+                        if(item instanceof ValsSpeler)
+                        {
+                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        }
+                        if(item instanceof Bazooka)
+                        {
+                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        }
                     }
                     if (level.getVeldLijst()[y][x].getMuur() != null)
                     {
@@ -99,9 +112,9 @@ public class Bord extends JPanel implements ActionListener
                 }
             }
             
-            g.drawImage(bazooka.getBazookaImage(), bazooka.getVeldX() * 40, bazooka.getVeldY() * 40, null);
-            g.drawImage(helper.getHelperImage(), helper.getVeldX() * 40, helper.getVeldY() * 40, null);
-            g.drawImage(valsSpeler.getValsspelerImage(), valsSpeler.getVeldX() * 40, valsSpeler.getVeldY() * 40, null);
+            //g.drawImage(bazooka.getBazookaImage(), bazooka.getVeldX() * 40, bazooka.getVeldY() * 40, null);
+            //g.drawImage(helper.getHelperImage(), helper.getVeldX() * 40, helper.getVeldY() * 40, null);
+            //g.drawImage(valsSpeler.getValsspelerImage(), valsSpeler.getVeldX() * 40, valsSpeler.getVeldY() * 40, null);
             g.drawImage(piraat.getSpelerImage(), piraat.getVeldX() * 40, piraat.getVeldY() * 40, null);
         }
         if (win)

@@ -17,16 +17,14 @@ public class Gang extends JComponent {
 
     private int veldBreedte, veldHoogte;
     private Image gang;
-
- 
+    private Item item;
     
     public Gang()
     {
       veldBreedte = 40;
       veldHoogte = 40;
       ImageIcon img = new ImageIcon("src/Pics/street.png");
-      gang = img.getImage();
-             
+      gang = img.getImage();    
     }
     
     @Override
@@ -37,7 +35,15 @@ public class Gang extends JComponent {
    public Image getImageGang() {
         return gang;
     }
-    
-    
+
+    public void setItem(Item item)
+    {
+        this.item = item;
+    }
+
+    public Item getItem()
+    {
+        return item;
+    }
     
 }

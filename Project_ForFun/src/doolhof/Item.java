@@ -4,10 +4,17 @@
  */
 package doolhof;
 
+import java.awt.Image;
+
 /**
  *
  * @author HP Pavillion
  */
 public class Item {
+    protected Image itemImage;
     
+    public Image getItemImage() 
+    {
+        return itemImage;
+    }
 }

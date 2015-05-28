@@ -108,7 +108,8 @@ public class Level
                     veld.setLocX(i);
                     veld.setLocY(j);
                     veldLijst[i][j] = veld;
-                } else if (huidig.equals("g"))
+                } 
+                else if (huidig.equals("g"))
                 {
                     Gang gang = new Gang();
                     Veld veld = new Veld();
@@ -116,7 +117,41 @@ public class Level
                     veld.setLocX(i);
                     veld.setLocY(j);
                     veldLijst[i][j] = veld;
-                } else if (huidig.equals("v"))
+                }
+                else if (huidig.equals("h"))
+                {
+                    Gang gang = new Gang();
+                    Veld veld = new Veld();
+                    Helper helper = new Helper();
+                    gang.setItem(helper);
+                    veld.setGang(gang);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } 
+                else if (huidig.equals("c"))
+                {
+                    Gang gang = new Gang();
+                    Veld veld = new Veld();
+                    ValsSpeler vals = new ValsSpeler();
+                    gang.setItem(vals);
+                    veld.setGang(gang);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } 
+                else if (huidig.equals("b"))
+                {
+                    Gang gang = new Gang();
+                    Veld veld = new Veld();
+                    Bazooka baz = new Bazooka();
+                    gang.setItem(baz);
+                    veld.setGang(gang);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } 
+                else if (huidig.equals("v"))
                 {
                     Vriend vriend = new Vriend();
                     Veld veld = new Veld();
