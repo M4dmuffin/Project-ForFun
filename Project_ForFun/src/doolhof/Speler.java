@@ -35,13 +35,13 @@ public class Speler
     
     public void reset()
     {
-        veldX = 1; //start x positie speler 
-        veldY = 1; //start y positie speler 
+        veldX = 1; 
+        veldY = 1; 
     }
     
-    public void move(String richting)
+    public void move(BeweegRichting richting)
     {
-        if(richting.equals("omhoog"))
+        if(richting.equals(BeweegRichting.omhoog))
         {
             int omhoog = veldY - 1;
             if(level.getMuur(veldX, omhoog) == null)
@@ -49,7 +49,7 @@ public class Speler
                 veldY = omhoog;
             }
         }
-        if(richting.equals("omlaag"))
+        if(richting.equals(BeweegRichting.omlaag))
         {
             int omlaag = veldY + 1;
             if(level.getMuur(veldX, omlaag) == null)
@@ -57,7 +57,7 @@ public class Speler
                 veldY = omlaag;
             }
         }
-        if(richting.equals("links"))
+        if(richting.equals(BeweegRichting.links))
         {
             int links = veldX - 1;
             if(level.getMuur(links, veldY) == null)
@@ -65,7 +65,7 @@ public class Speler
                 veldX = links;
             }
         }
-        if(richting.equals("rechts"))
+        if(richting.equals(BeweegRichting.rechts))
         {
             int rechts = veldX + 1;
             if(level.getMuur(rechts, veldY) == null)

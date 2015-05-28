@@ -27,19 +27,19 @@ public class KeyboardListener implements KeyListener
 
         if (keycode == KeyEvent.VK_UP)
         {
-            piraat.move("omhoog");
+            piraat.move(BeweegRichting.omhoog);
         }
         if (keycode == KeyEvent.VK_DOWN)
         {
-            piraat.move("omlaag");
+            piraat.move(BeweegRichting.omlaag);
         }
         if (keycode == KeyEvent.VK_LEFT)
         {
-            piraat.move("links");
+            piraat.move(BeweegRichting.links);
         }
         if (keycode == KeyEvent.VK_RIGHT)
         {
-            piraat.move("rechts");
+            piraat.move(BeweegRichting.rechts);
         }
 
     }

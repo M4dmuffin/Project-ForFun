@@ -48,9 +48,7 @@ public class Bord extends JPanel implements ActionListener
     {
         level = new Level(levelCount);
         piraat.reset();
-        
         key.setSpeler(piraat);
-        
         piraat.setLevel(level);
         bazooka = new Bazooka();
         helper = new Helper();
