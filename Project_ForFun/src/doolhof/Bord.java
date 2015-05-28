@@ -34,6 +34,9 @@ public class Bord extends JPanel implements ActionListener
 
     public Bord()
     {
+        key = new KeyboardListener();
+        addKeyListener(key);
+        piraat = new Speler();
         levelCount = 1;
         initBord();
         veldBreedte = 40;
@@ -41,17 +44,17 @@ public class Bord extends JPanel implements ActionListener
         timer = new Timer(25, this);   
     }
     
-    public final void initBord()
+    public void initBord()
     {
-        this.level = new Level(levelCount);
-        this.piraat = new Speler();
-        this.key = new KeyboardListener();
-        this.addKeyListener(key);
-        this.piraat.setLevel(level);
-        this.key.setSpeler(piraat);
-        this.bazooka = new Bazooka();
-        this.helper = new Helper();
-        this.valsSpeler = new ValsSpeler();
+        level = new Level(levelCount);
+        piraat.reset();
+        
+        key.setSpeler(piraat);
+        
+        piraat.setLevel(level);
+        bazooka = new Bazooka();
+        helper = new Helper();
+        valsSpeler = new ValsSpeler();
     }
     
     @Override
@@ -87,8 +90,6 @@ public class Bord extends JPanel implements ActionListener
                     {
                         g.drawImage(level.getVeldLijst()[y][x].getMuur().getImageMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
-                    
-                    
                 }
             }
             

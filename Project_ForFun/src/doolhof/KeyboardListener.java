@@ -32,17 +32,14 @@ public class KeyboardListener implements KeyListener
         if (keycode == KeyEvent.VK_DOWN)
         {
             piraat.move("omlaag");
-            
         }
         if (keycode == KeyEvent.VK_LEFT)
         {
             piraat.move("links");
-            
         }
         if (keycode == KeyEvent.VK_RIGHT)
         {
             piraat.move("rechts");
-        
         }
 
     }

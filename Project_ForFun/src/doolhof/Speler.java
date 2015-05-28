@@ -19,14 +19,21 @@ public class Speler
 
     public Speler() 
     {
+        veldX = 1; //start x positie speler 
+        veldY = 1; //start y positie speler 
         ImageIcon img = new ImageIcon("src/Pics/player.png");
         spelerImage = img.getImage();
-        
-        
-        resetVeld();
     }
-
-    private void resetVeld()
+    
+    public Speler(int x, int y) 
+    {
+        veldX = x; //start x positie speler 
+        veldY = y; //start y positie speler 
+        ImageIcon img = new ImageIcon("src/Pics/player.png");
+        spelerImage = img.getImage();
+    }
+    
+    public void reset()
     {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
