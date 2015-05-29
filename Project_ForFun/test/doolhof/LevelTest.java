@@ -42,17 +42,20 @@ public class LevelTest {
         int expResult = 21;
         int result = instance.getAANTAL_KOLOMMEN_LEVEL();
         assertEquals(expResult, result);
+
     }
 
+    
     /**
      * Test of getHoeveelheidLevels method, of class Level.
      */
     @Test
     public void testGetHoeveelheidLevels() {
         System.out.println("getHoeveelheidLevels");
-        Level instance = new Level(0);
+        Level instance = new Level(1);
         int expResult = 4;
         int result = instance.getHoeveelheidLevels();
         assertEquals(expResult, result);
+
     }
 }
