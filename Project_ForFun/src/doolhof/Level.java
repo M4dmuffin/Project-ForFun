@@ -52,7 +52,7 @@ public class Level
                 isGevonden = true;
             }
         }
-        return i;
+        return i -1;
     }
     
     private void openFile(int level)
