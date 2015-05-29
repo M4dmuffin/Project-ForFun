@@ -15,22 +15,16 @@ import javax.swing.JComponent;
  */
 public class Gang extends JComponent {
 
-    private int veldBreedte, veldHoogte;
+
     private Image gang;
     private Item item;
     
     public Gang()
     {
-      veldBreedte = 40;
-      veldHoogte = 40;
       ImageIcon img = new ImageIcon("src/Pics/street.png");
       gang = img.getImage();    
     }
-    
-    @Override
-    public void paint(Graphics g) {
-        g.drawImage(gang, veldBreedte, veldHoogte, null);
-    }
+
     
    public Image getImageGang() {
         return gang;

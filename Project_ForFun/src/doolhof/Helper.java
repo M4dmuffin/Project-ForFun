@@ -13,29 +13,11 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends Item {
     
-    private int veldX, veldY;
-    
-
     public Helper() 
     {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
-        
-        
-        veldX = 1; //start x positie helper 
-        veldY = 5; //start y positie helper 
-    }
-    
-    
-    
-    public int getVeldX() 
-    {
-        return veldX;
-    }
 
-    public int getVeldY() 
-    {
-        return veldY;
     }
-    
+  
 }

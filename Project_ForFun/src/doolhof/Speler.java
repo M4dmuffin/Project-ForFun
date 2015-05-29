@@ -4,26 +4,39 @@
  */
 package doolhof;
 
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
  * @author HP Pavillion
  */
-public class Speler 
+public class Speler extends JPanel
 {
     private int veldX, veldY;
     private Image spelerImage;
     private Level level;
     private int richting;
+    
 
     public Speler() 
     {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
         richting = 2;
-        setImage();
+        setImage();  
+    }
+
+    
+    @Override
+    public void paint(Graphics g)
+    {
+        super.paint(g);
+        g.drawImage(getSpelerImage(), veldX * 40, veldY * 40, null);
     }
        
     public void reset()
@@ -119,4 +132,6 @@ public class Speler
             spelerImage = img.getImage();
         }
     }
+    
+    
 }
