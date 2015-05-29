@@ -24,7 +24,8 @@ public class Bord extends JPanel implements ActionListener
     private Speler piraat;
     private String winTekst = "";
     private boolean win = false;
-    private Font font = new Font("Serif", Font.BOLD, 60);
+    private Font winFont = new Font("Serif", Font.BOLD, 60);
+    private Font stappenFont = new Font("Serif", Font.BOLD, 40);
     private KeyboardListener key;
     private Timer timer;
     private int levelCount;
@@ -107,12 +108,16 @@ public class Bord extends JPanel implements ActionListener
                 }
             }
             piraat.paint(g);
-            //g.drawImage(piraat.getSpelerImage(), piraat.getVeldX() * 40, piraat.getVeldY() * 40, null);
+            String stappen = Integer.toString(piraat.getStappen());
+            g.setFont(stappenFont);
+            g.setColor(Color.white);
+            g.drawString("Stappen: " + stappen, 300, 30);
+            
         }
         if (win)
         {
             g.setColor(Color.RED);
-            g.setFont(font);
+            g.setFont(winFont);
             g.drawString(winTekst, 250, 300);
         }
     }

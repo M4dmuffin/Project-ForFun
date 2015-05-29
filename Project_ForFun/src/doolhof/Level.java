@@ -145,7 +145,7 @@ public class Level
                     Gang gang = new Gang();
                     Veld veld = new Veld();
                     ValsSpeler vals = new ValsSpeler();
-                    vals.setStappen((int)(Math.random() * 10) + 6);
+                    vals.setStappen((int)(Math.random() * 10) + 1);
                     gang.setItem(vals);
                     veld.setGang(gang);
                     veld.setLocX(i);

@@ -109,7 +109,7 @@ public class Speler extends JPanel
                 if(item instanceof ValsSpeler)
                 {
                     ValsSpeler vals = (ValsSpeler)item;
-                    stappen = vals.getStappen();
+                    stappen -= vals.getStappen();
                     level.getGang(veldX, veldY).setItem(null);
                 }
                 if(item instanceof Bazooka)
@@ -239,6 +239,11 @@ public class Speler extends JPanel
         ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
         spelerImage = img.getImage();
         
+    }
+
+    public int getStappen()
+    {
+        return stappen;
     }
     
     
