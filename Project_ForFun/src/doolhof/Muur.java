@@ -16,6 +16,7 @@ import javax.swing.JComponent;
 public class Muur{
     
     private Image muur;
+    private Boolean isBreekbaar;
 
     public Muur() 
     {
@@ -29,4 +30,14 @@ public class Muur{
         return muur;
     }
 
+    public void setIsBreekbaar(Boolean isBreekbaar)
+    {
+        this.isBreekbaar = isBreekbaar;
+    }
+
+    public Boolean getIsBreekbaar()
+    {
+        return isBreekbaar;
+    }
+    
 }

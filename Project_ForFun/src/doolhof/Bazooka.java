@@ -18,8 +18,11 @@ public class Bazooka extends Item {
     {
         ImageIcon img = new ImageIcon("src/Pics/bazooka.png");
         itemImage = img.getImage();
- 
     }
-
+    
+    public void schieten(int x, int y, int richt)
+    {
+        Kogel kogel = new Kogel(x, y, richt);
+    }
     
 }

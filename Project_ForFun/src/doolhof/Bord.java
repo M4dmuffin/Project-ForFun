@@ -28,7 +28,6 @@ public class Bord extends JPanel implements ActionListener
     private KeyboardListener key;
     private Timer timer;
     private int levelCount;
-    private boolean isHelper, isvalsSpeler, isBazooka;
 
     public Bord()
     {
@@ -48,9 +47,6 @@ public class Bord extends JPanel implements ActionListener
         piraat.reset();
         key.setSpeler(piraat);
         piraat.setLevel(level);
-        isHelper = false;
-        isvalsSpeler = false;
-        isBazooka = false;
     }
     
     @Override
@@ -91,15 +87,15 @@ public class Bord extends JPanel implements ActionListener
                     {
                         Item item = level.getVeldLijst()[y][x].getGang().getItem();
                         g.drawImage(level.getVeldLijst()[y][x].getGang().getImageGang(), x * veldBreedte, y * veldHoogte, null);
-                        if(item instanceof Helper && !isHelper)
+                        if(item instanceof Helper)
                         {
                             g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
                         }
-                        if(item instanceof ValsSpeler && !isvalsSpeler)
+                        if(item instanceof ValsSpeler)
                         {
                             g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
                         }
-                        if(item instanceof Bazooka && !isBazooka)
+                        if(item instanceof Bazooka)
                         {
                             g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
                         }

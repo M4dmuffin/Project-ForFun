@@ -41,7 +41,10 @@ public class KeyboardListener implements KeyListener
         {
             piraat.move(BeweegRichting.rechts);
         }
-
+        if (keycode == KeyEvent.VK_SPACE)
+        {
+            piraat.schietBazooka();
+        }
     }
 
     @Override

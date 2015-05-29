@@ -21,6 +21,8 @@ public class Speler extends JPanel
     private Image spelerImage;
     private Level level;
     private int richting;
+    private int stappen;
+    private Bazooka bazooka;
     
 
     public Speler() 
@@ -29,6 +31,7 @@ public class Speler extends JPanel
         veldY = 1; //start y positie speler 
         richting = 2;
         setImage();  
+        stappen = 0;
     }
 
     
@@ -43,6 +46,79 @@ public class Speler extends JPanel
     {
         veldX = 1; 
         veldY = 1; 
+        stappen = 0;
+        bazooka = null;
+        richting = 2;
+    }
+    
+    public void schietBazooka()
+    {
+        if(bazooka != null)
+        {
+            int x = veldX;
+            int y = veldY;
+            
+            boolean isGeraakt = false;
+            while(isGeraakt == false)
+            {
+                if (richting == 0)
+                {
+                    y--;
+                }
+                if (richting == 1)
+                {
+                    x++;
+                }
+                if (richting == 2)
+                {
+                    y++;
+                }
+                if (richting == 3)
+                {   
+                    x--;
+                }
+                
+                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
+                {
+                    level.getEenVeld(x, y).setMuur(null);
+                    Gang gang = new Gang();
+                    level.getEenVeld(x, y).setGang(gang);
+                    isGeraakt = true;
+                }
+                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
+                {
+                    isGeraakt = true;
+                }
+            }
+            bazooka = null;
+        }
+    }
+    
+    public void checkObject()
+    {
+        if(level.getVriend(veldX, veldY) == null)
+        {
+           Item item = new Item();
+            item = level.getGang(veldX, veldY).getItem();
+            if(item != null)
+            {
+                if(item instanceof Helper)
+                {
+                    level.getGang(veldX, veldY).setItem(null);
+                }
+                if(item instanceof ValsSpeler)
+                {
+                    ValsSpeler vals = (ValsSpeler)item;
+                    stappen = vals.getStappen();
+                    level.getGang(veldX, veldY).setItem(null);
+                }
+                if(item instanceof Bazooka)
+                {
+                    bazooka = (Bazooka)item;
+                    level.getGang(veldX, veldY).setItem(null);
+                }
+            } 
+        }
     }
     
     public void move(BeweegRichting richting)
@@ -51,41 +127,49 @@ public class Speler extends JPanel
         {
             int omhoog = veldY - 1;
             this.richting = 0;
-            setImage();
             if(level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
+                stappen++;
             }
+            setImage();
+            checkObject();
         }
         if(richting.equals(BeweegRichting.omlaag))
         {
             int omlaag = veldY + 1;
             this.richting = 2;
-            setImage();
             if(level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
+                stappen++;
             }
+            setImage();
+            checkObject();
         }
         if(richting.equals(BeweegRichting.links))
         {
             int links = veldX - 1;
             this.richting = 3;
-            setImage();
             if(level.getMuur(links, veldY) == null)
             {
                 veldX = links;
+                stappen++;
             }
+            setImage();
+            checkObject();
         }
         if(richting.equals(BeweegRichting.rechts))
         {
             int rechts = veldX + 1;
             this.richting = 1;
-            setImage();
             if(level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
+                stappen++;
             }
+            setImage();
+            checkObject();
         }
     }
     
@@ -111,26 +195,50 @@ public class Speler extends JPanel
     
     public void setImage()
     {
-        if(richting == 0)
+        String plaatje = "";
+        if(bazooka == null)
         {
-            ImageIcon img = new ImageIcon("src/Pics/playerHoog.png");
-            spelerImage = img.getImage();
+            
+            if(richting == 0)
+            {
+                plaatje = "playerHoog";
+            }
+            if(richting == 1)
+            {
+                plaatje = "playerRechts";
+            }
+            if(richting == 2)
+            {
+                plaatje = "player";
+            }
+            if(richting == 3)
+            {
+                plaatje = "playerLinks";
+                
+            }
         }
-        if(richting == 1)
+        else
         {
-            ImageIcon img = new ImageIcon("src/Pics/playerRechts.png");
-            spelerImage = img.getImage();
+            if(richting == 0)
+            {
+                plaatje = "playerHoogBazooka";
+            }
+            if(richting == 1)
+            {
+                plaatje = "playerRechtsBazooka";
+            }
+            if(richting == 2)
+            {
+                plaatje = "playerBazooka";
+            }
+            if(richting == 3)
+            {
+                plaatje = "playerLinksBazooka";
+            }
         }
-        if(richting == 2)
-        {
-            ImageIcon img = new ImageIcon("src/Pics/player.png");
-            spelerImage = img.getImage();
-        }
-        if(richting == 3)
-        {
-            ImageIcon img = new ImageIcon("src/Pics/playerLinks.png");
-            spelerImage = img.getImage();
-        }
+        ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
+        spelerImage = img.getImage();
+        
     }
     
     

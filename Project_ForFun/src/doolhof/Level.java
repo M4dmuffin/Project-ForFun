@@ -100,9 +100,20 @@ public class Level
             for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
             {
                 String huidig = level_2D[i][j];
+                if (huidig.equals("x"))
+                {
+                    Muur muur = new Muur();
+                    muur.setIsBreekbaar(false);
+                    Veld veld = new Veld();
+                    veld.setMuur(muur);
+                    veld.setLocX(i);
+                    veld.setLocY(j);
+                    veldLijst[i][j] = veld;
+                } 
                 if (huidig.equals("m"))
                 {
                     Muur muur = new Muur();
+                    muur.setIsBreekbaar(true);
                     Veld veld = new Veld();
                     veld.setMuur(muur);
                     veld.setLocX(i);
@@ -134,6 +145,7 @@ public class Level
                     Gang gang = new Gang();
                     Veld veld = new Veld();
                     ValsSpeler vals = new ValsSpeler();
+                    vals.setStappen((int)(Math.random() * 10) + 6);
                     gang.setItem(vals);
                     veld.setGang(gang);
                     veld.setLocX(i);
@@ -190,5 +202,10 @@ public class Level
     public Veld[][] getVeldLijst() 
     {
         return veldLijst;
+    }
+    
+    public Veld getEenVeld(int x, int y)
+    {
+        return veldLijst[y][x];
     }
 }
