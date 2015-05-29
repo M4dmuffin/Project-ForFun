@@ -21,7 +21,7 @@ public class Level
     private final int AANTAL_KOLOMMEN_LEVEL;
     private String[] level;
     private String[][] level_2D;
-
+    private int hoeveelheidLevels;
 
     public Level(int levelCount)
     {
@@ -29,31 +29,41 @@ public class Level
         level = new String[AANTAL_KOLOMMEN_LEVEL];
         level_2D = new String[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
         veldLijst = new Veld[AANTAL_KOLOMMEN_LEVEL][AANTAL_KOLOMMEN_LEVEL];
+        hoeveelheidLevels = levelCount();
         openFile(levelCount);
         readFile();
         closeFile();
         bouwGrid();
     }
     
+    private int levelCount()
+    {
+        boolean isGevonden = false;
+        int i = 1;
+        while(isGevonden == false)
+        {
+            try
+            {
+                Scanner levelCount = new Scanner(new File("src/Levels/Level" + i + ".txt"));
+                i++;
+            }
+            catch(FileNotFoundException ex)
+            {
+                isGevonden = true;
+            }
+        }
+        return i;
+    }
+    
     private void openFile(int level)
     {
         String levelText = "";
-        if(level == 1)
-        {
-            levelText = "src/Levels/Level1.txt";
-        }
-        if(level == 2)
-        {
-            levelText = "src/Levels/Level2.txt";
-        }
-        if(level == 3)
-        {
-            levelText = "src/Levels/Level3.txt";
-        }
+        levelText = "src/Levels/Level" + Integer.toString(level) + ".txt";
         try
         {
             levelOpbouw = new Scanner(new File(levelText));
-        } catch (FileNotFoundException ex)
+        } 
+        catch (FileNotFoundException ex)
         {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             System.out.println("Error: Map niet gevonden");
@@ -69,7 +79,6 @@ public class Level
                 level[i] = levelOpbouw.next();
             }
         }
-
         try
         {
             for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
@@ -207,5 +216,10 @@ public class Level
     public Veld getEenVeld(int x, int y)
     {
         return veldLijst[y][x];
+    }
+
+    public int getHoeveelheidLevels()
+    {
+        return hoeveelheidLevels;
     }
 }
