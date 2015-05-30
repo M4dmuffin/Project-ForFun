@@ -9,13 +9,14 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
  *
  * @author HP Pavillion
  */
-public class Speler extends JPanel
+public class Speler extends JComponent
 {
     private int veldX, veldY;
     private Image spelerImage;
@@ -108,7 +109,7 @@ public class Speler extends JPanel
                 }
                 if(item instanceof ValsSpeler)
                 {
-                    ValsSpeler vals = (ValsSpeler)item;
+                    ValsSpeler vals = (ValsSpeler)item;                 
                     stappen -= vals.getStappen();
                     level.getGang(veldX, veldY).setItem(null);
                 }
@@ -134,6 +135,7 @@ public class Speler extends JPanel
             }
             setImage();
             checkObject();
+            
         }
         if(richting.equals(BeweegRichting.omlaag))
         {
@@ -146,6 +148,7 @@ public class Speler extends JPanel
             }
             setImage();
             checkObject();
+           
         }
         if(richting.equals(BeweegRichting.links))
         {
@@ -158,6 +161,7 @@ public class Speler extends JPanel
             }
             setImage();
             checkObject();
+            
         }
         if(richting.equals(BeweegRichting.rechts))
         {
@@ -170,6 +174,7 @@ public class Speler extends JPanel
             }
             setImage();
             checkObject();
+            
         }
     }
     

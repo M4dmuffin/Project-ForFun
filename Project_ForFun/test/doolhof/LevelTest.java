@@ -45,7 +45,6 @@ public class LevelTest {
 
     }
 
-    
     /**
      * Test of getHoeveelheidLevels method, of class Level.
      */

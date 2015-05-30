@@ -5,6 +5,7 @@
 package doolhof;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -13,11 +14,19 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends Item {
     
-    public Helper() 
+            
+    public Helper()
     {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
-        itemImage = img.getImage();
-
+        itemImage = img.getImage();  
     }
-  
+    
+    
+    
+    
+    
+
+    
+    
+
 }

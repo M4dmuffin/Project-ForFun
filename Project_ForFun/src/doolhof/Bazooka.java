@@ -20,9 +20,9 @@ public class Bazooka extends Item {
         itemImage = img.getImage();
     }
     
-    public void schieten(int x, int y, int richt)
-    {
-        Kogel kogel = new Kogel(x, y, richt);
-    }
+//    public void schieten(int x, int y, int richt)
+//    {
+//        Kogel kogel = new Kogel(x, y, richt);
+//    }
     
 }
