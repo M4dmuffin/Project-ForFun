@@ -17,6 +17,7 @@ public class Muur{
     
     private Image muur;
     private Boolean isBreekbaar;
+    private Veld veld;
 
     public Muur() 
     {
@@ -38,6 +39,16 @@ public class Muur{
     public Boolean getIsBreekbaar()
     {
         return isBreekbaar;
+    }
+
+    public Veld getVeld()
+    {
+        return veld;
+    }
+
+    public void setVeld(Veld veld)
+    {
+        this.veld = veld;
     }
     
 }

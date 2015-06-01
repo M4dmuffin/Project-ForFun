@@ -18,6 +18,7 @@ public class Gang extends JComponent {
 
     private Image gang;
     private Item item;
+    private Veld veld;
     
     public Gang()
     {
@@ -38,6 +39,16 @@ public class Gang extends JComponent {
     public Item getItem()
     {
         return item;
+    }
+
+    public Veld getVeld()
+    {
+        return veld;
+    }
+
+    public void setVeld(Veld veld)
+    {
+        this.veld = veld;
     }
     
 }

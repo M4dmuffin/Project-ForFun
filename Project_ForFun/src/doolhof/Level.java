@@ -118,6 +118,7 @@ public class Level
                         veld.setMuur(muur);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        muur.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -129,6 +130,7 @@ public class Level
                         veld.setMuur(muur);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        muur.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -139,6 +141,7 @@ public class Level
                         veld.setGang(gang);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        gang.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -151,6 +154,7 @@ public class Level
                         veld.setGang(gang);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        gang.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -164,6 +168,7 @@ public class Level
                         veld.setGang(gang);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        gang.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -176,6 +181,7 @@ public class Level
                         veld.setGang(gang);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        gang.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -186,6 +192,7 @@ public class Level
                         veld.setVriend(vriend);
                         veld.setLocX(y);
                         veld.setLocY(x);
+                        vriend.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }

@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
  */
 public class Vriend {
     private Image vriend;
+    private Veld veld;
 
     public Vriend() 
     {
@@ -26,6 +27,16 @@ public class Vriend {
 
    public Image getImageVriend() {
         return vriend;
+    }
+
+    public Veld getVeld()
+    {
+        return veld;
+    }
+
+    public void setVeld(Veld veld)
+    {
+        this.veld = veld;
     }
    
 }

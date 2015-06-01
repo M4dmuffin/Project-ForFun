@@ -12,12 +12,20 @@ import java.awt.Image;
  */
 public class Item {
     protected Image itemImage;
+    private Gang gang;
     
     public Image getItemImage() 
     {
         return itemImage;
     }
-    
-    
-    
+
+    public Gang getGang()
+    {
+        return gang;
+    }
+
+    public void setGang(Gang gang)
+    {
+        this.gang = gang;
+    }
 }
