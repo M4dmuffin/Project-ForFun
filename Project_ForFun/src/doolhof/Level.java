@@ -34,27 +34,27 @@ public class Level
         readFile();
         closeFile();
         bouwGrid();
+        setBuren();
     }
-    
+
     private int levelCount()
     {
         boolean isGevonden = false;
         int i = 1;
-        while(isGevonden == false)
+        while (isGevonden == false)
         {
             try
             {
                 Scanner levelCount = new Scanner(new File("src/Levels/Level" + i + ".txt"));
                 i++;
-            }
-            catch(FileNotFoundException ex)
+            } catch (FileNotFoundException ex)
             {
                 isGevonden = true;
             }
         }
-        return i -1;
+        return i - 1;
     }
-    
+
     private void openFile(int level)
     {
         String levelText = "";
@@ -62,8 +62,7 @@ public class Level
         try
         {
             levelOpbouw = new Scanner(new File(levelText));
-        } 
-        catch (FileNotFoundException ex)
+        } catch (FileNotFoundException ex)
         {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             System.out.println("Error: Map niet gevonden");
@@ -104,115 +103,167 @@ public class Level
 
     private void bouwGrid()
     {
-        for (int i = 0; i < AANTAL_KOLOMMEN_LEVEL; i++)
+        for (int y = 0; y < AANTAL_KOLOMMEN_LEVEL; y++)
         {
-            for (int j = 0; j < AANTAL_KOLOMMEN_LEVEL; j++)
+            for (int x = 0; x < AANTAL_KOLOMMEN_LEVEL; x++)
             {
-                String huidig = level_2D[i][j];
-                if (huidig.equals("x"))
+                String huidig = level_2D[y][x];
+                switch (huidig)
                 {
-                    Muur muur = new Muur();
-                    muur.setIsBreekbaar(false);
-                    Veld veld = new Veld();
-                    veld.setMuur(muur);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                } 
-                if (huidig.equals("m"))
-                {
-                    Muur muur = new Muur();
-                    muur.setIsBreekbaar(true);
-                    Veld veld = new Veld();
-                    veld.setMuur(muur);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                } 
-                else if (huidig.equals("g"))
-                {
-                    Gang gang = new Gang();
-                    Veld veld = new Veld();
-                    veld.setGang(gang);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                }
-                else if (huidig.equals("h"))
-                {
-                    Gang gang = new Gang();
-                    Veld veld = new Veld();
-                    Helper helper = new Helper();
-                    gang.setItem(helper);
-                    veld.setGang(gang);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                } 
-                else if (huidig.equals("c"))
-                {
-                    Gang gang = new Gang();
-                    Veld veld = new Veld();
-                    ValsSpeler vals = new ValsSpeler();
-                    vals.setStappen((int)(Math.random() * 10) + 1);
-                    gang.setItem(vals);
-                    veld.setGang(gang);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                } 
-                else if (huidig.equals("b"))
-                {
-                    Gang gang = new Gang();
-                    Veld veld = new Veld();
-                    Bazooka baz = new Bazooka();
-                    gang.setItem(baz);
-                    veld.setGang(gang);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
-                } 
-                else if (huidig.equals("v"))
-                {
-                    Vriend vriend = new Vriend();
-                    Veld veld = new Veld();
-                    veld.setVriend(vriend);
-                    veld.setLocX(i);
-                    veld.setLocY(j);
-                    veldLijst[i][j] = veld;
+                    case "x":
+                    {
+                        Muur muur = new Muur();
+                        muur.setIsBreekbaar(false);
+                        Veld veld = new Veld();
+                        veld.setMuur(muur);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "m":
+                    {
+                        Muur muur = new Muur();
+                        muur.setIsBreekbaar(true);
+                        Veld veld = new Veld();
+                        veld.setMuur(muur);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "g":
+                    {
+                        Gang gang = new Gang();
+                        Veld veld = new Veld();
+                        veld.setGang(gang);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "h":
+                    {
+                        Gang gang = new Gang();
+                        Veld veld = new Veld();
+                        Helper helper = new Helper();
+                        gang.setItem(helper);
+                        veld.setGang(gang);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "c":
+                    {
+                        Gang gang = new Gang();
+                        Veld veld = new Veld();
+                        ValsSpeler vals = new ValsSpeler();
+                        vals.setStappen((int) (Math.random() * 10) + 1);
+                        gang.setItem(vals);
+                        veld.setGang(gang);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "b":
+                    {
+                        Gang gang = new Gang();
+                        Veld veld = new Veld();
+                        Bazooka baz = new Bazooka();
+                        gang.setItem(baz);
+                        veld.setGang(gang);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
+                    case "v":
+                    {
+                        Vriend vriend = new Vriend();
+                        Veld veld = new Veld();
+                        veld.setVriend(vriend);
+                        veld.setLocX(y);
+                        veld.setLocY(x);
+                        veldLijst[y][x] = veld;
+                        break;
+                    }
                 }
             }
         }
     }
     
+    public void setBuren()
+    {
+        for (int y = 0; y < AANTAL_KOLOMMEN_LEVEL; y++)
+        {
+            for (int x = 0; x < AANTAL_KOLOMMEN_LEVEL; x++)
+            {
+                try
+                {
+                    veldLijst[y][x].setBuren(0, veldLijst[y - 1][x]);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    veldLijst[y][x].setBuren(0, null);
+                }
+                try
+                {
+                    veldLijst[y][x].setBuren(1, veldLijst[y][x + 1]);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    veldLijst[y][x].setBuren(1, null);
+                }
+                try
+                {
+                    veldLijst[y][x].setBuren(2, veldLijst[y + 1][x]);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    veldLijst[y][x].setBuren(2, null);
+                }
+                try
+                {
+                    veldLijst[y][x].setBuren(3, veldLijst[y][x - 1]);
+                }
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    veldLijst[y][x].setBuren(3, null);
+                }
+            }
+        }
+    }
+
     public int getAANTAL_KOLOMMEN_LEVEL()
     {
         return AANTAL_KOLOMMEN_LEVEL;
     }
-    
+
     public Vriend getVriend(int x, int y)
     {
         Vriend index = veldLijst[y][x].getVriend();
         return index;
     }
-    
+
     public Muur getMuur(int x, int y)
     {
         Muur index = veldLijst[y][x].getMuur();
         return index;
     }
-    
+
     public Gang getGang(int x, int y)
     {
         Gang index = veldLijst[y][x].getGang();
         return index;
     }
-    
-    public Veld[][] getVeldLijst() 
+
+    public Veld[][] getVeldLijst()
     {
         return veldLijst;
     }
-    
+
     public Veld getEenVeld(int x, int y)
     {
         return veldLijst[y][x];
