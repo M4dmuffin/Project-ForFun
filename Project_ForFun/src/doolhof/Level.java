@@ -155,6 +155,7 @@ public class Level
                         veld.setLocX(y);
                         veld.setLocY(x);
                         gang.setVeld(veld);
+                        helper.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -169,6 +170,7 @@ public class Level
                         veld.setLocX(y);
                         veld.setLocY(x);
                         gang.setVeld(veld);
+                        vals.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -182,6 +184,7 @@ public class Level
                         veld.setLocX(y);
                         veld.setLocY(x);
                         gang.setVeld(veld);
+                        baz.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
                     }

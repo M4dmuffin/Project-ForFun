@@ -15,7 +15,6 @@ import javax.swing.JComponent;
  */
 public class Gang extends JComponent {
 
-
     private Image gang;
     private Item item;
     private Veld veld;

@@ -27,7 +27,8 @@ public class Muur{
     }
     
     
-   public Image getImageMuur() {
+    public Image getImageMuur() 
+    {
         return muur;
     }
 

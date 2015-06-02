@@ -12,7 +12,7 @@ import java.awt.Image;
  */
 public class Item {
     protected Image itemImage;
-    private Gang gang;
+    protected Gang gang;
     
     public Image getItemImage() 
     {

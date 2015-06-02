@@ -20,7 +20,6 @@ public class Vriend {
 
     public Vriend() 
     {
-
       ImageIcon img = new ImageIcon("src/Pics/vriend.png");
       vriend = img.getImage();    
     }

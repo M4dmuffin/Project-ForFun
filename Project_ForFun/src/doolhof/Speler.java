@@ -25,7 +25,6 @@ public class Speler extends JComponent
     private int stappen;
     private Bazooka bazooka;
     
-
     public Speler() 
     {
         veldX = 1; //start x positie speler 
@@ -34,7 +33,6 @@ public class Speler extends JComponent
         setImage();  
         stappen = 0;
     }
-
     
     @Override
     public void paint(Graphics g)
@@ -54,45 +52,46 @@ public class Speler extends JComponent
     
     public void schietBazooka()
     {
-        if(bazooka != null)
-        {
-            int x = veldX;
-            int y = veldY;
-            
-            boolean isGeraakt = false;
-            while(isGeraakt == false)
-            {
-                if (richting == 0)
-                {
-                    y--;
-                }
-                if (richting == 1)
-                {
-                    x++;
-                }
-                if (richting == 2)
-                {
-                    y++;
-                }
-                if (richting == 3)
-                {   
-                    x--;
-                }
-                
-                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
-                {
-                    level.getEenVeld(x, y).setMuur(null);
-                    Gang gang = new Gang();
-                    level.getEenVeld(x, y).setGang(gang);
-                    isGeraakt = true;
-                }
-                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
-                {
-                    isGeraakt = true;
-                }
-            }
-            bazooka = null;
-        }
+        bazooka.schieten(veldX, veldY, richting);
+//        if(bazooka != null)
+//        {
+//            int x = veldX;
+//            int y = veldY;
+//            
+//            boolean isGeraakt = false;
+//            while(isGeraakt == false)
+//            {
+//                if (richting == 0)
+//                {
+//                    y--;
+//                }
+//                if (richting == 1)
+//                {
+//                    x++;
+//                }
+//                if (richting == 2)
+//                {
+//                    y++;
+//                }
+//                if (richting == 3)
+//                {   
+//                    x--;
+//                }
+//                
+//                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
+//                {
+//                    level.getEenVeld(x, y).setMuur(null);
+//                    Gang gang = new Gang();
+//                    level.getEenVeld(x, y).setGang(gang);
+//                    isGeraakt = true;
+//                }
+//                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
+//                {
+//                    isGeraakt = true;
+//                }
+//            }
+//            bazooka = null;
+//        }
     }
     
     public void checkObject()
@@ -135,7 +134,6 @@ public class Speler extends JComponent
             }
             setImage();
             checkObject();
-            
         }
         if(richting.equals(BeweegRichting.omlaag))
         {
@@ -148,7 +146,6 @@ public class Speler extends JComponent
             }
             setImage();
             checkObject();
-           
         }
         if(richting.equals(BeweegRichting.links))
         {
@@ -161,7 +158,6 @@ public class Speler extends JComponent
             }
             setImage();
             checkObject();
-            
         }
         if(richting.equals(BeweegRichting.rechts))
         {
@@ -174,7 +170,6 @@ public class Speler extends JComponent
             }
             setImage();
             checkObject();
-            
         }
     }
     
