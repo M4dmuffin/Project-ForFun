@@ -15,6 +15,7 @@ public class Veld
     private Gang gang;
     private Vriend vriend;
     private Veld[] buren;
+    private boolean isBezocht;
     
     public Veld()
     {
@@ -70,5 +71,15 @@ public class Veld
     {
         return buren[richting];
     }
+
+    public boolean isIsBezocht() {
+        return isBezocht;
+    }
+
+    public void setIsBezocht(boolean isBezocht) {
+        this.isBezocht = isBezocht;
+    }
+    
+    
     
 }

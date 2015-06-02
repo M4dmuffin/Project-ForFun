@@ -91,6 +91,10 @@ public class Bord extends JPanel implements ActionListener
                         if(item instanceof Helper)
                         {
                             g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                            if(item.isGevonden == true)
+                            {
+                                item.paint(g);
+                            }
                         }
                         if(item instanceof ValsSpeler)
                         {
@@ -105,6 +109,8 @@ public class Bord extends JPanel implements ActionListener
                     {
                         g.drawImage(level.getVeldLijst()[y][x].getMuur().getImageMuur(), x * veldBreedte, y * veldHoogte, null);
                     }
+                    
+                    
                 }
             }
             piraat.paint(g);

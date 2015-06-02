@@ -151,6 +151,7 @@ public class Level
                         Veld veld = new Veld();
                         Helper helper = new Helper();
                         gang.setItem(helper);
+                        helper.setMaze(veldLijst);
                         veld.setGang(gang);
                         veld.setLocX(y);
                         veld.setLocY(x);

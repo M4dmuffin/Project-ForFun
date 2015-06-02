@@ -104,7 +104,12 @@ public class Speler extends JComponent
             {
                 if(item instanceof Helper)
                 {
+                    Helper helper = (Helper)item;
+                    helper.solve(veldX, veldY);
+                    helper.isGevonden = true;
+                    
                     level.getGang(veldX, veldY).setItem(null);
+                   
                 }
                 if(item instanceof ValsSpeler)
                 {
@@ -192,7 +197,11 @@ public class Speler extends JComponent
     {
         this.level = level;
     }
-    
+
+    public Level getLevel() {
+        return level;
+    }
+
     public void setImage()
     {
         String plaatje = "";

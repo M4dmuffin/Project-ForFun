@@ -4,6 +4,7 @@
  */
 package doolhof;
 
+import java.awt.Graphics;
 import java.awt.Image;
 
 /**
@@ -13,6 +14,7 @@ import java.awt.Image;
 public class Item {
     protected Image itemImage;
     protected Gang gang;
+    protected boolean isGevonden;
     
     public Image getItemImage() 
     {
@@ -28,4 +30,11 @@ public class Item {
     {
         this.gang = gang;
     }
+    
+    public void paint(Graphics g)
+    {
+        
+    }
+    
+    
 }
