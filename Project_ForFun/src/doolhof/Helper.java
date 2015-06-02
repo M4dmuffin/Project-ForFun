@@ -7,7 +7,7 @@ package doolhof;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,52 +16,89 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends Item {
 
-    private int counter = 0;
+    private int counter;
     private final static int MAX_VALUE = 1000;
-   
     int best_solution = MAX_VALUE;
     private int aantalKol_Rij;
     private Veld[][] maze;
-    public Veld[][] output_maze;
+    public char[][] output_maze;
+    public char[][] doolhof;
 
     public Helper() {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
         output_maze = null;
+        doolhof = new char[21][21];
 
     }
 
+    public void terugOmzetten() {
+        for (int y = 0; y < 21; y++) {
+            for (int x = 0; x < 21; x++) {
+
+                Veld huidig = maze[y][x];
+                if (huidig.getMuur() != null) {
+                    doolhof[y][x] = 'M';
+                }
+
+                if (huidig.getVriend() != null) {
+                    doolhof[y][x] = 'V';
+                }
+
+                if (huidig.getGang() != null) {
+                    doolhof[y][x] = 'G';
+                }
+
+            }
+
+        }
+
+    }
+    
+    
+
     private void cloneMaze() {
-        aantalKol_Rij = maze.length;
-        output_maze = new Veld[aantalKol_Rij][aantalKol_Rij];
-        for (int x = 0; x < aantalKol_Rij; x++) {
-            for (int y = 0; y < aantalKol_Rij; y++) {
-                output_maze[x][y] = maze[x][y];
+        output_maze = new char[21][21];
+        for (int x = 0; x < 21; x++) {
+            for (int y = 0; y < 21; y++) {
+                output_maze[x][y] = doolhof[x][y];
             }
         }
     }
 
     // Get the start location (x,y) and try to solve the maze
     public void solve(int x, int y) {
-        cloneMaze();
+
+        for (int q = 0; q < maze.length; q++) 
+        {
+            for (int r = 0; r < maze.length; r++) 
+            {
+                if(maze[q][r].getVriend() != null)
+                {
+                    doolhof[q][r] = 'V';
+                }
+            }
+        }
+        terugOmzetten();
         best_solution = MAX_VALUE;
 
         if (step(x, y, 0) != MAX_VALUE) {
-
-            output_maze[x][y].setIsBezocht(true);
+            output_maze[x][y] = 'S';
         }
     }
+    
 
     // Backtracking method
-    private int step(int x, int y, int count) {
-
+    public int step(int x, int y, int count) {
+        
+        
         counter++;
-
+        //System.out.println(this.toString());
 
         /**
          * Accept case - we found the exit *
          */
-        if (maze[x][y].getVriend() != null) {
+        if (doolhof[x][y] == 'V') {
             best_solution = count;
             this.cloneMaze();
             return count;
@@ -70,7 +107,7 @@ public class Helper extends Item {
         /**
          * Reject case - we are hit a wall or our path *
          */
-        if (maze[x][y].getMuur() != null || maze[x][y].isIsBezocht() == true) {
+        if (doolhof[x][y] == 'M' || doolhof[x][y] == '*') {
             return MAX_VALUE;
         }
         /**
@@ -84,7 +121,7 @@ public class Helper extends Item {
          * Backtracking Step *
          */
         // Mark this location as part of out path
-        maze[x][y].setIsBezocht(true);
+        doolhof[x][y] = '*';
         int result = MAX_VALUE;
 
         int new_result = MAX_VALUE;
@@ -114,7 +151,7 @@ public class Helper extends Item {
         }
 
         // Unmark this location
-        maze[x][y].setIsBezocht(false);
+        doolhof[x][y] = 'G';
 
         if (result < MAX_VALUE) {
             return result;
@@ -127,33 +164,63 @@ public class Helper extends Item {
         return MAX_VALUE;
     }
 
-    @Override
-    public void paint(Graphics g) {
-        if (output_maze == null) {
-            return;
-        }
-
-
+    public String toString() {
+        String output = "";
         for (int x = 0; x < 21; x++) {
             for (int y = 0; y < 21; y++) {
-
-                if (output_maze[x][y].isIsBezocht() == true) {
-                } else {
-                    g.setColor(Color.BLUE);
-                    g.drawRect(output_maze.length * 40, output_maze.length * 40, 20, 20);
-                }
-
+                output += doolhof[x][y] + " ";
             }
-
+            output += "\n";
         }
-        return;
+        return output;
     }
 
+    public String toStringSolution() {
+        if (output_maze == null) {
+            return "No Solution!";
+        }
+        String output = "";
+        for (int x = 0; x < 21; x++) {
+            for (int y = 0; y < 21; y++) {
+                output += output_maze[x][y] + " ";
+            }
+            output += "\n";
+        }
+        return output;
+    }
+    
+    @Override
+    public void paint(Graphics g)
+    {
+        ImageIcon img = new ImageIcon("src/Pics/helperPad.png");
+        itemImage = img.getImage();
+        for (int x = 0; x < 21; x++) {
+            for (int y = 0; y < 21; y++) {
+                
+                if(output_maze[x][y] == '*')
+                {
+                    super.paint(g);
+                    g.drawImage(itemImage, y * 40, x * 40, null);
+
+                }
+            }
+        }
+        
+        
+        
+    }
+
+//	public static void main(String[] args) {
+//		Maze_best m = new Maze_best();
+//		// Locate the exit
+//		m.maze[1][1] = 'X';
+//		
+//		// Start solving the maze from (8, 1)
+//		m.solve(8, 1);
+//		System.out.println(m.toStringSolution());
+//		System.out.println("Total calls: " + m.counter);
+//	}	
     public void setMaze(Veld[][] maze) {
         this.maze = maze;
     }
-
- 
-    
-    
 }

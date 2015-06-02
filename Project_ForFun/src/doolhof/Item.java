@@ -6,12 +6,13 @@ package doolhof;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.JPanel;
 
 /**
  *
  * @author HP Pavillion
  */
-public class Item {
+public class Item extends JPanel{
     protected Image itemImage;
     protected Gang gang;
     protected boolean isGevonden;
@@ -30,11 +31,6 @@ public class Item {
     {
         this.gang = gang;
     }
-    
-    public void paint(Graphics g)
-    {
-        
-    }
-    
+
     
 }

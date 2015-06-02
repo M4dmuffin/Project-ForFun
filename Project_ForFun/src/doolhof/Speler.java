@@ -24,6 +24,7 @@ public class Speler extends JComponent
     private int richting;
     private int stappen;
     private Bazooka bazooka;
+    private Helper helper;
     
     public Speler() 
     {
@@ -43,55 +44,65 @@ public class Speler extends JComponent
        
     public void reset()
     {
+        if(helper != null)
+        {
+            helper.isGevonden = false;
+            helper = null;
+        }
+        if(bazooka != null)
+        {
+            bazooka.isGevonden = false;
+            bazooka = null;
+        }
         veldX = 1; 
         veldY = 1; 
         stappen = 0;
-        bazooka = null;
         richting = 2;
     }
     
     public void schietBazooka()
     {
-        bazooka.schieten(veldX, veldY, richting);
-//        if(bazooka != null)
-//        {
-//            int x = veldX;
-//            int y = veldY;
-//            
-//            boolean isGeraakt = false;
-//            while(isGeraakt == false)
-//            {
-//                if (richting == 0)
-//                {
-//                    y--;
-//                }
-//                if (richting == 1)
-//                {
-//                    x++;
-//                }
-//                if (richting == 2)
-//                {
-//                    y++;
-//                }
-//                if (richting == 3)
-//                {   
-//                    x--;
-//                }
-//                
-//                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
-//                {
-//                    level.getEenVeld(x, y).setMuur(null);
-//                    Gang gang = new Gang();
-//                    level.getEenVeld(x, y).setGang(gang);
-//                    isGeraakt = true;
-//                }
-//                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
-//                {
-//                    isGeraakt = true;
-//                }
-//            }
-//            bazooka = null;
-//        }
+//        bazooka.schieten(veldX, veldY, richting);
+        if(bazooka != null)
+        {
+            
+            int x = veldX;
+            int y = veldY;
+            
+            boolean isGeraakt = false;
+            while(isGeraakt == false)
+            {
+                if (richting == 0)
+                {
+                    y--;
+                }
+                if (richting == 1)
+                {
+                    x++;
+                }
+                if (richting == 2)
+                {
+                    y++;
+                }
+                if (richting == 3)
+                {   
+                    x--;
+                }
+                
+                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
+                {
+                    level.getEenVeld(x, y).setMuur(null);
+                    Gang gang = new Gang();
+                    level.getEenVeld(x, y).setGang(gang);
+                    isGeraakt = true;
+                }
+                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
+                {
+                    isGeraakt = true;
+                }
+            }
+            bazooka = null;
+        }
     }
     
     public void checkObject()
@@ -104,22 +115,22 @@ public class Speler extends JComponent
             {
                 if(item instanceof Helper)
                 {
-                    Helper helper = (Helper)item;
-                    helper.solve(veldX, veldY);
+                    helper = (Helper)item;
+                    helper.solve(veldY, veldX);  
                     helper.isGevonden = true;
-                    
-                    level.getGang(veldX, veldY).setItem(null);
-                   
+                    System.out.println(helper.toStringSolution());
+                    level.getGang(veldX, veldY).setItem(null);                 
                 }
                 if(item instanceof ValsSpeler)
                 {
-                    ValsSpeler vals = (ValsSpeler)item;                 
+                    ValsSpeler vals = (ValsSpeler)item;  
                     stappen -= vals.getStappen();
                     level.getGang(veldX, veldY).setItem(null);
                 }
                 if(item instanceof Bazooka)
                 {
                     bazooka = (Bazooka)item;
+                    bazooka.isGevonden = true;
                     level.getGang(veldX, veldY).setItem(null);
                 }
             } 
@@ -254,6 +265,12 @@ public class Speler extends JComponent
     {
         return stappen;
     }
+
+    public Helper getHelper() {
+        return helper;
+    }
+    
+    
     
     
 }

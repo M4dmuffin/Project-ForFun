@@ -20,22 +20,22 @@ public class Bazooka extends Item {
         itemImage = img.getImage();
     }
     
-    public void schieten(int x, int y, int richt)
-    {
-        //Kogel kogel = new Kogel(x, y, richt);
-        boolean geraakt = true;
-        while(geraakt)
-        {
-            Veld buur = gang.getVeld().getBuren(richt);
-            if(buur.getMuur() != null)
-            {
-                Gang newGang = new Gang();
-                gang.getVeld().getBuren(richt).setGang(newGang);
-                gang.getVeld().getBuren(richt).setMuur(null);
-                geraakt = false;
-            }
-        }
-        
-    }
+//    public void schieten(int x, int y, int richt)
+//    {
+//        //Kogel kogel = new Kogel(x, y, richt);
+//        boolean geraakt = true;
+//        while(geraakt)
+//        {
+//            Veld buur = gang.getVeld().getBuren(richt);
+//            if(buur.getMuur() != null)
+//            {
+//                Gang newGang = new Gang();
+//                gang.getVeld().getBuren(richt).setGang(newGang);
+//                gang.getVeld().getBuren(richt).setMuur(null);
+//                geraakt = false;
+//            }
+//        }
+//        
+//    }
     
 }

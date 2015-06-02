@@ -72,13 +72,6 @@ public class Veld
         return buren[richting];
     }
 
-    public boolean isIsBezocht() {
-        return isBezocht;
-    }
-
-    public void setIsBezocht(boolean isBezocht) {
-        this.isBezocht = isBezocht;
-    }
     
     
     
