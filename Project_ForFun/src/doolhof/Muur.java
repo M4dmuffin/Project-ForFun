@@ -21,7 +21,6 @@ public class Muur{
 
     public Muur() 
     {
-
       ImageIcon img = new ImageIcon("src/Pics/wall.png");
       muur = img.getImage();
     }

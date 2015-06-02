@@ -60,6 +60,7 @@ public class Speler extends JComponent
         richting = 2;
     }
     
+    // schiet de bazooka
     public void schietBazooka()
     {
 //        bazooka.schieten(veldX, veldY, richting);
@@ -105,6 +106,7 @@ public class Speler extends JComponent
         }
     }
     
+    // controleert of de speler in aanraking komt met de objecten: Helper, ValsSpeler en Bazooka
     public void checkObject()
     {
         if(level.getVriend(veldX, veldY) == null)
@@ -116,9 +118,8 @@ public class Speler extends JComponent
                 if(item instanceof Helper)
                 {
                     helper = (Helper)item;
-                    helper.solve(veldY, veldX);  
-                    helper.isGevonden = true;
-                    System.out.println(helper.toStringSolution());
+                    helper.losOp(veldY, veldX);  
+                    helper.isGevonden = true;  
                     level.getGang(veldX, veldY).setItem(null);                 
                 }
                 if(item instanceof ValsSpeler)
@@ -137,6 +138,7 @@ public class Speler extends JComponent
         }
     }
     
+    // de beweeg methode van de speler
     public void move(BeweegRichting richting)
     {
         if(richting.equals(BeweegRichting.omhoog))
@@ -212,7 +214,8 @@ public class Speler extends JComponent
     public Level getLevel() {
         return level;
     }
-
+    
+    // zorgt dat het plaatje van de speler mee veranderd met de beweegrichting van de speler
     public void setImage()
     {
         String plaatje = "";

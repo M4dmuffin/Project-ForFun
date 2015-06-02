@@ -4,10 +4,7 @@
  */
 package doolhof;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,211 +13,150 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends Item {
 
-    private int counter;
-    private final static int MAX_VALUE = 1000;
-    int best_solution = MAX_VALUE;
+    private final static int MAX_WAARDE = 1000;
+    private int korste_route;
     private int aantalKol_Rij;
-    private Veld[][] maze;
-    public char[][] output_maze;
+    private Veld[][] veldLijst;
+    public char[][] oplossing;
     public char[][] doolhof;
 
     public Helper() {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
-        output_maze = null;
+        oplossing = null;
         doolhof = new char[21][21];
-
     }
 
+    // zet de veldlijst terug naar een charlijst
     public void terugOmzetten() {
-        for (int y = 0; y < 21; y++) {
-            for (int x = 0; x < 21; x++) {
+        for (int y = 0; y < aantalKol_Rij; y++) {
+            for (int x = 0; x < aantalKol_Rij; x++) {
 
-                Veld huidig = maze[y][x];
-                if (huidig.getMuur() != null) {
+                Veld huidig = veldLijst[y][x];
+                if (huidig.getMuur() != null) 
+                {
                     doolhof[y][x] = 'M';
                 }
 
-                if (huidig.getVriend() != null) {
+                if (huidig.getVriend() != null) 
+                {
                     doolhof[y][x] = 'V';
                 }
-
-                if (huidig.getGang() != null) {
+                
+                if (huidig.getGang() != null) 
+                {
                     doolhof[y][x] = 'G';
                 }
-
             }
-
         }
-
     }
     
-    
-
-    private void cloneMaze() {
-        output_maze = new char[21][21];
-        for (int x = 0; x < 21; x++) {
-            for (int y = 0; y < 21; y++) {
-                output_maze[x][y] = doolhof[x][y];
+    // Maakt een copy van de charlijst zodat deze kan dienen als oploslijst
+    private void copyDoolhof() {
+        oplossing = new char[aantalKol_Rij][aantalKol_Rij];
+        for (int x = 0; x < aantalKol_Rij; x++) {
+            for (int y = 0; y < aantalKol_Rij; y++) {
+                oplossing[x][y] = doolhof[x][y];
             }
         }
     }
 
-    // Get the start location (x,y) and try to solve the maze
-    public void solve(int x, int y) {
-
-        for (int q = 0; q < maze.length; q++) 
-        {
-            for (int r = 0; r < maze.length; r++) 
-            {
-                if(maze[q][r].getVriend() != null)
-                {
+    // pak de start locatie x,y en los doolhof op
+    public void losOp(int x, int y) {
+        korste_route = MAX_WAARDE;
+        aantalKol_Rij = veldLijst.length;
+        for (int q = 0; q < aantalKol_Rij; q++) {
+            for (int r = 0; r < aantalKol_Rij; r++) {
+                if (veldLijst[q][r].getVriend() != null) {
                     doolhof[q][r] = 'V';
                 }
             }
         }
         terugOmzetten();
-        best_solution = MAX_VALUE;
+        korste_route = MAX_WAARDE;
 
-        if (step(x, y, 0) != MAX_VALUE) {
-            output_maze[x][y] = 'S';
+        if (stap(x, y, 0) != MAX_WAARDE) {
+            oplossing[x][y] = 'S';
         }
     }
-    
 
-    // Backtracking method
-    public int step(int x, int y, int count) {
-        
-        
-        counter++;
-        //System.out.println(this.toString());
+    // Deze recurieve methode zet de stappen terug van vriend naar begin
+    public int stap(int x, int y, int aantal) {
 
-        /**
-         * Accept case - we found the exit *
-         */
+        // Zoek vriend
         if (doolhof[x][y] == 'V') {
-            best_solution = count;
-            this.cloneMaze();
-            return count;
+            korste_route = aantal;
+            this.copyDoolhof();
+            return aantal;
         }
 
-        /**
-         * Reject case - we are hit a wall or our path *
-         */
+        // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is bewandeld
         if (doolhof[x][y] == 'M' || doolhof[x][y] == '*') {
-            return MAX_VALUE;
+            return MAX_WAARDE;
         }
-        /**
-         * Reject case - we already have a better solution! *
-         */
-        if (count == best_solution) {
-            return MAX_VALUE;
+        // dit pad (van vriend naar beging) is langer dan het al eerder gevonden pad (van begin naar vriend)
+        if (aantal == korste_route) {
+            return MAX_WAARDE;
         }
 
-        /**
-         * Backtracking Step *
-         */
-        // Mark this location as part of out path
+        //markeer deze stap (van het pad) als oplossing
         doolhof[x][y] = '*';
-        int result = MAX_VALUE;
+        int result = MAX_WAARDE;
 
-        int new_result = MAX_VALUE;
+        int new_result = MAX_WAARDE;
 
-        // Try to go Right
-        new_result = step(x, y + 1, count + 1);
+        // omhoog
+        new_result = stap(x, y - 1, aantal + 1);
+        if (new_result < result) 
+        {
+            result = new_result;
+        }
+        
+        // omlaag
+        new_result = stap(x, y + 1, aantal + 1);
         if (new_result < result) {
             result = new_result;
         }
 
-        // Try to go Up
-        new_result = step(x - 1, y, count + 1);
+        // links
+        new_result = stap(x - 1, y, aantal + 1);
         if (new_result < result) {
             result = new_result;
         }
 
-        // Try to go Left
-        new_result = step(x, y - 1, count + 1);
+        // rechts
+        new_result = stap(x + 1, y, aantal + 1);
         if (new_result < result) {
             result = new_result;
         }
 
-        // Try to go Down
-        new_result = step(x + 1, y, count + 1);
-        if (new_result < result) {
-            result = new_result;
-        }
-
-        // Unmark this location
+        // maak de markering ongedaan
         doolhof[x][y] = 'G';
 
-        if (result < MAX_VALUE) {
+        if (result < MAX_WAARDE) {
             return result;
         }
-
-        /**
-         * Deadend - this location can't be part of the solution *
-         */
-        // Go back
-        return MAX_VALUE;
+     
+        return MAX_WAARDE;
     }
 
-    public String toString() {
-        String output = "";
-        for (int x = 0; x < 21; x++) {
-            for (int y = 0; y < 21; y++) {
-                output += doolhof[x][y] + " ";
-            }
-            output += "\n";
-        }
-        return output;
-    }
-
-    public String toStringSolution() {
-        if (output_maze == null) {
-            return "No Solution!";
-        }
-        String output = "";
-        for (int x = 0; x < 21; x++) {
-            for (int y = 0; y < 21; y++) {
-                output += output_maze[x][y] + " ";
-            }
-            output += "\n";
-        }
-        return output;
-    }
-    
     @Override
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         ImageIcon img = new ImageIcon("src/Pics/helperPad.png");
         itemImage = img.getImage();
-        for (int x = 0; x < 21; x++) {
-            for (int y = 0; y < 21; y++) {
-                
-                if(output_maze[x][y] == '*')
-                {
+        for (int x = 0; x < aantalKol_Rij; x++) {
+            for (int y = 0; y < aantalKol_Rij; y++) {
+
+                if (oplossing[x][y] == '*') {
                     super.paint(g);
                     g.drawImage(itemImage, y * 40, x * 40, null);
-
                 }
             }
         }
-        
-        
-        
+
     }
 
-//	public static void main(String[] args) {
-//		Maze_best m = new Maze_best();
-//		// Locate the exit
-//		m.maze[1][1] = 'X';
-//		
-//		// Start solving the maze from (8, 1)
-//		m.solve(8, 1);
-//		System.out.println(m.toStringSolution());
-//		System.out.println("Total calls: " + m.counter);
-//	}	
-    public void setMaze(Veld[][] maze) {
-        this.maze = maze;
+    public void setVeldLijst(Veld[][] doolhof) {
+        this.veldLijst = doolhof;
     }
 }

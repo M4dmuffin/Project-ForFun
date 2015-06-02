@@ -27,6 +27,7 @@ public class Game{
     private JFrame frame;
     private Bord speelBord;
 
+    // start het spel
     public void startGame()
     {
         createFrame();
@@ -37,6 +38,7 @@ public class Game{
         speelBord.requestFocus();
     }
     
+    // maak het frame
     private void createFrame()
     {
         frame = new JFrame();
@@ -47,6 +49,7 @@ public class Game{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
+    // maak de buttons
     private void createButtons()
     {
         hoofdmenu.requestFocus();
@@ -77,6 +80,7 @@ public class Game{
         hoofdmenu.add(reset);
     }
     
+    //maak de panels
     private void createPanels()
     {
         hoofdmenu = new JPanel();
@@ -86,6 +90,7 @@ public class Game{
         
     }
     
+    // voeg panels toe aan frame
     private void AddPanelsToFrame()
     {
         frame.add(hoofdmenu, BorderLayout.WEST);
