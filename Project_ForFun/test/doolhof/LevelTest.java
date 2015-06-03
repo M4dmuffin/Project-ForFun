@@ -40,7 +40,7 @@ public class LevelTest {
         System.out.println("getAANTAL_KOLOMMEN_LEVEL");
         Level instance = new Level(1);
         int expResult = 21;
-        int result = instance.getAANTAL_KOLOMMEN_LEVEL();
+        int result = instance.AANTAL_KOL_RIJ();
         assertEquals(expResult, result);
 
     }

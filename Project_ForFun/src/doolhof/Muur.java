@@ -51,4 +51,9 @@ public class Muur{
         this.veld = veld;
     }
     
+    public void paint(Graphics g, int x, int y)
+    {
+        g.drawImage(muur, x * 40, y * 40, null);
+    }
+    
 }

@@ -19,8 +19,4 @@ public class Kogel
         locY = y;
     }
     
-    public void move()
-    {
-        
-    }
 }

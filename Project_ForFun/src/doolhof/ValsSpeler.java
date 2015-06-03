@@ -4,6 +4,7 @@
  */
 package doolhof;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -28,5 +29,11 @@ public class ValsSpeler extends Item {
     public void setStappen(int stappen)
     {
         this.stappen = stappen;
+    }
+    
+    @Override
+    public void paint(Graphics g, int x, int y)
+    {
+        g.drawImage(itemImage, x * 40, y * 40, null);
     }
 }

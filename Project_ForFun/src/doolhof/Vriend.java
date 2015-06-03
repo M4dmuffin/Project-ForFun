@@ -5,6 +5,7 @@
 package doolhof;
 
 //import java.awt.Graphics;
+import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 //import javax.swing.JComponent;
@@ -36,6 +37,11 @@ public class Vriend {
     public void setVeld(Veld veld)
     {
         this.veld = veld;
+    }
+    
+    public void Paint(Graphics g, int x, int y)
+    {
+        g.drawImage(vriend, x * 40, y * 40, null);
     }
    
 }

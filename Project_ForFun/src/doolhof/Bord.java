@@ -58,41 +58,57 @@ public class Bord extends JPanel implements ActionListener {
                 initBord();
             }
         }
-
         repaint();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if (!win) {
-            for (int y = 0; y < level.getAANTAL_KOLOMMEN_LEVEL(); y++) {
-                for (int x = 0; x < level.getAANTAL_KOLOMMEN_LEVEL(); x++) {
-                    if (level.getVeldLijst()[y][x].getVriend() != null) {
-                        g.drawImage(level.getVeldLijst()[y][x].getVriend().getImageVriend(), x * veldBreedte, y * veldHoogte, null);
+        if (!win) 
+        {
+            for (int y = 0; y < level.AANTAL_KOL_RIJ(); y++) 
+            {
+                for (int x = 0; x < level.AANTAL_KOL_RIJ(); x++) 
+                {
+                    if (level.getVeldLijst()[y][x].getVriend() != null) 
+                    {
+                        Vriend vriend = level.getVeldLijst()[y][x].getVriend();
+                        vriend.Paint(g, x, y);
                     }
-                    if (level.getVeldLijst()[y][x].getGang() != null) {
+
+                    if (level.getVeldLijst()[y][x].getGang() != null) 
+                    {
+                        Gang gang = level.getVeldLijst()[y][x].getGang();
+                        gang.Paint(g, x, y);
+
                         Item item = level.getVeldLijst()[y][x].getGang().getItem();
-                        g.drawImage(level.getVeldLijst()[y][x].getGang().getImageGang(), x * veldBreedte, y * veldHoogte, null);
-                        if (item instanceof Helper) {
-                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        if (item instanceof Helper) 
+                        {
+                            item.paint(g, x, y);
                         }
-                        if (item instanceof ValsSpeler) {
-                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        if (item instanceof ValsSpeler) 
+                        {
+                            item.paint(g, x, y);
                         }
-                        if (item instanceof Bazooka) {
-                            g.drawImage(level.getVeldLijst()[y][x].getGang().getItem().getItemImage(), x * veldBreedte, y * veldHoogte, null);
+                        if (item instanceof Bazooka) 
+                        {
+                            item.paint(g, x, y);
                         }
                     }
-                    if (level.getVeldLijst()[y][x].getMuur() != null) {
-                        g.drawImage(level.getVeldLijst()[y][x].getMuur().getImageMuur(), x * veldBreedte, y * veldHoogte, null);
+
+                    if (level.getVeldLijst()[y][x].getMuur() != null) 
+                    {
+                        Muur muur = level.getVeldLijst()[y][x].getMuur();
+                        muur.paint(g, x, y);
                     }
                 }
             }
 
-            if (piraat.getHelper() != null) {
-                if (piraat.getHelper().isGevonden = true) {
-                    piraat.getHelper().paint(g);
+            if (piraat.getHelper() != null) 
+            {
+                if (piraat.getHelper().isGevonden = true) 
+                {
+                    piraat.getHelper().paintRoute(g);
                 }
             }
             piraat.paint(g);
@@ -100,16 +116,18 @@ public class Bord extends JPanel implements ActionListener {
             g.setFont(stappenFont);
             g.setColor(Color.white);
             g.drawString("Stappen: " + stappen, 300, 30);
-
         }
-        if (win) {
+
+        if (win) 
+        {
             g.setColor(Color.RED);
             g.setFont(winFont);
             g.drawString(winTekst, 250, 300);
         }
     }
 
-    public Timer getTimer() {
+    public Timer getTimer() 
+    {
         return timer;
     }
 }

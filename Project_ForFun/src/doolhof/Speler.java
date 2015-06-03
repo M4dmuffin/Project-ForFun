@@ -63,45 +63,9 @@ public class Speler extends JComponent
     // schiet de bazooka
     public void schietBazooka()
     {
-//        bazooka.schieten(veldX, veldY, richting);
         if(bazooka != null)
         {
-            
-            int x = veldX;
-            int y = veldY;
-            
-            boolean isGeraakt = false;
-            while(isGeraakt == false)
-            {
-                if (richting == 0)
-                {
-                    y--;
-                }
-                if (richting == 1)
-                {
-                    x++;
-                }
-                if (richting == 2)
-                {
-                    y++;
-                }
-                if (richting == 3)
-                {   
-                    x--;
-                }
-                
-                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)
-                {
-                    level.getEenVeld(x, y).setMuur(null);
-                    Gang gang = new Gang();
-                    level.getEenVeld(x, y).setGang(gang);
-                    isGeraakt = true;
-                }
-                if(level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == false)
-                {
-                    isGeraakt = true;
-                }
-            }
+            bazooka.schieten(veldX, veldY, richting, level);
             bazooka = null;
         }
     }

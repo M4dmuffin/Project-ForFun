@@ -141,12 +141,20 @@ public class Helper extends Item {
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g, int xl, int yl) {
+        
+        g.drawImage(itemImage, xl * 40, yl * 40, null);
+    }
+    
+   
+    public void paintRoute(Graphics g) {
+        
         ImageIcon img = new ImageIcon("src/Pics/helperPad.png");
         itemImage = img.getImage();
+        
         for (int x = 0; x < aantalKol_Rij; x++) {
             for (int y = 0; y < aantalKol_Rij; y++) {
-
+                
                 if (oplossing[x][y] == '*') {
                     
                     g.drawImage(itemImage, y * 40, x * 40, null);
@@ -155,7 +163,7 @@ public class Helper extends Item {
         }
 
     }
-
+    
     public void setVeldLijst(Veld[][] doolhof) {
         this.veldLijst = doolhof;
     }

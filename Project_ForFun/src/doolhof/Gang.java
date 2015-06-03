@@ -50,4 +50,9 @@ public class Gang extends JComponent {
         this.veld = veld;
     }
     
+    public void Paint(Graphics g, int x, int y)
+    {
+        g.drawImage(gang, x * 40, y * 40, null);
+    }
+    
 }
