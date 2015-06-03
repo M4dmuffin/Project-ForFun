@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class Helper extends Item {
 
-    private final static int MAX_WAARDE = 1000;
+    private final int MAX_WAARDE = 1000;
     private int korste_route;
     private int aantalKol_Rij;
     private Veld[][] veldLijst;
@@ -24,7 +24,7 @@ public class Helper extends Item {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
         oplossing = null;
-        doolhof = new char[21][21];
+        doolhof = new char[21][21]; // aantal kolommen en rijen van het level: 21 bij 21
     }
 
     // zet de veldlijst terug naar een charlijst
@@ -90,11 +90,11 @@ public class Helper extends Item {
             return aantal;
         }
 
-        // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is bewandeld
+        // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is gemarkeerd
         if (doolhof[x][y] == 'M' || doolhof[x][y] == '*') {
             return MAX_WAARDE;
         }
-        // dit pad (van vriend naar beging) is langer dan het al eerder gevonden pad (van begin naar vriend)
+        // dit pad (van vriend naar begin) is langer dan het al eerder gevonden pad (van begin naar vriend)
         if (aantal == korste_route) {
             return MAX_WAARDE;
         }
@@ -148,7 +148,7 @@ public class Helper extends Item {
             for (int y = 0; y < aantalKol_Rij; y++) {
 
                 if (oplossing[x][y] == '*') {
-                    super.paint(g);
+                    
                     g.drawImage(itemImage, y * 40, x * 40, null);
                 }
             }

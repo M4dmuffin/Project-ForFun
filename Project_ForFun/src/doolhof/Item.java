@@ -31,6 +31,13 @@ public class Item extends JPanel{
     {
         this.gang = gang;
     }
+    
+    @Override
+    public void paint(Graphics g)
+    {
+        super.paint(g);
+        
+    }
 
     
 }
