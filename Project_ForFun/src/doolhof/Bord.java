@@ -18,16 +18,15 @@ import javax.swing.Timer;
  */
 public class Bord extends JPanel implements ActionListener {
 
-    private int veldBreedte, veldHoogte;
+    private int levelCount;
     private Level level;
     private Speler piraat;
     private String winTekst = "";
-    private boolean win = false;
-    private Font winFont = new Font("Serif", Font.BOLD, 60);
-    private Font stappenFont = new Font("Serif", Font.BOLD, 40);
+    private boolean win;
+    private Font winFont, stappenFont;
     private KeyboardListener key;
     private Timer timer;
-    private int levelCount;
+
 
     public Bord() {
         key = new KeyboardListener();
@@ -35,9 +34,9 @@ public class Bord extends JPanel implements ActionListener {
         piraat = new Speler();
         levelCount = 1;
         initBord();
-        veldBreedte = 40;
-        veldHoogte = 40;
         timer = new Timer(25, this);
+        stappenFont = new Font("Serif", Font.BOLD, 40);
+        winFont = new Font("Serif", Font.BOLD, 60); 
     }
 
     public void initBord() {
@@ -114,7 +113,7 @@ public class Bord extends JPanel implements ActionListener {
             piraat.paint(g);
             String stappen = Integer.toString(piraat.getStappen());
             g.setFont(stappenFont);
-            g.setColor(Color.white);
+            g.setColor(Color.WHITE);
             g.drawString("Stappen: " + stappen, 300, 30);
         }
 
@@ -130,4 +129,6 @@ public class Bord extends JPanel implements ActionListener {
     {
         return timer;
     }
+    
+
 }

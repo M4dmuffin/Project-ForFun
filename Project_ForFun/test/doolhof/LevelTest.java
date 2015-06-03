@@ -50,9 +50,9 @@ public class LevelTest {
      */
     @Test
     public void testGetHoeveelheidLevels() {
-        System.out.println("getHoeveelheidLevels");
+        System.out.println("getHoeveelheidLevels - aantal levels = 3");
         Level instance = new Level(1);
-        int expResult = 4;
+        int expResult = 3;
         int result = instance.getHoeveelheidLevels();
         assertEquals(expResult, result);
 

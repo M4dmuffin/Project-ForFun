@@ -40,94 +40,123 @@ public class SpelerTest {
     /**
      * Test of move method, of class Speler.
      */
+    
     @Test
     public void testMove1() {
-        System.out.println("move, test1, verwachting = Succes"); 
-        BeweegRichting richting = null;
+        Level level = new Level(99);
         Speler instance = new Speler();
-        int beginX  = instance.getVeldX(); // 1 is startpositie X van de speler
-        int beginY = instance.getVeldY();  // 1 is startpositie Y van de speler
-        int eindX = 0;
-        int eindY = 0;
+        instance.setLevel(level);
         
-        richting = BeweegRichting.omhoog;
-        if(richting.equals(BeweegRichting.omhoog))
-        {
-            eindY = beginY - instance.getVeldY();           
-        }
-        //Verwachting = Goed;
-        assertTrue("Succes, De beweging van de speler is omhoog dus omlaag op de Y-as beginY moet dus groter zijn dan eindY", beginY > eindY);
+        instance.setVeldX(17);
+        instance.setVeldY(1);
         
-        richting = BeweegRichting.omlaag;
-        if(richting.equals(BeweegRichting.omlaag))
-        {
-            eindY = beginY + instance.getVeldY();
-        }
-        //Verwachting = Goed;
-        assertTrue("Succes, De beweging van de speler is omlaag dus omhoog op de Y-as beginY moet dus kleiner zijn dan eindY", beginY < eindY);
-        
-        richting = BeweegRichting.links;
-        if(richting.equals(BeweegRichting.links))
-        {
-            eindX = beginX - instance.getVeldX();
-        }
-        //Verwachting = Goed;
-        assertTrue("Succes, De beweging van de speler is links dus omlaag op de X-as beginX moet dus groter zijn dan eindX", beginX > eindX);
-        
-        richting = BeweegRichting.rechts;
-        if(richting.equals(BeweegRichting.rechts))
-        {
-            eindX = beginX + instance.getVeldX();
-        }
-        //Verwachting = Goed;
-        assertTrue("Succes, De beweging van de speler is rechts dus omhoog op de X-as beginX moet dus kleiner zijn dan eindX", beginX < eindX);
+        instance.move(BeweegRichting.omhoog);
+        int verwachtY = 1;
+        assertEquals(verwachtY, instance.getVeldY());
     }
     
-    /**
-     * Test of move method, of class Speler.
-     */
-    @Test(expected = AssertionError.class)
+    @Test
     public void testMove2() {
-        System.out.println("move, test2, verwachting = Error"); 
-        BeweegRichting richting = null;
+        Level level = new Level(99);
         Speler instance = new Speler();
-        int beginX  = instance.getVeldX(); // 1
-        int beginY = instance.getVeldY();  // 1
-        int eindX = 0;
-        int eindY = 0;
+        instance.setLevel(level);
         
-        richting = BeweegRichting.omhoog;
-        if(richting.equals(BeweegRichting.omhoog))
-        {
-            eindY = beginY - instance.getVeldY();
-        }
-        // Verwachting Error
-        assertFalse("Error, De beweging van de speler is omhoog dus omlaag op de Y-as, beginY moet dus groter zijn dan eindY", beginY > eindY);
+        instance.setVeldX(17);
+        instance.setVeldY(1);
         
-        
-        richting = BeweegRichting.omlaag;
-        if(richting.equals(BeweegRichting.omlaag))
-        {
-            eindY = beginY + instance.getVeldY();
-        }
-        // Verwachting Error
-        assertFalse("Error, De beweging van de speler is omlaag dus omhoog op de Y-as, beginY moet dus kleiner zijn dan eindY", beginY < eindY);
-        
-        richting = BeweegRichting.links;
-        if(richting.equals(BeweegRichting.links))
-        {
-            eindX = beginX - instance.getVeldX();
-        }
-        // Verwachting Error
-        assertFalse("Error, De beweging van de speler is links dus omlaag op de X-as, beginX moet dus groter zijn dan eindX", beginX > eindX);
-        
-        richting = BeweegRichting.rechts;
-        if(richting.equals(BeweegRichting.rechts))
-        {
-            eindX = beginX + instance.getVeldX();
-        }
-        // Verwachting Error
-        assertFalse("Error, De beweging van de speler is rechts dus omhoog op de X-as, beginX moet dus kleiner zijn dan eindX", beginX < eindX);
+        instance.move(BeweegRichting.rechts);
+        int verwachtX = 17;
+        assertEquals(verwachtX, instance.getVeldX());
     }
- 
+    
+    @Test
+    public void testMove3() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(17);
+        instance.setVeldY(1);
+        
+        instance.move(BeweegRichting.omlaag);
+        int verwachtY = 1;
+        assertEquals(verwachtY, instance.getVeldY());
+    }
+    
+    @Test
+    public void testMove4() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(17);
+        instance.setVeldY(1);
+        
+        instance.move(BeweegRichting.links);
+        int verwachtX = 17;
+        assertEquals(verwachtX, instance.getVeldX());
+    }
+    
+    
+    @Test
+    public void testMove5() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(18);
+        instance.setVeldY(3);
+        
+        instance.move(BeweegRichting.omhoog);
+        int verwachtY = 2;
+        assertEquals(verwachtY, instance.getVeldY());
+    }
+    
+    @Test
+    public void testMove6() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(18);
+        instance.setVeldY(3);
+        
+        instance.move(BeweegRichting.rechts);
+        int verwachtX = 19;
+        assertEquals(verwachtX, instance.getVeldX());
+    }
+    
+    @Test
+    public void testMove7() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(18);
+        instance.setVeldY(3);
+        
+        instance.move(BeweegRichting.omlaag);
+        int verwachtY = 4;
+        assertEquals(verwachtY, instance.getVeldY());
+    }
+    
+    @Test
+    public void testMove8() {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(18);
+        instance.setVeldY(3);
+        
+        instance.move(BeweegRichting.links);
+        int verwachtX = 17;
+        assertEquals(verwachtX, instance.getVeldX());
+    }
+    
+    
+    
+    
 }
+    
+ 

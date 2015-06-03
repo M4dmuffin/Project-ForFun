@@ -237,6 +237,17 @@ public class Speler extends JComponent
         return helper;
     }
     
+    //Alle methodes achter deze regel worden gebruik bij testen (Junit)
+
+    public void setVeldX(int veldX)
+    {
+        this.veldX = veldX;
+    }
+
+    public void setVeldY(int veldY)
+    {
+        this.veldY = veldY;
+    }
     
     
     
