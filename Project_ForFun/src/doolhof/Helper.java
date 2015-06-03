@@ -14,48 +14,48 @@ import javax.swing.ImageIcon;
 public class Helper extends Item {
 
     private final int MAX_WAARDE = 1000;
-    private int korste_route;
-    private int aantalKol_Rij;
+    private int kortsteRoute;
+    private int aantalKolRij;
     private Veld[][] veldLijst;
-    public char[][] oplossing;
-    public char[][] doolhof;
+    public String[][] oplossing;
+    public String[][] doolhof;
 
     public Helper() {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
         oplossing = null;
-        doolhof = new char[21][21]; // aantal kolommen en rijen van het level: 21 bij 21
+        doolhof = new String[21][21]; // aantal kolommen en rijen van het level: 21 bij 21
     }
 
-    // zet de veldlijst terug naar een charlijst
+    // zet de veldlijst terug naar een Stringlijst
     public void terugOmzetten() {
-        for (int y = 0; y < aantalKol_Rij; y++) {
-            for (int x = 0; x < aantalKol_Rij; x++) {
+        for (int y = 0; y < aantalKolRij; y++) {
+            for (int x = 0; x < aantalKolRij; x++) {
 
                 Veld huidig = veldLijst[y][x];
                 if (huidig.getMuur() != null) 
                 {
-                    doolhof[y][x] = 'M';
+                    doolhof[y][x] = "M";
                 }
 
                 if (huidig.getVriend() != null) 
                 {
-                    doolhof[y][x] = 'V';
+                    doolhof[y][x] = "V";
                 }
                 
                 if (huidig.getGang() != null) 
                 {
-                    doolhof[y][x] = 'G';
+                    doolhof[y][x] = "G";
                 }
             }
         }
     }
     
-    // Maakt een copy van de charlijst zodat deze kan dienen als oploslijst
+    // Maakt een copy van de Stringlijst zodat deze kan dienen als oploslijst
     private void copyDoolhof() {
-        oplossing = new char[aantalKol_Rij][aantalKol_Rij];
-        for (int x = 0; x < aantalKol_Rij; x++) {
-            for (int y = 0; y < aantalKol_Rij; y++) {
+        oplossing = new String[aantalKolRij][aantalKolRij];
+        for (int x = 0; x < aantalKolRij; x++) {
+            for (int y = 0; y < aantalKolRij; y++) {
                 oplossing[x][y] = doolhof[x][y];
             }
         }
@@ -63,20 +63,20 @@ public class Helper extends Item {
 
     // pak de start locatie x,y en los doolhof op
     public void losOp(int x, int y) {
-        korste_route = MAX_WAARDE;
-        aantalKol_Rij = veldLijst.length;
-        for (int q = 0; q < aantalKol_Rij; q++) {
-            for (int r = 0; r < aantalKol_Rij; r++) {
+        kortsteRoute = MAX_WAARDE;
+        aantalKolRij = veldLijst.length;
+        for (int q = 0; q < aantalKolRij; q++) {
+            for (int r = 0; r < aantalKolRij; r++) {
                 if (veldLijst[q][r].getVriend() != null) {
-                    doolhof[q][r] = 'V';
+                    doolhof[q][r] = "V";
                 }
             }
         }
         terugOmzetten();
-        korste_route = MAX_WAARDE;
+        kortsteRoute = MAX_WAARDE;
 
         if (stap(x, y, 0) != MAX_WAARDE) {
-            oplossing[x][y] = 'S';
+            oplossing[x][y] = "S";
         }
     }
 
@@ -84,23 +84,23 @@ public class Helper extends Item {
     public int stap(int x, int y, int aantalStappen) {
 
         // Zoek vriend
-        if (doolhof[x][y] == 'V') {
-            korste_route = aantalStappen;
+        if ("V".equals(doolhof[x][y])) {
+            kortsteRoute = aantalStappen;
             this.copyDoolhof();
             return aantalStappen;
         }
 
         // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is gemarkeerd
-        if (doolhof[x][y] == 'M' || doolhof[x][y] == '*') {
+        if ("M".equals(doolhof[x][y]) || "*".equals(doolhof[x][y])) {
             return MAX_WAARDE;
         }
         // dit pad (van vriend naar begin) is langer dan het al eerder gevonden pad (van begin naar vriend)
-        if (aantalStappen == korste_route) {
+        if (aantalStappen == kortsteRoute) {
             return MAX_WAARDE;
         }
 
         //markeer deze stap (van het pad) als oplossing
-        doolhof[x][y] = '*';
+        doolhof[x][y] = "*";
         int uitkomst = MAX_WAARDE;
 
         int nieuweUitkomst = MAX_WAARDE;
@@ -131,7 +131,7 @@ public class Helper extends Item {
         }
 
         // maak de markering ongedaan
-        doolhof[x][y] = 'G';
+        doolhof[x][y] = "G";
 
         if (uitkomst < MAX_WAARDE) {
             return uitkomst;
@@ -146,16 +146,15 @@ public class Helper extends Item {
         g.drawImage(itemImage, x * 40, y * 40, null);
     }
     
-   
     public void paintRoute(Graphics g) {
         
         ImageIcon img = new ImageIcon("src/Pics/helperPad.png");
         itemImage = img.getImage();
         
-        for (int x = 0; x < aantalKol_Rij; x++) {
-            for (int y = 0; y < aantalKol_Rij; y++) {
+        for (int x = 0; x < aantalKolRij; x++) {
+            for (int y = 0; y < aantalKolRij; y++) {
                 
-                if (oplossing[x][y] == '*') {
+                if ("*".equals(oplossing[x][y])) {
                     
                     g.drawImage(itemImage, y * 40, x * 40, null);
                 }

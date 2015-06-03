@@ -14,14 +14,9 @@ public class Veld
     private Muur muur;
     private Gang gang;
     private Vriend vriend;
-    private Veld[] buren;
-    private boolean isBezocht;
-    
-    public Veld()
-    {
-        buren = new Veld[4];
-    }
 
+    
+   
     public void setLocX(int locX) 
     {
         this.locX = locX;
@@ -61,18 +56,5 @@ public class Veld
     {
         this.vriend = vriend;
     }
-
-    public void setBuren(int richting, Veld veld)
-    {
-        buren[richting] = veld;
-    }
-
-    public Veld getBuren(int richting)
-    {
-        return buren[richting];
-    }
-
-    
-    
-    
+   
 }
