@@ -36,7 +36,7 @@ public class LevelTest {
      * Test of getAANTAL_KOLOMMEN_LEVEL method, of class Level.
      */
     @Test
-    public void testGetAANTAL_KOLOMMEN_LEVEL() {
+    public void testGetAANTAL_KOL_RIJ() {
         System.out.println("getAANTAL_KOLOMMEN_LEVEL");
         Level instance = new Level(1);
         int expResult = 21;

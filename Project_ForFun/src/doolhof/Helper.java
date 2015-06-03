@@ -81,13 +81,13 @@ public class Helper extends Item {
     }
 
     // Deze recurieve methode zet de stappen terug van vriend naar begin
-    public int stap(int x, int y, int aantal) {
+    public int stap(int x, int y, int aantalStappen) {
 
         // Zoek vriend
         if (doolhof[x][y] == 'V') {
-            korste_route = aantal;
+            korste_route = aantalStappen;
             this.copyDoolhof();
-            return aantal;
+            return aantalStappen;
         }
 
         // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is gemarkeerd
@@ -95,55 +95,55 @@ public class Helper extends Item {
             return MAX_WAARDE;
         }
         // dit pad (van vriend naar begin) is langer dan het al eerder gevonden pad (van begin naar vriend)
-        if (aantal == korste_route) {
+        if (aantalStappen == korste_route) {
             return MAX_WAARDE;
         }
 
         //markeer deze stap (van het pad) als oplossing
         doolhof[x][y] = '*';
-        int result = MAX_WAARDE;
+        int uitkomst = MAX_WAARDE;
 
-        int new_result = MAX_WAARDE;
+        int nieuweUitkomst = MAX_WAARDE;
 
         // omhoog
-        new_result = stap(x, y - 1, aantal + 1);
-        if (new_result < result) 
+        nieuweUitkomst = stap(x, y - 1, aantalStappen + 1);
+        if (nieuweUitkomst < uitkomst) 
         {
-            result = new_result;
+            uitkomst = nieuweUitkomst;
         }
         
         // omlaag
-        new_result = stap(x, y + 1, aantal + 1);
-        if (new_result < result) {
-            result = new_result;
+        nieuweUitkomst = stap(x, y + 1, aantalStappen + 1);
+        if (nieuweUitkomst < uitkomst) {
+            uitkomst = nieuweUitkomst;
         }
 
         // links
-        new_result = stap(x - 1, y, aantal + 1);
-        if (new_result < result) {
-            result = new_result;
+        nieuweUitkomst = stap(x - 1, y, aantalStappen + 1);
+        if (nieuweUitkomst < uitkomst) {
+            uitkomst = nieuweUitkomst;
         }
 
         // rechts
-        new_result = stap(x + 1, y, aantal + 1);
-        if (new_result < result) {
-            result = new_result;
+        nieuweUitkomst = stap(x + 1, y, aantalStappen + 1);
+        if (nieuweUitkomst < uitkomst) {
+            uitkomst = nieuweUitkomst;
         }
 
         // maak de markering ongedaan
         doolhof[x][y] = 'G';
 
-        if (result < MAX_WAARDE) {
-            return result;
+        if (uitkomst < MAX_WAARDE) {
+            return uitkomst;
         }
-     
+        
         return MAX_WAARDE;
     }
 
     @Override
-    public void paint(Graphics g, int xl, int yl) {
+    public void paint(Graphics g, int x, int y) {
         
-        g.drawImage(itemImage, xl * 40, yl * 40, null);
+        g.drawImage(itemImage, x * 40, y * 40, null);
     }
     
    
