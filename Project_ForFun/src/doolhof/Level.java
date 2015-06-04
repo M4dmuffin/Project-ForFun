@@ -34,7 +34,6 @@ public class Level
         readFile();
         closeFile();
         bouwGrid();
-        
     }
 
     // dynamisch level counter
@@ -121,9 +120,6 @@ public class Level
                         muur.setIsBreekbaar(false);
                         Veld veld = new Veld();
                         veld.setMuur(muur);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        muur.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -133,9 +129,6 @@ public class Level
                         muur.setIsBreekbaar(true);
                         Veld veld = new Veld();
                         veld.setMuur(muur);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        muur.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -144,9 +137,6 @@ public class Level
                         Gang gang = new Gang();
                         Veld veld = new Veld();
                         veld.setGang(gang);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        gang.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }
@@ -158,9 +148,6 @@ public class Level
                         gang.setItem(helper);
                         helper.setVeldLijst(veldLijst);
                         veld.setGang(gang);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        gang.setVeld(veld);
                         helper.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
@@ -173,9 +160,6 @@ public class Level
                         vals.setStappen((int) (Math.random() * 10) + 1);
                         gang.setItem(vals);
                         veld.setGang(gang);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        gang.setVeld(veld);
                         vals.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
@@ -187,9 +171,6 @@ public class Level
                         Bazooka baz = new Bazooka();
                         gang.setItem(baz);
                         veld.setGang(gang);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        gang.setVeld(veld);
                         baz.setGang(gang);
                         veldLijst[y][x] = veld;
                         break;
@@ -199,9 +180,6 @@ public class Level
                         Vriend vriend = new Vriend();
                         Veld veld = new Veld();
                         veld.setVriend(vriend);
-                        veld.setLocX(y);
-                        veld.setLocY(x);
-                        vriend.setVeld(veld);
                         veldLijst[y][x] = veld;
                         break;
                     }

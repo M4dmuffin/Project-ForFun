@@ -8,24 +8,12 @@ package doolhof;
  *
  * @author HP Pavillion
  */
-public class Veld 
+public class Veld
 {
-    private int locX, locY;
+    
     private Muur muur;
     private Gang gang;
     private Vriend vriend;
-
-    
-   
-    public void setLocX(int locX) 
-    {
-        this.locX = locX;
-    }
-
-    public void setLocY(int locY) 
-    {
-        this.locY = locY;
-    }
 
     public Gang getGang()
     {
@@ -56,6 +44,4 @@ public class Veld
     {
         this.vriend = vriend;
     }
-    
-   
 }

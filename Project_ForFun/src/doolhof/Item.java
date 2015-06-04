@@ -12,12 +12,14 @@ import javax.swing.JPanel;
  *
  * @author HP Pavillion
  */
-public class Item extends JPanel{
+public class Item extends JPanel
+{
+
     protected Image itemImage;
     protected Gang gang;
     protected boolean isGevonden;
-    
-    public Image getItemImage() 
+
+    public Image getItemImage()
     {
         return itemImage;
     }
@@ -31,12 +33,9 @@ public class Item extends JPanel{
     {
         this.gang = gang;
     }
-    
-    
+
     public void paint(Graphics g, int x, int y)
     {
         super.paint(g);
     }
-
-    
 }

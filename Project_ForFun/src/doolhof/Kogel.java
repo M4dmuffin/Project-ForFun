@@ -4,19 +4,28 @@
  */
 package doolhof;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Lars
  */
 public class Kogel
 {
-    private int locX;
-    private int locY;
-    
-    public Kogel(int x, int y, int richt)
+
+    private Image kogel;
+
+    public Kogel()
     {
-        locX = x;
-        locY = y;
+        ImageIcon img = new ImageIcon("src/Pics/kogel.png");
+        kogel = img.getImage();
     }
-    
+
+    public void paint(Graphics g)
+    {
+        g.drawImage(kogel, 40, 40, null);
+    }
 }

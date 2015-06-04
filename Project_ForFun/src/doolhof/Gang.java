@@ -13,21 +13,21 @@ import javax.swing.JComponent;
  *
  * @author HP Pavillion
  */
-public class Gang extends JComponent {
+public class Gang extends JComponent
+{
 
     private Image gang;
     private Item item;
-    private Veld veld;
-    
+
     public Gang()
     {
-      ImageIcon img = new ImageIcon("src/Pics/street.png");
-      gang = img.getImage();    
+        ImageIcon img = new ImageIcon("src/Pics/street.png");
+        gang = img.getImage();
     }
 
-    
-   public Image getImageGang() {
-        return gang;
+    public void Paint(Graphics g, int x, int y)
+    {
+        g.drawImage(gang, x * 40, y * 40, null);
     }
 
     public void setItem(Item item)
@@ -40,19 +40,4 @@ public class Gang extends JComponent {
         return item;
     }
 
-    public Veld getVeld()
-    {
-        return veld;
-    }
-
-    public void setVeld(Veld veld)
-    {
-        this.veld = veld;
-    }
-    
-    public void Paint(Graphics g, int x, int y)
-    {
-        g.drawImage(gang, x * 40, y * 40, null);
-    }
-    
 }

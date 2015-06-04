@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
  */
 public class KeyboardListener implements KeyListener
 {
+
     private Speler piraat;
 
     @Override
@@ -45,16 +46,22 @@ public class KeyboardListener implements KeyListener
         {
             piraat.schietBazooka();
         }
+        
+        //cheat
+        if(keycode == KeyEvent.VK_B)
+        {
+           piraat.cheat(BeweegRichting.cheat);  
+        }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e)
     {
     }
-    
-    public void setSpeler(Speler piraat) {
+
+    public void setSpeler(Speler piraat)
+    {
         this.piraat = piraat;
     }
-    
-    
 }

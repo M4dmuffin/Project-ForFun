@@ -16,19 +16,19 @@ import javax.swing.Timer;
  *
  * @author HP Pavillion
  */
-public class Bord extends JPanel implements ActionListener {
+public class Bord extends JPanel implements ActionListener
+{
 
     private int levelCount;
     private Level level;
     private Speler piraat;
-    private String winTekst = "";
     private boolean win;
-    private Font winFont, stappenFont;
+    private Font winFont, stappenFont, createrFont;
     private KeyboardListener key;
     private Timer timer;
 
-
-    public Bord() {
+    public Bord()
+    {
         key = new KeyboardListener();
         addKeyListener(key);
         piraat = new Speler();
@@ -36,24 +36,30 @@ public class Bord extends JPanel implements ActionListener {
         initBord();
         timer = new Timer(25, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
-        winFont = new Font("Serif", Font.BOLD, 60); 
-    }
-
-    public void initBord() {
-        level = new Level(levelCount);
-        piraat.reset();
-        key.setSpeler(piraat);
+        winFont = new Font("Serif", Font.BOLD, 60);
+        createrFont = new Font("Playbill", Font.BOLD, 30);
+                key.setSpeler(piraat);
         piraat.setLevel(level);
     }
 
+    public void initBord()
+    {
+        level = new Level(levelCount);
+        piraat.reset();
+
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (level.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (level.getVriend(piraat.getVeldX(), piraat.getVeldY()) != null)
+        {
             levelCount++;
-            if (levelCount > level.getHoeveelheidLevels()) {
+            if (levelCount > level.getHoeveelheidLevels())
+            {
                 win = true;
-                winTekst = "Winnaar";
-            } else {
+            } else
+            {
                 initBord();
             }
         }
@@ -61,41 +67,36 @@ public class Bord extends JPanel implements ActionListener {
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g)
+    {
         super.paint(g);
-        if (!win) 
+        if (!win)
         {
-            for (int y = 0; y < level.AANTAL_KOL_RIJ(); y++) 
+            for (int y = 0; y < level.AANTAL_KOL_RIJ(); y++)
             {
-                for (int x = 0; x < level.AANTAL_KOL_RIJ(); x++) 
+                for (int x = 0; x < level.AANTAL_KOL_RIJ(); x++)
                 {
-                    if (level.getVeldLijst()[y][x].getVriend() != null) 
+                    if (level.getVeldLijst()[y][x].getVriend() != null)
                     {
                         Vriend vriend = level.getVeldLijst()[y][x].getVriend();
                         vriend.Paint(g, x, y);
                     }
 
-                    if (level.getVeldLijst()[y][x].getGang() != null) 
+                    if (level.getVeldLijst()[y][x].getGang() != null)
                     {
                         Gang gang = level.getVeldLijst()[y][x].getGang();
                         gang.Paint(g, x, y);
 
                         Item item = level.getVeldLijst()[y][x].getGang().getItem();
-                        if (item instanceof Helper) 
+                        
+                        if(item != null)
                         {
                             item.paint(g, x, y);
                         }
-                        if (item instanceof ValsSpeler) 
-                        {
-                            item.paint(g, x, y);
-                        }
-                        if (item instanceof Bazooka) 
-                        {
-                            item.paint(g, x, y);
-                        }
+
                     }
 
-                    if (level.getVeldLijst()[y][x].getMuur() != null) 
+                    if (level.getVeldLijst()[y][x].getMuur() != null)
                     {
                         Muur muur = level.getVeldLijst()[y][x].getMuur();
                         muur.paint(g, x, y);
@@ -103,9 +104,9 @@ public class Bord extends JPanel implements ActionListener {
                 }
             }
 
-            if (piraat.getHelper() != null) 
+            if (piraat.getHelper() != null)
             {
-                if (piraat.getHelper().isGevonden = true) 
+                if (piraat.getHelper().isGevonden = true)
                 {
                     piraat.getHelper().paintRoute(g);
                 }
@@ -117,18 +118,30 @@ public class Bord extends JPanel implements ActionListener {
             g.drawString("Stappen: " + stappen, 300, 30);
         }
 
-        if (win) 
+        if (win)
         {
             g.setColor(Color.RED);
             g.setFont(winFont);
-            g.drawString(winTekst, 250, 300);
+            g.drawString("Congratulations!", 200, 200);
+            g.drawString("You Win", 280, 260);
+            g.setColor(Color.BLACK);
+            g.setFont(createrFont);
+            g.drawString("Made by", 365, 700);
+            g.drawString("Lars Kruuk", 350, 730);
+            g.drawString("&", 390, 760);
+            g.drawString("Kevin van Veen", 330, 790);
         }
     }
 
-    public Timer getTimer() 
+    public Timer getTimer()
     {
         return timer;
     }
-    
 
+    public int getLevelCount()
+    {
+        return levelCount;
+    }
+    
+    
 }

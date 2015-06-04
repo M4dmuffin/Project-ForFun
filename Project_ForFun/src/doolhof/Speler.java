@@ -6,11 +6,8 @@ package doolhof;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 /**
  *
@@ -18,6 +15,7 @@ import javax.swing.JPanel;
  */
 public class Speler extends JComponent
 {
+
     private int veldX, veldY;
     private Image spelerImage;
     private Level level;
@@ -25,91 +23,141 @@ public class Speler extends JComponent
     private int stappen;
     private Bazooka bazooka;
     private Helper helper;
-    
-    public Speler() 
+
+    public Speler()
     {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
         richting = 2;
-        setImage();  
         stappen = 0;
+        setImage();
+
     }
-    
+
     @Override
     public void paint(Graphics g)
     {
         super.paint(g);
-        g.drawImage(getSpelerImage(), veldX * 40, veldY * 40, null);
+        g.drawImage(spelerImage, veldX * 40, veldY * 40, null);
     }
-       
+
     public void reset()
     {
-        if(helper != null)
+        veldX = 1;
+        veldY = 1;
+        stappen = 0;
+        richting = 2;
+        setImage();
+        if (helper != null)
         {
             helper.isGevonden = false;
             helper = null;
         }
-        if(bazooka != null)
+        if (bazooka != null)
         {
             bazooka.isGevonden = false;
             bazooka = null;
         }
-        veldX = 1; 
-        veldY = 1; 
-        stappen = 0;
-        richting = 2;
     }
-    
+
     // schiet de bazooka
     public void schietBazooka()
     {
-        if(bazooka != null)
+        if (bazooka != null)
         {
             bazooka.schieten(veldX, veldY, richting, level);
             bazooka = null;
         }
     }
-    
+
     // controleert of de speler in aanraking komt met de objecten: Helper, ValsSpeler en Bazooka
     public void checkObject()
     {
-        if(level.getVriend(veldX, veldY) == null)
+        if (level.getVriend(veldX, veldY) == null)
         {
-           Item item = new Item();
+            Item item;
             item = level.getGang(veldX, veldY).getItem();
-            if(item != null)
+            if (item != null)
             {
-                if(item instanceof Helper)
+                if (item instanceof Helper)
                 {
-                    helper = (Helper)item;
-                    helper.losOp(veldY, veldX);  
-                    helper.isGevonden = true;  
-                    level.getGang(veldX, veldY).setItem(null);                 
+                    helper = (Helper) item;
+                    helper.losOp(veldY, veldX);
+                    helper.isGevonden = true;
+                    level.getGang(veldX, veldY).setItem(null);
                 }
-                if(item instanceof ValsSpeler)
+                if (item instanceof ValsSpeler)
                 {
-                    ValsSpeler vals = (ValsSpeler)item;  
+                    ValsSpeler vals = (ValsSpeler) item;
                     stappen -= vals.getStappen();
                     level.getGang(veldX, veldY).setItem(null);
                 }
-                if(item instanceof Bazooka)
+                if (item instanceof Bazooka)
                 {
-                    bazooka = (Bazooka)item;
+                    bazooka = (Bazooka) item;
                     bazooka.isGevonden = true;
                     level.getGang(veldX, veldY).setItem(null);
                 }
-            } 
+            }
         }
     }
-    
+
+    // zorgt dat het plaatje van de speler mee veranderd met de beweegrichting van de speler
+    private void setImage()
+    {
+        String plaatje = "";
+        if (bazooka == null)
+        {
+
+            if (richting == 0)
+            {
+                plaatje = "playerHoog";
+            }
+            if (richting == 1)
+            {
+                plaatje = "playerRechts";
+            }
+            if (richting == 2)
+            {
+                plaatje = "player";
+            }
+            if (richting == 3)
+            {
+                plaatje = "playerLinks";
+
+            }
+        } else
+        {
+            if (richting == 0)
+            {
+                plaatje = "playerHoogBazooka";
+            }
+            if (richting == 1)
+            {
+                plaatje = "playerRechtsBazooka";
+            }
+            if (richting == 2)
+            {
+                plaatje = "playerBazooka";
+            }
+            if (richting == 3)
+            {
+                plaatje = "playerLinksBazooka";
+            }
+        }
+        ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
+        spelerImage = img.getImage();
+
+    }
+
     // de beweeg methode van de speler
     public void move(BeweegRichting richting)
     {
-        if(richting.equals(BeweegRichting.omhoog))
+        if (richting.equals(BeweegRichting.omhoog))
         {
             int omhoog = veldY - 1;
             this.richting = 0;
-            if(level.getMuur(veldX, omhoog) == null)
+            if (level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
                 stappen++;
@@ -117,11 +165,11 @@ public class Speler extends JComponent
             setImage();
             checkObject();
         }
-        if(richting.equals(BeweegRichting.omlaag))
+        if (richting.equals(BeweegRichting.omlaag))
         {
             int omlaag = veldY + 1;
             this.richting = 2;
-            if(level.getMuur(veldX, omlaag) == null)
+            if (level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
                 stappen++;
@@ -129,11 +177,11 @@ public class Speler extends JComponent
             setImage();
             checkObject();
         }
-        if(richting.equals(BeweegRichting.links))
+        if (richting.equals(BeweegRichting.links))
         {
             int links = veldX - 1;
             this.richting = 3;
-            if(level.getMuur(links, veldY) == null)
+            if (level.getMuur(links, veldY) == null)
             {
                 veldX = links;
                 stappen++;
@@ -141,11 +189,11 @@ public class Speler extends JComponent
             setImage();
             checkObject();
         }
-        if(richting.equals(BeweegRichting.rechts))
+        if (richting.equals(BeweegRichting.rechts))
         {
             int rechts = veldX + 1;
             this.richting = 1;
-            if(level.getMuur(rechts, veldY) == null)
+            if (level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
                 stappen++;
@@ -155,77 +203,33 @@ public class Speler extends JComponent
         }
     }
     
-    public Image getSpelerImage() 
+    //cheat
+    public void cheat(BeweegRichting richting)
     {
-        return spelerImage;
+        if(richting.equals(BeweegRichting.cheat))
+        {
+            bazooka = new Bazooka();
+        }
     }
-    
-    public int getVeldX() 
+
+    public int getVeldX()
     {
         return veldX;
     }
 
-    public int getVeldY() 
+    public int getVeldY()
     {
         return veldY;
     }
-    
+
     public void setLevel(Level level)
     {
         this.level = level;
     }
 
-    public Level getLevel() {
-        return level;
-    }
-    
-    // zorgt dat het plaatje van de speler mee veranderd met de beweegrichting van de speler
-    public void setImage()
+    public Level getLevel()
     {
-        String plaatje = "";
-        if(bazooka == null)
-        {
-            
-            if(richting == 0)
-            {
-                plaatje = "playerHoog";
-            }
-            if(richting == 1)
-            {
-                plaatje = "playerRechts";
-            }
-            if(richting == 2)
-            {
-                plaatje = "player";
-            }
-            if(richting == 3)
-            {
-                plaatje = "playerLinks";
-                
-            }
-        }
-        else
-        {
-            if(richting == 0)
-            {
-                plaatje = "playerHoogBazooka";
-            }
-            if(richting == 1)
-            {
-                plaatje = "playerRechtsBazooka";
-            }
-            if(richting == 2)
-            {
-                plaatje = "playerBazooka";
-            }
-            if(richting == 3)
-            {
-                plaatje = "playerLinksBazooka";
-            }
-        }
-        ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
-        spelerImage = img.getImage();
-        
+        return level;
     }
 
     public int getStappen()
@@ -233,12 +237,12 @@ public class Speler extends JComponent
         return stappen;
     }
 
-    public Helper getHelper() {
+    public Helper getHelper()
+    {
         return helper;
     }
-    
-    //Alle methodes achter deze regel worden gebruik bij testen (Junit)
 
+    //Alle methodes achter deze regel worden gebruik bij testen (Junit)
     public void setVeldX(int veldX)
     {
         this.veldX = veldX;
@@ -248,7 +252,5 @@ public class Speler extends JComponent
     {
         this.veldY = veldY;
     }
-    
-    
-    
+
 }

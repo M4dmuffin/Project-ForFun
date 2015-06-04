@@ -5,20 +5,21 @@
 package doolhof;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author HP Pavillion
  */
-public class ValsSpeler extends Item {
+public class ValsSpeler extends Item
+{
+
     private int stappen;
-    
-    public ValsSpeler() 
+
+    public ValsSpeler()
     {
         ImageIcon img = new ImageIcon("src/Pics/valsspeler.png");
-        itemImage = img.getImage();   
+        itemImage = img.getImage();
     }
 
     public int getStappen()
@@ -30,7 +31,7 @@ public class ValsSpeler extends Item {
     {
         this.stappen = stappen;
     }
-    
+
     @Override
     public void paint(Graphics g, int x, int y)
     {

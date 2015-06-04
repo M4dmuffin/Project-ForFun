@@ -4,9 +4,8 @@
  */
 package doolhof;
 
-import java.awt.Graphics;
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *

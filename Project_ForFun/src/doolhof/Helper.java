@@ -11,7 +11,8 @@ import javax.swing.ImageIcon;
  *
  * @author HP Pavillion
  */
-public class Helper extends Item {
+public class Helper extends Item
+{
 
     private final int MAX_WAARDE = 1000;
     private int kortsteRoute;
@@ -20,7 +21,8 @@ public class Helper extends Item {
     public String[][] oplossing;
     public String[][] doolhof;
 
-    public Helper() {
+    public Helper()
+    {
         ImageIcon img = new ImageIcon("src/Pics/helper.png");
         itemImage = img.getImage();
         oplossing = null;
@@ -28,46 +30,53 @@ public class Helper extends Item {
     }
 
     // zet de veldlijst terug naar een Stringlijst
-    public void terugOmzetten() {
-        for (int y = 0; y < aantalKolRij; y++) {
-            for (int x = 0; x < aantalKolRij; x++) {
+    private void terugOmzetten()
+    {
+        for (int y = 0; y < aantalKolRij; y++)
+        {
+            for (int x = 0; x < aantalKolRij; x++)
+            {
 
                 Veld huidig = veldLijst[y][x];
-                if (huidig.getMuur() != null) 
+                if (huidig.getMuur() != null)
                 {
                     doolhof[y][x] = "M";
                 }
 
-                if (huidig.getVriend() != null) 
+                if (huidig.getVriend() != null)
                 {
                     doolhof[y][x] = "V";
                 }
-                
-                if (huidig.getGang() != null) 
+
+                if (huidig.getGang() != null)
                 {
                     doolhof[y][x] = "G";
                 }
             }
         }
     }
-    
+
     // Maakt een copy van de Stringlijst zodat deze kan dienen als oploslijst
-    private void copyDoolhof() {
+    private void copyDoolhof()
+    {
         oplossing = new String[aantalKolRij][aantalKolRij];
-        for (int x = 0; x < aantalKolRij; x++) {
-            for (int y = 0; y < aantalKolRij; y++) {
-                oplossing[x][y] = doolhof[x][y];
-            }
+        for (int x = 0; x < aantalKolRij; x++)
+        {
+            System.arraycopy(doolhof[x], 0, oplossing[x], 0, aantalKolRij);
         }
     }
 
     // pak de start locatie x,y en los doolhof op
-    public void losOp(int x, int y) {
+    public void losOp(int x, int y)
+    {
         kortsteRoute = MAX_WAARDE;
         aantalKolRij = veldLijst.length;
-        for (int q = 0; q < aantalKolRij; q++) {
-            for (int r = 0; r < aantalKolRij; r++) {
-                if (veldLijst[q][r].getVriend() != null) {
+        for (int q = 0; q < aantalKolRij; q++)
+        {
+            for (int r = 0; r < aantalKolRij; r++)
+            {
+                if (veldLijst[q][r].getVriend() != null)
+                {
                     doolhof[q][r] = "V";
                 }
             }
@@ -75,27 +84,32 @@ public class Helper extends Item {
         terugOmzetten();
         kortsteRoute = MAX_WAARDE;
 
-        if (stap(x, y, 0) != MAX_WAARDE) {
+        if (stap(x, y, 0) != MAX_WAARDE)
+        {
             oplossing[x][y] = "S";
         }
     }
 
     // Deze recurieve methode zet de stappen terug van vriend naar begin
-    public int stap(int x, int y, int aantalStappen) {
+    private int stap(int x, int y, int aantalStappen)
+    {
 
         // Zoek vriend
-        if ("V".equals(doolhof[x][y])) {
+        if ("V".equals(doolhof[x][y]))
+        {
             kortsteRoute = aantalStappen;
-            this.copyDoolhof();
+            copyDoolhof();
             return aantalStappen;
         }
 
         // Deze stap gaat niet omdat de stap naar een Muur is of omdat het pad al is gemarkeerd
-        if ("M".equals(doolhof[x][y]) || "*".equals(doolhof[x][y])) {
+        if ("M".equals(doolhof[x][y]) || "*".equals(doolhof[x][y]))
+        {
             return MAX_WAARDE;
         }
         // dit pad (van vriend naar begin) is langer dan het al eerder gevonden pad (van begin naar vriend)
-        if (aantalStappen == kortsteRoute) {
+        if (aantalStappen == kortsteRoute)
+        {
             return MAX_WAARDE;
         }
 
@@ -107,63 +121,73 @@ public class Helper extends Item {
 
         // omhoog
         nieuweUitkomst = stap(x, y - 1, aantalStappen + 1);
-        if (nieuweUitkomst < uitkomst) 
+        if (nieuweUitkomst < uitkomst)
         {
             uitkomst = nieuweUitkomst;
         }
-        
+
         // omlaag
         nieuweUitkomst = stap(x, y + 1, aantalStappen + 1);
-        if (nieuweUitkomst < uitkomst) {
+        if (nieuweUitkomst < uitkomst)
+        {
             uitkomst = nieuweUitkomst;
         }
 
         // links
         nieuweUitkomst = stap(x - 1, y, aantalStappen + 1);
-        if (nieuweUitkomst < uitkomst) {
+        if (nieuweUitkomst < uitkomst)
+        {
             uitkomst = nieuweUitkomst;
         }
 
         // rechts
         nieuweUitkomst = stap(x + 1, y, aantalStappen + 1);
-        if (nieuweUitkomst < uitkomst) {
+        if (nieuweUitkomst < uitkomst)
+        {
             uitkomst = nieuweUitkomst;
         }
 
         // maak de markering ongedaan
         doolhof[x][y] = "G";
 
-        if (uitkomst < MAX_WAARDE) {
+        if (uitkomst < MAX_WAARDE)
+        {
             return uitkomst;
         }
-        
+
         return MAX_WAARDE;
     }
 
     @Override
-    public void paint(Graphics g, int x, int y) {
-        
+    public void paint(Graphics g, int x, int y)
+    {
+
         g.drawImage(itemImage, x * 40, y * 40, null);
     }
-    
-    public void paintRoute(Graphics g) {
-        
+
+    public void paintRoute(Graphics g)
+    {
+
         ImageIcon img = new ImageIcon("src/Pics/helperPad.png");
         itemImage = img.getImage();
-        
-        for (int x = 0; x < aantalKolRij; x++) {
-            for (int y = 0; y < aantalKolRij; y++) {
-                
-                if ("*".equals(oplossing[x][y])) {
-                    
+
+        for (int x = 0; x < aantalKolRij; x++)
+        {
+            for (int y = 0; y < aantalKolRij; y++)
+            {
+
+                if ("*".equals(oplossing[x][y]))
+                {
+
                     g.drawImage(itemImage, y * 40, x * 40, null);
                 }
             }
         }
 
     }
-    
-    public void setVeldLijst(Veld[][] doolhof) {
+
+    public void setVeldLijst(Veld[][] doolhof)
+    {
         this.veldLijst = doolhof;
     }
 }
