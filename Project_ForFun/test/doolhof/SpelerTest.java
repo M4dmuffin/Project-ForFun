@@ -168,7 +168,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectBazooka1(){
+    public void testPakItemBazooka1(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
@@ -183,7 +183,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectBazooka2(){
+    public void testPakItemBazooka2(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
@@ -198,7 +198,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectValsSpeler1(){
+    public void testPakItemValsSpeler1(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
@@ -214,7 +214,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectValsSpeler2(){
+    public void testPakItemValsSpeler2(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
@@ -237,7 +237,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectHelper1(){
+    public void testPakItemHelper1(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
@@ -252,7 +252,7 @@ public class SpelerTest {
     }
     
     @Test
-    public void testCheckObjectHelper2(){
+    public void testPakItemHelper2(){
         Level level = new Level(99);
         Speler instance = new Speler();
         instance.setLevel(level);
