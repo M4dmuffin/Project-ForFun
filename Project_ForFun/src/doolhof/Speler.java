@@ -47,7 +47,6 @@ public class Speler extends JComponent
         veldY = 1;
         stappen = 0;
         richting = 2;
-        setImage();
         if (helper != null)
         {
             helper.isGevonden = false;
@@ -57,7 +56,8 @@ public class Speler extends JComponent
         {
             bazooka.isGevonden = false;
             bazooka = null;
-        }
+        }setImage();
+        
     }
 
     // schiet de bazooka
@@ -144,8 +144,8 @@ public class Speler extends JComponent
                 veldY = omhoog;
                 stappen++;
             }
-            setImage();
             checkObject();
+            setImage();
         }
         if (richting.equals(BeweegRichting.omlaag))
         {
@@ -156,8 +156,8 @@ public class Speler extends JComponent
                 veldY = omlaag;
                 stappen++;
             }
-            setImage();
             checkObject();
+            setImage();
         }
         if (richting.equals(BeweegRichting.links))
         {
@@ -168,8 +168,8 @@ public class Speler extends JComponent
                 veldX = links;
                 stappen++;
             }
-            setImage();
             checkObject();
+            setImage();
         }
         if (richting.equals(BeweegRichting.rechts))
         {
@@ -180,8 +180,8 @@ public class Speler extends JComponent
                 veldX = rechts;
                 stappen++;
             }
-            setImage();
             checkObject();
+            setImage();
         }
     }
 
