@@ -43,5 +43,6 @@ public class Veld
     public void setVriend(Vriend vriend)
     {
         this.vriend = vriend;
+        System.out.println("hallo");
     }
 }
