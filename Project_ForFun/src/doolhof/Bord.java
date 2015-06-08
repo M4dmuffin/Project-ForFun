@@ -23,7 +23,7 @@ public class Bord extends JPanel implements ActionListener
     private Level level;
     private Speler piraat;
     private boolean win;
-    private Font winFont, stappenFont, createrFont;
+    private Font winFont, stappenFont, aftitelingFont;
     private KeyboardListener key;
     private Timer timer;
 
@@ -37,7 +37,7 @@ public class Bord extends JPanel implements ActionListener
         timer = new Timer(25, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
-        createrFont = new Font("Playbill", Font.BOLD, 30);
+        aftitelingFont = new Font("Playbill", Font.BOLD, 30);
     }
 
     public void initBord()
@@ -136,7 +136,7 @@ public class Bord extends JPanel implements ActionListener
         g.drawString("Congratulations!", 200, 200);
         g.drawString("You Win", 280, 260);
         g.setColor(Color.BLACK);
-        g.setFont(createrFont);
+        g.setFont(aftitelingFont);
         g.drawString("Made by", 365, 700);
         g.drawString("Lars Kruuk", 350, 730);
         g.drawString("&", 390, 760);

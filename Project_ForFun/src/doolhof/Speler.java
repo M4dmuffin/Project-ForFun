@@ -72,7 +72,7 @@ public class Speler extends JComponent
     }
 
     // controleert of de speler in aanraking komt met de objecten: Helper, ValsSpeler en Bazooka
-    public void checkObject()
+    private void checkObject()
     {
         if (level.getVriend(veldX, veldY) == null)
         {
