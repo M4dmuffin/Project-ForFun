@@ -28,22 +28,12 @@ public class Bazooka extends Item
         boolean isGeraakt = false;
         while (isGeraakt == false)
         {
-  
-            if (richting == 0)
+            switch (richting)
             {
-                y--;
-            }
-            if (richting == 1)
-            {
-                x++;
-            }
-            if (richting == 2)
-            {
-                y++;
-            }
-            if (richting == 3)
-            {
-                x--;
+                case 0: {y--;break;}
+                case 1: {x++;break;}
+                case 2: {y++;break;}
+                case 3: {x--;break;}
             }
 
             if (level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)

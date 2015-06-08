@@ -110,41 +110,22 @@ public class Speler extends JComponent
         String plaatje = "";
         if (bazooka == null)
         {
-
-            if (richting == 0)
+            switch (richting)
             {
-                plaatje = "playerHoog";
+                case 0: {plaatje = "playerHoog";break;}
+                case 1: {plaatje = "playerRechts";break;}
+                case 2: {plaatje = "player";break;}
+                case 3: {plaatje = "playerLinks";break;}
             }
-            if (richting == 1)
-            {
-                plaatje = "playerRechts";
-            }
-            if (richting == 2)
-            {
-                plaatje = "player";
-            }
-            if (richting == 3)
-            {
-                plaatje = "playerLinks";
-
-            }
-        } else
+        } 
+        else
         {
-            if (richting == 0)
+            switch (richting)
             {
-                plaatje = "playerHoogBazooka";
-            }
-            if (richting == 1)
-            {
-                plaatje = "playerRechtsBazooka";
-            }
-            if (richting == 2)
-            {
-                plaatje = "playerBazooka";
-            }
-            if (richting == 3)
-            {
-                plaatje = "playerLinksBazooka";
+                case 0: {plaatje = "playerHoogBazooka";break;}
+                case 1: {plaatje = "playerRechtsBazooka";break;}
+                case 2: {plaatje = "playerBazooka";break;}
+                case 3: {plaatje = "playerLinksBazooka";break;}
             }
         }
         ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
@@ -202,15 +183,6 @@ public class Speler extends JComponent
             }
             setImage();
             checkObject();
-        }
-    }
-    
-    //cheat - gemaakt voor presentatie
-    public void cheat(BeweegRichting richting)
-    {
-        if(richting.equals(BeweegRichting.cheat))
-        {
-            bazooka = new Bazooka();
         }
     }
 

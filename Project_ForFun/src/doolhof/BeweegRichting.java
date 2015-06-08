@@ -10,5 +10,5 @@ package doolhof;
  */
 public enum BeweegRichting {
     
-    omhoog, omlaag, links, rechts, cheat
+    omhoog, omlaag, links, rechts
 }

@@ -25,34 +25,14 @@ public class KeyboardListener implements KeyListener
     public void keyPressed(KeyEvent e)
     {
         int keycode = e.getKeyCode();
-
-        if (keycode == KeyEvent.VK_UP)
+        switch (keycode)
         {
-            piraat.move(BeweegRichting.omhoog);
+            case KeyEvent.VK_UP: {piraat.move(BeweegRichting.omhoog);break;}
+            case KeyEvent.VK_DOWN: {piraat.move(BeweegRichting.omlaag);break;}
+            case KeyEvent.VK_LEFT: {piraat.move(BeweegRichting.links);break;}
+            case KeyEvent.VK_RIGHT: {piraat.move(BeweegRichting.rechts);break;}
+            case KeyEvent.VK_SPACE: {piraat.schietBazooka();break;}
         }
-        if (keycode == KeyEvent.VK_DOWN)
-        {
-            piraat.move(BeweegRichting.omlaag);
-        }
-        if (keycode == KeyEvent.VK_LEFT)
-        {
-            piraat.move(BeweegRichting.links);
-        }
-        if (keycode == KeyEvent.VK_RIGHT)
-        {
-            piraat.move(BeweegRichting.rechts);
-        }
-        if (keycode == KeyEvent.VK_SPACE)
-        {
-            piraat.schietBazooka();
-        }
-        
-        //cheat - gemaakt voor presentatie
-        if(keycode == KeyEvent.VK_B)
-        {
-           piraat.cheat(BeweegRichting.cheat);  
-        }
-
     }
 
     @Override

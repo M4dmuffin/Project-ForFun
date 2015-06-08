@@ -32,7 +32,7 @@ public class Game
         createPanels();
         createButtons();
         createLabels();
-        AddPanelsToFrame();
+        addPanelsToFrame();
         frame.setVisible(true);
         speelBord.requestFocus();
     }
@@ -133,7 +133,7 @@ public class Game
     }
 
     // voeg panels toe aan frame
-    private void AddPanelsToFrame()
+    private void addPanelsToFrame()
     {
         frame.add(hoofdmenu, BorderLayout.WEST);
         frame.add(speelBord, BorderLayout.CENTER);
