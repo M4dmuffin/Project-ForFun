@@ -129,7 +129,6 @@ public class Game
         hoofdmenu.setPreferredSize(new Dimension(100, 100));
         hoofdmenu.setBackground(new Color(123, 104, 238));
         speelBord = new Bord();
-        
     }
 
     // voeg panels toe aan frame

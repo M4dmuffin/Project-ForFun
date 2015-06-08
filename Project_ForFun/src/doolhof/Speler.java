@@ -130,7 +130,6 @@ public class Speler extends JComponent
         }
         ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
         spelerImage = img.getImage();
-
     }
 
     // de beweeg methode van de speler
@@ -226,5 +225,14 @@ public class Speler extends JComponent
     {
         this.veldY = veldY;
     }
-
+    
+    public Bazooka getBazooka()
+    {
+        return bazooka;
+    }
+    
+    public void setStappen(int stappen)
+    {
+        this.stappen = stappen;
+    }
 }

@@ -16,6 +16,23 @@ import static org.junit.Assert.*;
  */
 public class SpelerTest {
     
+    private int muurX = 17;
+    private int muurY = 1;
+    
+    private int gangX = 18;
+    private int gangY = 3;
+    
+    private int bazookaX = 2;
+    private int bazookaY = 5;
+    
+    private int valsSpelerX = 2;
+    private int valsSpelerY = 6;
+    
+    private int helperX = 2;
+    private int helperY = 7;
+    
+    private int stappen = 20;
+    
     public SpelerTest() {
     }
 
@@ -47,8 +64,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(17);
-        instance.setVeldY(1);
+        instance.setVeldX(muurX);
+        instance.setVeldY(muurY);
         
         instance.move(BeweegRichting.omhoog);
         int verwachtY = 1;
@@ -61,8 +78,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(17);
-        instance.setVeldY(1);
+        instance.setVeldX(muurX);
+        instance.setVeldY(muurY);
         
         instance.move(BeweegRichting.rechts);
         int verwachtX = 17;
@@ -75,8 +92,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(17);
-        instance.setVeldY(1);
+        instance.setVeldX(muurX);
+        instance.setVeldY(muurY);
         
         instance.move(BeweegRichting.omlaag);
         int verwachtY = 1;
@@ -89,14 +106,13 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(17);
-        instance.setVeldY(1);
+        instance.setVeldX(muurX);
+        instance.setVeldY(muurY);
         
         instance.move(BeweegRichting.links);
         int verwachtX = 17;
         assertEquals(verwachtX, instance.getVeldX());
     }
-    
     
     @Test
     public void testMove5() {
@@ -104,8 +120,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(18);
-        instance.setVeldY(3);
+        instance.setVeldX(gangX);
+        instance.setVeldY(gangY);
         
         instance.move(BeweegRichting.omhoog);
         int verwachtY = 2;
@@ -118,8 +134,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(18);
-        instance.setVeldY(3);
+        instance.setVeldX(gangX);
+        instance.setVeldY(gangY);
         
         instance.move(BeweegRichting.rechts);
         int verwachtX = 19;
@@ -132,8 +148,8 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(18);
-        instance.setVeldY(3);
+        instance.setVeldX(gangX);
+        instance.setVeldY(gangY);
         
         instance.move(BeweegRichting.omlaag);
         int verwachtY = 4;
@@ -146,17 +162,118 @@ public class SpelerTest {
         Speler instance = new Speler();
         instance.setLevel(level);
         
-        instance.setVeldX(18);
-        instance.setVeldY(3);
+        instance.setVeldX(gangX);
+        instance.setVeldY(gangY);
         
         instance.move(BeweegRichting.links);
         int verwachtX = 17;
         assertEquals(verwachtX, instance.getVeldX());
     }
     
+    @Test
+    public void testCheckObjectBazooka1()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(bazookaX);
+        instance.setVeldY(bazookaY);
+        
+        instance.move(BeweegRichting.rechts);
+        
+        Bazooka verwacht = null;
+        assertEquals(verwacht, instance.getBazooka());
+    }
     
+    @Test
+    public void testCheckObjectBazooka2()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(bazookaX);
+        instance.setVeldY(bazookaY);
+        
+        instance.move(BeweegRichting.links);
+        
+        boolean verwacht = true;
+        assertEquals(verwacht, instance.getBazooka().isGevonden);
+    }
     
+    @Test
+    public void testCheckObjectValsSpeler1()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        instance.setStappen(stappen);
+        int verwacht = stappen + 1;
+        
+        instance.setVeldX(valsSpelerX);
+        instance.setVeldY(valsSpelerY);
+        
+        instance.move(BeweegRichting.rechts);
+        
+        assertEquals(verwacht, instance.getStappen());
+    }
     
+    @Test
+    public void testCheckObjectValsSpeler2()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        instance.setStappen(stappen);
+        Item item = level.getGang(1, 6).getItem();
+        
+        ValsSpeler vals = null;
+        if(item instanceof ValsSpeler)
+        {
+            vals = (ValsSpeler)item;
+        }
+        int verwacht = (stappen + 1) - vals.getStappen();
+        
+        instance.setVeldX(valsSpelerX);
+        instance.setVeldY(valsSpelerY);
+        
+        instance.move(BeweegRichting.links);
+        
+        assertEquals(verwacht, instance.getStappen());
+    }
+    
+    @Test
+    public void testCheckObjectHelper1()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(bazookaX);
+        instance.setVeldY(bazookaY);
+        
+        instance.move(BeweegRichting.rechts);
+        
+        Helper verwacht = null;
+        assertEquals(verwacht, instance.getHelper());
+    }
+    
+    @Test
+    public void testCheckObjectHelper2()
+    {
+        Level level = new Level(99);
+        Speler instance = new Speler();
+        instance.setLevel(level);
+        
+        instance.setVeldX(helperX);
+        instance.setVeldY(helperY);
+        
+        instance.move(BeweegRichting.links);
+        
+        boolean verwacht = true;
+        assertEquals(verwacht, instance.getHelper().isGevonden);
+    }
 }
     
  
