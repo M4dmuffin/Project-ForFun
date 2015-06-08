@@ -4,9 +4,6 @@
  */
 package doolhof;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.xml.bind.Marshaller;
 import org.junit.*;
 import static org.junit.Assert.*;
 

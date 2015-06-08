@@ -72,7 +72,7 @@ public class Speler extends JComponent
     }
 
     // controleert of de speler in aanraking komt met de objecten: Helper, ValsSpeler en Bazooka
-    private void checkObject()
+    private void pakItem()
     {
         if (level.getVriend(veldX, veldY) == null)
         {
@@ -144,7 +144,7 @@ public class Speler extends JComponent
                 veldY = omhoog;
                 stappen++;
             }
-            checkObject();
+            pakItem();
             setImage();
         }
         if (richting.equals(BeweegRichting.omlaag))
@@ -156,7 +156,7 @@ public class Speler extends JComponent
                 veldY = omlaag;
                 stappen++;
             }
-            checkObject();
+            pakItem();
             setImage();
         }
         if (richting.equals(BeweegRichting.links))
@@ -168,7 +168,7 @@ public class Speler extends JComponent
                 veldX = links;
                 stappen++;
             }
-            checkObject();
+            pakItem();
             setImage();
         }
         if (richting.equals(BeweegRichting.rechts))
@@ -180,7 +180,7 @@ public class Speler extends JComponent
                 veldX = rechts;
                 stappen++;
             }
-            checkObject();
+            pakItem();
             setImage();
         }
     }
