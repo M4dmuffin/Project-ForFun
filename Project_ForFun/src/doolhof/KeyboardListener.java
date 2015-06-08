@@ -47,7 +47,7 @@ public class KeyboardListener implements KeyListener
             piraat.schietBazooka();
         }
         
-        //cheat
+        //cheat - gemaakt voor presentatie
         if(keycode == KeyEvent.VK_B)
         {
            piraat.cheat(BeweegRichting.cheat);  

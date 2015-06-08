@@ -28,7 +28,7 @@ public class Vriend
         return vriend;
     }
 
-    public void Paint(Graphics g, int x, int y)
+    public void paint(Graphics g, int x, int y)
     {
         g.drawImage(vriend, x * 40, y * 40, null);
     }

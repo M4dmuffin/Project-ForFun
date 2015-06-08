@@ -38,15 +38,14 @@ public class Bord extends JPanel implements ActionListener
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
         createrFont = new Font("Playbill", Font.BOLD, 30);
-                key.setSpeler(piraat);
-        piraat.setLevel(level);
     }
 
     public void initBord()
     {
         level = new Level(levelCount);
         piraat.reset();
-
+        key.setSpeler(piraat);
+        piraat.setLevel(level);
     }
 
     @Override
@@ -79,7 +78,7 @@ public class Bord extends JPanel implements ActionListener
                     if (level.getVeldLijst()[y][x].getVriend() != null)
                     {
                         Vriend vriend = level.getVeldLijst()[y][x].getVriend();
-                        vriend.Paint(g, x, y);
+                        vriend.paint(g, x, y);
                     }
 
                     if (level.getVeldLijst()[y][x].getGang() != null)
@@ -88,12 +87,11 @@ public class Bord extends JPanel implements ActionListener
                         gang.Paint(g, x, y);
 
                         Item item = level.getVeldLijst()[y][x].getGang().getItem();
-                        
-                        if(item != null)
+
+                        if (item != null)
                         {
                             item.paint(g, x, y);
                         }
-
                     }
 
                     if (level.getVeldLijst()[y][x].getMuur() != null)
@@ -112,24 +110,12 @@ public class Bord extends JPanel implements ActionListener
                 }
             }
             piraat.paint(g);
-            String stappen = Integer.toString(piraat.getStappen());
-            g.setFont(stappenFont);
-            g.setColor(Color.WHITE);
-            g.drawString("Stappen: " + stappen, 300, 30);
+            paintStappen(g);
         }
 
         if (win)
         {
-            g.setColor(Color.RED);
-            g.setFont(winFont);
-            g.drawString("Congratulations!", 200, 200);
-            g.drawString("You Win", 280, 260);
-            g.setColor(Color.BLACK);
-            g.setFont(createrFont);
-            g.drawString("Made by", 365, 700);
-            g.drawString("Lars Kruuk", 350, 730);
-            g.drawString("&", 390, 760);
-            g.drawString("Kevin van Veen", 330, 790);
+            paintWin(g);
         }
     }
 
@@ -142,6 +128,26 @@ public class Bord extends JPanel implements ActionListener
     {
         return levelCount;
     }
-    
-    
+
+    private void paintWin(Graphics g)
+    {
+        g.setColor(Color.RED);
+        g.setFont(winFont);
+        g.drawString("Congratulations!", 200, 200);
+        g.drawString("You Win", 280, 260);
+        g.setColor(Color.BLACK);
+        g.setFont(createrFont);
+        g.drawString("Made by", 365, 700);
+        g.drawString("Lars Kruuk", 350, 730);
+        g.drawString("&", 390, 760);
+        g.drawString("Kevin van Veen", 330, 790);
+    }
+
+    private void paintStappen(Graphics g)
+    {
+        String stappen = Integer.toString(piraat.getStappen());
+        g.setFont(stappenFont);
+        g.setColor(Color.WHITE);
+        g.drawString("Stappen: " + stappen, 300, 30);
+    }
 }

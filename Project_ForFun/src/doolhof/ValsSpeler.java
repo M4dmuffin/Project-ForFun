@@ -37,4 +37,5 @@ public class ValsSpeler extends Item
     {
         g.drawImage(itemImage, x * 40, y * 40, null);
     }
+    
 }

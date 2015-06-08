@@ -67,6 +67,7 @@ public class Speler extends JComponent
         {
             bazooka.schieten(veldX, veldY, richting, level);
             bazooka = null;
+            setImage();
         }
     }
 
@@ -96,6 +97,7 @@ public class Speler extends JComponent
                 {
                     bazooka = (Bazooka) item;
                     bazooka.isGevonden = true;
+                    setImage();
                     level.getGang(veldX, veldY).setItem(null);
                 }
             }
@@ -203,7 +205,7 @@ public class Speler extends JComponent
         }
     }
     
-    //cheat
+    //cheat - gemaakt voor presentatie
     public void cheat(BeweegRichting richting)
     {
         if(richting.equals(BeweegRichting.cheat))
