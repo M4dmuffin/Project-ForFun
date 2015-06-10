@@ -63,7 +63,8 @@ public class Game
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                speelBord.getTimer().start();
+                speelBord.getMainTimer().start();
+                speelBord.getSpinTimer().start();
                 speelBord.requestFocus();
             }
         };

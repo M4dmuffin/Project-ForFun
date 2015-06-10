@@ -20,7 +20,7 @@ public class Bazooka extends Item
         itemImage = img.getImage();
     }
 
-    public void schieten(int veldX, int veldY, int richting, Level level)
+    public void schieten(int veldX, int veldY, BeweegRichting richting, Level level)
     {
         int x = veldX;
         int y = veldY;
@@ -30,10 +30,10 @@ public class Bazooka extends Item
         {
             switch (richting)
             {
-                case 0: {y--;break;}
-                case 1: {x++;break;}
-                case 2: {y++;break;}
-                case 3: {x--;break;}
+                case omhoog: {y--;break;}
+                case rechts: {x++;break;}
+                case omlaag: {y++;break;}
+                case links: {x--;break;}
             }
 
             if (level.getMuur(x, y) != null && level.getMuur(x, y).getIsBreekbaar() == true)

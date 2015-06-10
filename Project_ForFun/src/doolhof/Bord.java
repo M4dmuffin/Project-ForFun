@@ -22,11 +22,12 @@ public class Bord extends JPanel implements ActionListener
     private int levelCount;
     private Level level;
     private Speler piraat;
-    private boolean win;
+    private boolean win, lose;
     private Font winFont, stappenFont, aftitelingFont;
     private KeyboardListener key;
-    private Timer timer;
-
+    private Timer mainTimer, spinTimer;
+    private Spin spin;
+    
     public Bord()
     {
         key = new KeyboardListener();
@@ -34,7 +35,8 @@ public class Bord extends JPanel implements ActionListener
         piraat = new Speler();
         levelCount = 1;
         initBord();
-        timer = new Timer(25, this);
+        mainTimer = new Timer(25, this); 
+        spinTimer = new Timer(500, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
         aftitelingFont = new Font("Playbill", Font.BOLD, 30);
@@ -42,10 +44,21 @@ public class Bord extends JPanel implements ActionListener
 
     public void initBord()
     {
+        if(level != null)
+        {
+            if(levelCount > level.getHoeveelheidLevels())
+            {
+                levelCount = 1;
+            }
+        }
         level = new Level(levelCount);
+        spin = new Spin();
         piraat.reset();
         key.setSpeler(piraat);
         piraat.setLevel(level);
+        spin.setSpeler(piraat);
+        win = false;
+        lose = false;
     }
 
     @Override
@@ -57,11 +70,22 @@ public class Bord extends JPanel implements ActionListener
             if (levelCount > level.getHoeveelheidLevels())
             {
                 win = true;
-            } else
+            } 
+            else
             {
                 initBord();
             }
         }
+        if(e.getSource() == spinTimer)
+        {
+            spin.move();
+            spin.repaint();
+            if(spin.getVeldX() == piraat.getVeldX() && spin.getVeldY() == piraat.getVeldY())
+            {
+                lose = true;
+            }
+        }
+        
         repaint();
     }
 
@@ -69,7 +93,7 @@ public class Bord extends JPanel implements ActionListener
     public void paint(Graphics g)
     {
         super.paint(g);
-        if (!win)
+        if (!win && !lose)
         {
             for (int y = 0; y < level.AANTAL_KOL_RIJ(); y++)
             {
@@ -109,19 +133,30 @@ public class Bord extends JPanel implements ActionListener
                     piraat.getHelper().paintRoute(g);
                 }
             }
+            
+            spin.paint(g);
             piraat.paint(g);
             paintStappen(g);
         }
 
-        if (win)
+        if (win && !lose)
         {
             paintWin(g);
         }
+        if (!win && lose)
+        {
+            paintLose(g);
+        }
     }
 
-    public Timer getTimer()
+    public Timer getMainTimer()
     {
-        return timer;
+        return mainTimer;
+    }
+    
+    public Timer getSpinTimer()
+    {
+        return spinTimer;
     }
 
     public int getLevelCount()
@@ -149,5 +184,18 @@ public class Bord extends JPanel implements ActionListener
         g.setFont(stappenFont);
         g.setColor(Color.WHITE);
         g.drawString("Stappen: " + stappen, 300, 30);
+    }
+
+    private void paintLose(Graphics g)
+    {
+        g.setColor(Color.RED);
+        g.setFont(winFont);
+        g.drawString("Game Over!", 200, 200);
+        g.setColor(Color.BLACK);
+        g.setFont(aftitelingFont);
+        g.drawString("Made by", 365, 700);
+        g.drawString("Lars Kruuk", 350, 730);
+        g.drawString("&", 390, 760);
+        g.drawString("Kevin van Veen", 330, 790);
     }
 }

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  *
  * @author HP Pavillion
  */
-public class Helper extends Item
+public class Helper extends Item implements KorsteRoute
 {
 
     private final int MAX_WAARDE = 1000;
@@ -30,7 +30,8 @@ public class Helper extends Item
     }
 
     // zet de veldlijst terug naar een Stringlijst
-    private void terugOmzetten()
+    @Override
+    public void terugOmzetten()
     {
         for (int y = 0; y < aantalKolRij; y++)
         {
@@ -57,7 +58,8 @@ public class Helper extends Item
     }
 
     // Maakt een copy van de Stringlijst zodat deze kan dienen als oploslijst
-    private void copyDoolhof()
+    @Override
+    public void copyDoolhof()
     {
         oplossing = new String[aantalKolRij][aantalKolRij];
         for (int x = 0; x < aantalKolRij; x++)
@@ -67,6 +69,7 @@ public class Helper extends Item
     }
 
     // pak de start locatie x,y en los doolhof op
+    @Override
     public void losOp(int x, int y)
     {
         kortsteRoute = MAX_WAARDE;
@@ -91,7 +94,8 @@ public class Helper extends Item
     }
 
     // Deze recurieve methode zet de stappen terug van vriend naar begin
-    private int stap(int x, int y, int aantalStappen)
+    @Override
+    public int stap(int x, int y, int aantalStappen)
     {
 
         // Zoek vriend
@@ -161,7 +165,6 @@ public class Helper extends Item
     @Override
     public void paint(Graphics g, int x, int y)
     {
-
         g.drawImage(itemImage, x * 40, y * 40, null);
     }
 
@@ -175,7 +178,6 @@ public class Helper extends Item
         {
             for (int y = 0; y < aantalKolRij; y++)
             {
-
                 if ("*".equals(oplossing[x][y]))
                 {
 
@@ -190,4 +192,6 @@ public class Helper extends Item
     {
         this.veldLijst = doolhof;
     }
+
+    
 }

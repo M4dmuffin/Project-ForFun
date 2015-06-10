@@ -47,16 +47,16 @@ public class BazookaTest
         System.out.println("schieten omhoog - muur niet kapot");
         int veldX = 1;
         int veldY = 1;
-        int richting = 0;
+        BeweegRichting richting = BeweegRichting.omlaag;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Gang result = level.getEenVeld(veldX, veldY).getGang();
         Gang verwachting = null;
@@ -69,16 +69,16 @@ public class BazookaTest
         System.out.println("schieten rechts - muur niet kapot");
         int veldX = 1;
         int veldY = 1;
-        int richting = 1;
+        BeweegRichting richting = BeweegRichting.rechts;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Gang result = level.getEenVeld(veldX, veldY).getGang();
         Gang verwachting = null;
@@ -91,16 +91,16 @@ public class BazookaTest
         System.out.println("schieten omlaag - muur niet kapot");
         int veldX = 1;
         int veldY = 1;
-        int richting = 2;
+        BeweegRichting richting = BeweegRichting.omlaag;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Gang result = level.getEenVeld(veldX, veldY).getGang();
         Gang verwachting = null;
@@ -113,16 +113,16 @@ public class BazookaTest
         System.out.println("schieten links - muur niet kapot");
         int veldX = 1;
         int veldY = 1;
-        int richting = 3;
+        BeweegRichting richting = BeweegRichting.links;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Gang result = level.getEenVeld(veldX, veldY).getGang();
         Gang verwachting = null;
@@ -135,16 +135,16 @@ public class BazookaTest
         System.out.println("schieten omhoog - muur wel kapot");
         int veldX = 3;
         int veldY = 3;
-        int richting = 0;
+        BeweegRichting richting = BeweegRichting.omhoog;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Muur result = level.getEenVeld(veldX, veldY).getMuur();
         Muur verwachting = null;
@@ -157,16 +157,16 @@ public class BazookaTest
         System.out.println("schieten rechts - muur muur wel kapot");
         int veldX = 3;
         int veldY = 3;
-        int richting = 1;
+        BeweegRichting richting = BeweegRichting.rechts;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Muur result = level.getEenVeld(veldX, veldY).getMuur();
         Muur verwachting = null;
@@ -179,16 +179,16 @@ public class BazookaTest
         System.out.println("schieten omlaag - muur wel kapot");
         int veldX = 3;
         int veldY = 3;
-        int richting = 2;
+        BeweegRichting richting = BeweegRichting.omlaag;
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Muur result = level.getEenVeld(veldX, veldY).getMuur();
         Muur verwachting = null;
@@ -201,16 +201,16 @@ public class BazookaTest
         System.out.println("schieten links - muur wel kapot");
         int veldX = 3;
         int veldY = 3;
-        int richting = 3;   
+        BeweegRichting richting = BeweegRichting.links;   
         Level level = new Level(99);
         Bazooka instance = new Bazooka();
         instance.schieten(veldX, veldY, richting, level);
         switch (richting)
         {
-            case 0: {veldY--;break;}
-            case 1: {veldX++;break;}
-            case 2: {veldY++;break;}
-            case 3: {veldX--;break;}
+            case omhoog: {veldY--;break;}
+            case rechts: {veldX++;break;}
+            case omlaag: {veldY++;break;}
+            case links: {veldX--;break;}
         }
         Muur result = level.getEenVeld(veldX, veldY).getMuur();
         Muur verwachting = null;

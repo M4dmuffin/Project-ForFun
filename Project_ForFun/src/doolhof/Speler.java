@@ -19,7 +19,7 @@ public class Speler extends JComponent
     private int veldX, veldY;
     private Image spelerImage;
     private Level level;
-    private int richting;
+    private BeweegRichting richting;
     private int stappen;
     private Bazooka bazooka;
     private Helper helper;
@@ -28,7 +28,7 @@ public class Speler extends JComponent
     {
         veldX = 1; //start x positie speler 
         veldY = 1; //start y positie speler 
-        richting = 2;
+        richting = BeweegRichting.omlaag;
         stappen = 0;
         setImage();
 
@@ -46,7 +46,7 @@ public class Speler extends JComponent
         veldX = 1;
         veldY = 1;
         stappen = 0;
-        richting = 2;
+        richting = BeweegRichting.omlaag;
         if (helper != null)
         {
             helper.isGevonden = false;
@@ -70,7 +70,7 @@ public class Speler extends JComponent
             setImage();
         }
     }
-
+    
     // controleert of de speler in aanraking komt met de objecten: Helper, ValsSpeler en Bazooka
     private void pakItem()
     {
@@ -112,20 +112,20 @@ public class Speler extends JComponent
         {
             switch (richting)
             {
-                case 0: {plaatje = "playerHoog";break;}
-                case 1: {plaatje = "playerRechts";break;}
-                case 2: {plaatje = "player";break;}
-                case 3: {plaatje = "playerLinks";break;}
+                case omhoog: {plaatje = "playerHoog";break;}
+                case rechts: {plaatje = "playerRechts";break;}
+                case omlaag: {plaatje = "player";break;}
+                case links: {plaatje = "playerLinks";break;}
             }
         } 
         else
         {
             switch (richting)
             {
-                case 0: {plaatje = "playerHoogBazooka";break;}
-                case 1: {plaatje = "playerRechtsBazooka";break;}
-                case 2: {plaatje = "playerBazooka";break;}
-                case 3: {plaatje = "playerLinksBazooka";break;}
+                case omhoog: {plaatje = "playerHoogBazooka";break;}
+                case rechts: {plaatje = "playerRechtsBazooka";break;}
+                case omlaag: {plaatje = "playerBazooka";break;}
+                case links: {plaatje = "playerLinksBazooka";break;}
             }
         }
         ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
@@ -138,7 +138,7 @@ public class Speler extends JComponent
         if (richting.equals(BeweegRichting.omhoog))
         {
             int omhoog = veldY - 1;
-            this.richting = 0;
+            this.richting = BeweegRichting.omhoog;
             if (level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
@@ -150,7 +150,7 @@ public class Speler extends JComponent
         if (richting.equals(BeweegRichting.omlaag))
         {
             int omlaag = veldY + 1;
-            this.richting = 2;
+            this.richting = BeweegRichting.omlaag;
             if (level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
@@ -162,7 +162,7 @@ public class Speler extends JComponent
         if (richting.equals(BeweegRichting.links))
         {
             int links = veldX - 1;
-            this.richting = 3;
+            this.richting = BeweegRichting.links;
             if (level.getMuur(links, veldY) == null)
             {
                 veldX = links;
@@ -174,7 +174,7 @@ public class Speler extends JComponent
         if (richting.equals(BeweegRichting.rechts))
         {
             int rechts = veldX + 1;
-            this.richting = 1;
+            this.richting = BeweegRichting.rechts;
             if (level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
