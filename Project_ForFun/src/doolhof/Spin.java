@@ -13,12 +13,9 @@ import javax.swing.JPanel;
  *
  * @author HP Pavillion
  */
-public class Spin extends JPanel implements KorsteRoute
+public class Spin extends Vijand implements KorsteRoute
 {
-
-    private int veldX, veldY;
     private Image spinImage;
-    private Speler piraat;
     private BeweegRichting richting;
     
     private final int MAX_WAARDE = 1000;
@@ -46,6 +43,7 @@ public class Spin extends JPanel implements KorsteRoute
         g.drawImage(spinImage, veldX * 40, veldY * 40, null);
     }
 
+    @Override
     public void move()
     {
         losOp(veldY, veldX);
@@ -85,12 +83,6 @@ public class Spin extends JPanel implements KorsteRoute
             }
             
         }
-    }
-
-    
-    public void setSpeler(Speler piraat)
-    {
-        this.piraat = piraat;
     }
 
     
@@ -135,12 +127,12 @@ public class Spin extends JPanel implements KorsteRoute
     @Override
     public void losOp(int x, int y)
     {
-        veldLijst = piraat.getLevel().getVeldLijst();
+        veldLijst = speler.getLevel().getVeldLijst();
         kortsteRoute = MAX_WAARDE;
         aantalKolRij = veldLijst.length;
         
         terugOmzetten();
-        doolhof[piraat.getVeldY()][piraat.getVeldX()] = "P";
+        doolhof[speler.getVeldY()][speler.getVeldX()] = "P";
         
         kortsteRoute = MAX_WAARDE;
 
@@ -232,16 +224,6 @@ public class Spin extends JPanel implements KorsteRoute
         
         ImageIcon img = new ImageIcon("src/Pics/" + plaatje + ".png");
         spinImage = img.getImage();
-    }
-
-    public int getVeldX()
-    {
-        return veldX;
-    }
-
-    public int getVeldY()
-    {
-        return veldY;
     }
     
 }
