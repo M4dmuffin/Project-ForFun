@@ -25,7 +25,7 @@ public class Bord extends JPanel implements ActionListener
     private boolean win, lose;
     private Font winFont, stappenFont, aftitelingFont;
     private KeyboardListener key;
-    private Timer mainTimer, spinTimer;
+    private Timer mainTimer, vijandTimer;
     private Vijand vijand;
     
     public Bord()
@@ -36,7 +36,7 @@ public class Bord extends JPanel implements ActionListener
         levelCount = 1;
         initBord();
         mainTimer = new Timer(25, this); 
-        spinTimer = new Timer(500, this);
+        vijandTimer = new Timer(500, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
         aftitelingFont = new Font("Playbill", Font.BOLD, 30);
@@ -76,7 +76,7 @@ public class Bord extends JPanel implements ActionListener
                 initBord();
             }
         }
-        if(e.getSource() == spinTimer)
+        if(e.getSource() == vijandTimer)
         {
             vijand.move();
             vijand.repaint();
@@ -133,7 +133,6 @@ public class Bord extends JPanel implements ActionListener
                     piraat.getHelper().paintRoute(g);
                 }
             }
-            
             vijand.paint(g);
             piraat.paint(g);
             paintStappen(g);
@@ -156,7 +155,7 @@ public class Bord extends JPanel implements ActionListener
     
     public Timer getSpinTimer()
     {
-        return spinTimer;
+        return vijandTimer;
     }
 
     public int getLevelCount()

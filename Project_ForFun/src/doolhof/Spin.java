@@ -85,7 +85,6 @@ public class Spin extends Vijand implements KorsteRoute
         }
     }
 
-    
     @Override
     public void terugOmzetten()
     {  
