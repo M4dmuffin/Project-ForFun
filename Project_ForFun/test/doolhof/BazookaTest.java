@@ -216,4 +216,48 @@ public class BazookaTest
         Muur verwachting = null;
         assertEquals(verwachting, result);
     }
+    
+    @Test
+    public void testSchietAlgoritme1()
+    {
+        System.out.println("testen van algoritme vernietigbare muur");
+        int veldX = 6;
+        int veldY = 1;
+        BeweegRichting richting = BeweegRichting.rechts;   
+        Level level = new Level(99);
+        Bazooka instance = new Bazooka();
+        instance.schieten(veldX, veldY, richting, level);
+        switch (richting)
+        {
+            case omhoog: {veldY -= 2;break;}
+            case rechts: {veldX += 2;break;}
+            case omlaag: {veldY += 2;break;}
+            case links: {veldX -= 2;break;}
+        }
+        Muur result = level.getEenVeld(veldX, veldY).getMuur();
+        Muur verwachting = null;
+        assertEquals(verwachting, result);
+    }
+    
+    @Test
+    public void testSchietAlgoritme2()
+    {
+        System.out.println("schieten rechts - muur niet kapot");
+        int veldX = 6;
+        int veldY = 2;
+        BeweegRichting richting = BeweegRichting.rechts;
+        Level level = new Level(99);
+        Bazooka instance = new Bazooka();
+        instance.schieten(veldX, veldY, richting, level);
+        switch (richting)
+        {
+            case omhoog: {veldY -= 2;break;}
+            case rechts: {veldX += 2;break;}
+            case omlaag: {veldY += 2;break;}
+            case links: {veldX -= 2;break;}
+        }
+        Gang result = level.getEenVeld(veldX, veldY).getGang();
+        Gang verwachting = null;
+        assertEquals(verwachting, result);
+    }
 }
