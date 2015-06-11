@@ -142,7 +142,7 @@ public class Speler extends JComponent
             if (level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -154,7 +154,7 @@ public class Speler extends JComponent
             if (level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -166,7 +166,7 @@ public class Speler extends JComponent
             if (level.getMuur(links, veldY) == null)
             {
                 veldX = links;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -178,7 +178,7 @@ public class Speler extends JComponent
             if (level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -213,6 +213,11 @@ public class Speler extends JComponent
     public Helper getHelper()
     {
         return helper;
+    }
+    
+    private void maakStap()
+    {
+        stappen++;
     }
 
     //Alle methodes achter deze regel worden gebruik bij testen (Junit)

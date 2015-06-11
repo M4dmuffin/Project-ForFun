@@ -37,7 +37,7 @@ public class Bord extends JPanel implements ActionListener
         levelCount = 1;
         initBord();
         mainTimer = new Timer(25, this);
-        spinTimer = new Timer(500, this);
+        spinTimer = new Timer(250, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
         aftitelingFont = new Font("Playbill", Font.BOLD, 30);
