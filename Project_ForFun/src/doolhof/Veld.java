@@ -20,26 +20,26 @@ public class Veld
         return gang;
     }
 
-    public void setGang(Gang gang)
-    {
-        this.gang = gang;
-    }
-    
     public Muur getMuur()
     {
         return muur;
+    }
+
+    public Vriend getVriend()
+    {
+        return vriend;
+    }
+
+    public void setGang(Gang gang)
+    {
+        this.gang = gang;
     }
 
     public void setMuur(Muur muur)
     {
         this.muur = muur;
     }
-    
-    public Vriend getVriend()
-    {
-        return vriend;
-    }
-    
+
     public void setVriend(Vriend vriend)
     {
         this.vriend = vriend;
