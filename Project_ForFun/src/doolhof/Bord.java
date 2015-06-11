@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,8 +27,8 @@ public class Bord extends JPanel implements ActionListener
     private Font winFont, stappenFont, aftitelingFont;
     private KeyboardListener key;
     private Timer mainTimer, spinTimer;
-    private Vijand vijand;
-    
+    private ArrayList<Vijand> vijandLijst;
+
     public Bord()
     {
         key = new KeyboardListener();
@@ -35,7 +36,7 @@ public class Bord extends JPanel implements ActionListener
         piraat = new Speler();
         levelCount = 1;
         initBord();
-        mainTimer = new Timer(25, this); 
+        mainTimer = new Timer(25, this);
         spinTimer = new Timer(500, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
@@ -44,21 +45,26 @@ public class Bord extends JPanel implements ActionListener
 
     public void initBord()
     {
-        if(level != null)
+        if (level != null)
         {
-            if(levelCount > level.getHoeveelheidLevels())
+            if (levelCount > level.getHoeveelheidLevels())
             {
                 levelCount = 1;
             }
         }
         level = new Level(levelCount);
-        vijand = new Spin();
+        vijandLijst = new ArrayList<>();
+        vijandLijst.add(new Spin());
         piraat.reset();
         key.setSpeler(piraat);
         piraat.setLevel(level);
-        vijand.setSpeler(piraat);
         win = false;
         lose = false;
+        for (int i = 0; i < vijandLijst.size(); i++)
+        {
+
+            vijandLijst.get(i).setSpeler(piraat);
+        }
     }
 
     @Override
@@ -70,22 +76,24 @@ public class Bord extends JPanel implements ActionListener
             if (levelCount > level.getHoeveelheidLevels())
             {
                 win = true;
-            } 
-            else
+            } else
             {
                 initBord();
             }
         }
-        if(e.getSource() == spinTimer)
+        if (e.getSource() == spinTimer)
         {
-            vijand.move();
-            vijand.repaint();
-            if(vijand.getVeldX() == piraat.getVeldX() && vijand.getVeldY() == piraat.getVeldY())
+            for (int i = 0; i < vijandLijst.size(); i++)
             {
-                lose = true;
+                vijandLijst.get(i).move();
+                vijandLijst.get(i).repaint();
+                if (vijandLijst.get(i).getVeldX() == piraat.getVeldX() && vijandLijst.get(i).getVeldY() == piraat.getVeldY())
+                {
+                    lose = true;
+                }
             }
         }
-        
+
         repaint();
     }
 
@@ -133,8 +141,12 @@ public class Bord extends JPanel implements ActionListener
                     piraat.getHelper().paintRoute(g);
                 }
             }
-            
-            vijand.paint(g);
+
+            for (int i = 0; i < vijandLijst.size(); i++)
+            {
+                vijandLijst.get(i).paint(g);
+            }
+
             piraat.paint(g);
             paintStappen(g);
         }
@@ -153,7 +165,7 @@ public class Bord extends JPanel implements ActionListener
     {
         return mainTimer;
     }
-    
+
     public Timer getSpinTimer()
     {
         return spinTimer;
