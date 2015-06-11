@@ -29,8 +29,6 @@ public class Spin extends Vijand implements KorsteRoute
     {
         veldX = 19;
         veldY = 13;
-//        ImageIcon img = new ImageIcon("src/Pics/spider.png");
-//        spinImage = img.getImage();
         doolhof = new String[21][21];
         richting = BeweegRichting.omlaag;
         setImage();
@@ -87,7 +85,7 @@ public class Spin extends Vijand implements KorsteRoute
 
     
     @Override
-    public void terugOmzetten()
+    public void arrayOmzetten()
     {  
         for (int y = 0; y < aantalKolRij; y++)
         {
@@ -131,7 +129,7 @@ public class Spin extends Vijand implements KorsteRoute
         kortsteRoute = MAX_WAARDE;
         aantalKolRij = veldLijst.length;
         
-        terugOmzetten();
+        arrayOmzetten();
         doolhof[speler.getVeldY()][speler.getVeldX()] = "P";
         
         kortsteRoute = MAX_WAARDE;
@@ -158,7 +156,7 @@ public class Spin extends Vijand implements KorsteRoute
         {
             return MAX_WAARDE;
         }
-        // dit pad (van vriend naar begin) is langer dan het al eerder gevonden pad (van begin naar vriend)
+        // dit pad (van spin naar speler) is langer dan het al eerder gevonden pad (van speler naar spin)
         if (aantalStappen == kortsteRoute)
         {
             return MAX_WAARDE;

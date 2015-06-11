@@ -6,6 +6,7 @@ package doolhof;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
@@ -135,6 +136,7 @@ public class Speler extends JComponent
     // de beweeg methode van de speler
     public void move(BeweegRichting richting)
     {
+        
         if (richting.equals(BeweegRichting.omhoog))
         {
             int omhoog = veldY - 1;
@@ -142,7 +144,7 @@ public class Speler extends JComponent
             if (level.getMuur(veldX, omhoog) == null)
             {
                 veldY = omhoog;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -154,7 +156,7 @@ public class Speler extends JComponent
             if (level.getMuur(veldX, omlaag) == null)
             {
                 veldY = omlaag;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -166,7 +168,7 @@ public class Speler extends JComponent
             if (level.getMuur(links, veldY) == null)
             {
                 veldX = links;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
@@ -178,13 +180,13 @@ public class Speler extends JComponent
             if (level.getMuur(rechts, veldY) == null)
             {
                 veldX = rechts;
-                stappen++;
+                maakStap();
             }
             pakItem();
             setImage();
         }
     }
-
+    
     public int getVeldX()
     {
         return veldX;
@@ -214,6 +216,11 @@ public class Speler extends JComponent
     {
         return helper;
     }
+    
+    private void maakStap()
+    {
+        stappen++;
+    }
 
     //Alle methodes achter deze regel worden gebruik bij testen (Junit)
     public void setVeldX(int veldX)
@@ -235,4 +242,5 @@ public class Speler extends JComponent
     {
         this.stappen = stappen;
     }
+    
 }

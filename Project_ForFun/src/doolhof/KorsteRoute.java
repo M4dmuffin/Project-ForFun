@@ -11,7 +11,7 @@ package doolhof;
 public interface KorsteRoute
 {
     
-    public void terugOmzetten();
+    public void arrayOmzetten();
  
     public void copyDoolhof();
 

@@ -31,7 +31,7 @@ public class Helper extends Item implements KorsteRoute
 
     // zet de veldlijst terug naar een Stringlijst
     @Override
-    public void terugOmzetten()
+    public void arrayOmzetten()
     {
         for (int y = 0; y < aantalKolRij; y++)
         {
@@ -84,7 +84,7 @@ public class Helper extends Item implements KorsteRoute
                 }
             }
         }
-        terugOmzetten();
+        arrayOmzetten();
         kortsteRoute = MAX_WAARDE;
 
         if (stap(x, y, 0) != MAX_WAARDE)

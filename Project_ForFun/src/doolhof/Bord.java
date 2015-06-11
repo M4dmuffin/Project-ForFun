@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,7 +27,7 @@ public class Bord extends JPanel implements ActionListener
     private Font winFont, stappenFont, aftitelingFont;
     private KeyboardListener key;
     private Timer mainTimer, spinTimer;
-    private Vijand vijand;
+    private ArrayList<Vijand> vijandLijst;
     
     public Bord()
     {
@@ -36,7 +37,7 @@ public class Bord extends JPanel implements ActionListener
         levelCount = 1;
         initBord();
         mainTimer = new Timer(25, this); 
-        spinTimer = new Timer(500, this);
+        spinTimer = new Timer(250, this);
         stappenFont = new Font("Serif", Font.BOLD, 40);
         winFont = new Font("Serif", Font.BOLD, 60);
         aftitelingFont = new Font("Playbill", Font.BOLD, 30);
@@ -52,11 +53,16 @@ public class Bord extends JPanel implements ActionListener
             }
         }
         level = new Level(levelCount);
-        vijand = new Spin();
+        vijandLijst = new ArrayList<>();
+        vijandLijst.add(new Spin());
         piraat.reset();
         key.setSpeler(piraat);
         piraat.setLevel(level);
-        vijand.setSpeler(piraat);
+        for (int i = 0; i < vijandLijst.size(); i++)
+        {
+            vijandLijst.get(i).setSpeler(piraat);
+        }
+        
         win = false;
         lose = false;
     }
@@ -78,11 +84,14 @@ public class Bord extends JPanel implements ActionListener
         }
         if(e.getSource() == spinTimer)
         {
-            vijand.move();
-            vijand.repaint();
-            if(vijand.getVeldX() == piraat.getVeldX() && vijand.getVeldY() == piraat.getVeldY())
+            for (int i = 0; i < vijandLijst.size(); i++)
             {
-                lose = true;
+                vijandLijst.get(i).move();
+                vijandLijst.get(i).repaint();
+                if (vijandLijst.get(i).getVeldX() == piraat.getVeldX() && vijandLijst.get(i).getVeldY() == piraat.getVeldY())
+                {
+                    lose = true;
+                }
             }
         }
         
@@ -134,7 +143,11 @@ public class Bord extends JPanel implements ActionListener
                 }
             }
             
-            vijand.paint(g);
+            for (int i = 0; i < vijandLijst.size(); i++)
+            {
+                vijandLijst.get(i).paint(g);
+            }
+            
             piraat.paint(g);
             paintStappen(g);
         }
